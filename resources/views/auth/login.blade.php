@@ -1,6 +1,8 @@
 @extends('layouts.auth')
+@section('title', 'Se connecter')
 @section('content')
     <div class="lg:w-[373px] w-full mx-auto lg:border rounded-lg p-6 py-8 mt-10">
+        <x-auth-session-status class="mb-4" :status="session('status')" />
         <h2 class="font-medium text-xl text-center">Bienvenue</h2>
         <p class="text-center mt-2 text-sm">Inscrivez-vous ou connectez-vous pour profiter de toutes nos fonctionnalités</p>
         <div class="mt-6">
@@ -22,14 +24,14 @@
                 </div>
                 
                 <div class="mt-4 flex items-center justify-center">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-400 mx-auto font-semibold py-2.5 px-12 rounded-full text-white text-base">
+                    <button type="submit" class="bg-primary hover:bg-primaryHover mx-auto font-semibold py-2.5 px-12 rounded-full text-primaryText text-base">
                         Se connecter
                     </button>
                 </div>
                 @if (Route::has('password.request'))
                 <hr class="mt-6 mb-4">
                 <div class="flex items-center justify-center mt-2">
-                    <a class="underline text-sm text-blue-600 font-medium dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-primary font-medium dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                         Mot de passe oublié
                     </a>
                 </div>

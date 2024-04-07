@@ -1,4 +1,5 @@
 @extends('layouts.home')
+@section('title', $vehicule->type->brand->name . ' ' . $vehicule->type->name)
 @section('content')
 <div class="mb-10 flex flex-col lg:flex-row items-start gap-10">
     <div class="lg:w-[65%] w-full">

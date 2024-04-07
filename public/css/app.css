@@ -2239,6 +2239,9 @@ input:checked + .toggle-bg {
 .text-primaryText {
   color: var(--primary-text);
 }
+.text-primary {
+  color: var(--primary);
+}
 .underline {
   text-decoration-line: underline;
 }

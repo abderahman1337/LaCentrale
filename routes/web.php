@@ -19,7 +19,7 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/annonce/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
 Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
