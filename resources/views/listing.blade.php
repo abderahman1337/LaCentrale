@@ -290,7 +290,7 @@
                     </div>
                 </div>
                 <div class="mt-4 flex justify-center">
-                    <button type="submit" class="bg-indigo-600 font-semibold py-3 px-6 lg:min-w-72 w-full lg:w-max rounded-full text-white text-base">Rechercher</button>
+                    <button type="submit" class="bg-primary hover:bg-primaryHover w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">Rechercher</button>
                 </div>
             </form>
         </div>

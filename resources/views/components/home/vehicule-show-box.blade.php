@@ -37,7 +37,7 @@
             <span class="font-semibold">{{number_format($vehicule->price, 0, ' ', ' ')}} €</span>
         </div>
         <div class="flex justify-center mt-4">
-            <button class="bg-indigo-600 hover:bg-indigo-400 w-full font-semibold py-2.5 px-10 rounded-full text-white text-base">
+            <button class="bg-primary hover:bg-primaryHover w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
                 Voir l'annonce
             </button>
         </div>

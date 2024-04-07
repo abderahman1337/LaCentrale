@@ -1908,6 +1908,9 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(88 80 236 / var(--tw-bg-opacity));
 }
+.bg-primary {
+  background-color: var(--primary);
+}
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(224 36 36 / var(--tw-bg-opacity));
@@ -2233,6 +2236,9 @@ input:checked + .toggle-bg {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.text-primaryText {
+  color: var(--primary-text);
+}
 .underline {
   text-decoration-line: underline;
 }
@@ -2450,6 +2456,9 @@ input:checked + .toggle-bg {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.hover\:bg-primaryHover:hover {
+  background-color: var(--primary-hover);
 }
 .hover\:text-blue-600:hover {
   --tw-text-opacity: 1;
@@ -3139,6 +3148,10 @@ input:checked + .toggle-bg {
     width: 35%;
   }
 
+  .lg\:w-\[373px\] {
+    width: 373px;
+  }
+
   .lg\:w-\[400px\] {
     width: 400px;
   }
@@ -3150,10 +3163,6 @@ input:checked + .toggle-bg {
   .lg\:w-max {
     width: -moz-max-content;
     width: max-content;
-  }
-
-  .lg\:w-\[373px\] {
-    width: 373px;
   }
 
   .lg\:min-w-72 {

@@ -20,6 +20,15 @@ export default {
                 screens: {
                     lg: '1200px',
                   },
+            },
+            colors: {
+                primary : 'var(--primary)',
+                primaryHover : 'var(--primary-hover)',
+                primaryLight : 'var(--primary-light)',
+                primaryText : 'var(--primary-text)',
+                success : 'var(--success)',
+                danger : 'var(--danger)',
+                warning : 'var(--warning)',
             }
         },
     },

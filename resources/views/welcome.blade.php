@@ -143,7 +143,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex justify-center">
-                        <button type="submit" class="bg-indigo-600 font-semibold py-3 px-6 lg:min-w-72 w-full lg:w-max rounded-full text-white text-base"> Rechercher @if($vehiculesCount > 0) ({{number_format($vehiculesCount, 0, ' ', ' ')}}) @endif</button>
+                        <button type="submit" class="bg-primary font-semibold py-3 px-6 lg:min-w-72 w-full lg:w-max rounded-full text-white text-base"> Rechercher @if($vehiculesCount > 0) ({{number_format($vehiculesCount, 0, ' ', ' ')}}) @endif</button>
                     </div>
                 </div>
             </form>
