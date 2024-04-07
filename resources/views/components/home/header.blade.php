@@ -11,7 +11,7 @@
             </button>                 
             <a href="{{route('welcome')}}"><h2 class="font-extrabold text-primary lg:text-3xl text-2xl">{{ config('app.name', 'Laravel') }}</h2></a>
         </div>
-        <div class="flex items-center lg:divide-x-2 divide-blue-600">
+        <div class="flex items-center lg:divide-x-2 divide-primary">
             <ul id="menu-list" class="">
                 <li>
                     <a href="http://">Acheter</a>
