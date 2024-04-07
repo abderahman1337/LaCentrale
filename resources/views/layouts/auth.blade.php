@@ -6,11 +6,10 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="icon" href="https://lacentrale.fr/static/fragment-head/media/favicon-32.cc0580c7.png" sizes="32x32">
-        <link rel="apple-touch-icon" href="https://lacentrale.fr/static/fragment-head/media/favicon-180.61cbde72.png" sizes="180x180" />
-        <link rel="icon" href="https://lacentrale.fr/static/fragment-head/media/favicon-192.86e99c0c.png" sizes="192x192" />
-        <link rel="icon" href="https://lacentrale.fr/static/fragment-head/media/favicon-512.9de245d0.png" sizes="512x512" />
-        <link rel="icon" href="https://lacentrale.fr/static/fragment-head/media/favicon.e47e4cf5.svg" type="image/svg+xml">
+        <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="32x32">
+        <link rel="apple-touch-icon" href="{{asset('images/website/logo.jpeg')}}" sizes="180x180" />
+        <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="192x192" />
+        <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="512x512" />
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
