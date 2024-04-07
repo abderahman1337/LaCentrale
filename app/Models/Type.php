@@ -13,7 +13,9 @@ class Type extends Model
     public function brand(){
         return $this->belongsTo(Brand::class, 'brand_id');
     }
-
+    public function vehicules(){
+        return $this->hasMany(Vehicule::class);
+    }
     public function getImage(){
         return asset('images/models/'.$this->image);
     }

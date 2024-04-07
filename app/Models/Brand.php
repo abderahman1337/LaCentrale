@@ -15,6 +15,10 @@ class Brand extends Model
         return $this->hasMany(Type::class);
     }
 
+    public function vehicules(){
+        return $this->hasManyThrough(Vehicule::class, Type::class);
+    }
+
     public function getImage(){
         return asset('images/brands/'.$this->image);
     }

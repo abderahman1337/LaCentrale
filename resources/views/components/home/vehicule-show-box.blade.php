@@ -8,7 +8,14 @@
         <img class="w-full h-full object-cover" src="{{$vehicule->getImage()}}" alt="">
     </div>
     <div class="bg-white pb-4 pt-2 px-4">
-        <h3 class="font-semibold">{{$vehicule->type->brand->name}} {{$vehicule->type->name}} {{-- MERCEDES CLASSE A III phase 2 --}}</h3>
+        <h3 class="font-semibold">
+            @if ($vehicule->type)
+                @if ($vehicule->type->brand)
+                    {{$vehicule->type->brand->name}}
+                @endif
+                {{$vehicule->type->name}}
+            @endif
+        </h3>
         <span class="text-sm text-gray-600">2.1 200 D 136 SPORT EDITION</span>
         <div class="mt-2">
             <ul class="text-xs flex items-center text-ellipsis divide-x">
