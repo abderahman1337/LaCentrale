@@ -21,3 +21,11 @@
 .dropdown-container .dropdown.active{
     @apply block;
 }
+
+
+#dashboard-sidebar li a{
+    @apply flex items-center px-3 font-semibold py-3 text-gray-800 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+}
+#dashboard-sidebar li.active a{
+    @apply bg-primary text-primaryText font-bold;
+}
