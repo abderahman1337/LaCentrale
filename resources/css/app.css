@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#home-header{
+    @apply sticky z-50 top-0 mb-6 inset-x-0 h-[55px] lg:h-[70px] bg-white shadow-md;
+}
+
+#home-header #menu-list{
+    @apply hidden lg:flex items-center gap-4;
+}
+#home-header #menu-list li a{
+    @apply px-3 py-2.5 font-semibold hover:border-b-2 border-blue-600 text-[16px];
+}
+.dropdown-container .button{
+    @apply cursor-pointer;
+}
+.dropdown-container .dropdown{
+    @apply hidden;
+}
+.dropdown-container .dropdown.active{
+    @apply block;
+}

@@ -1,140 +1,446 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-        <style>
-            /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Figtree, sans-serif;font-feature-settings:normal}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::-webkit-backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }.relative{position:relative}.mx-auto{margin-left:auto;margin-right:auto}.mx-6{margin-left:1.5rem;margin-right:1.5rem}.ml-4{margin-left:1rem}.mt-16{margin-top:4rem}.mt-6{margin-top:1.5rem}.mt-4{margin-top:1rem}.-mt-px{margin-top:-1px}.mr-1{margin-right:0.25rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.h-16{height:4rem}.h-7{height:1.75rem}.h-6{height:1.5rem}.h-5{height:1.25rem}.min-h-screen{min-height:100vh}.w-auto{width:auto}.w-16{width:4rem}.w-7{width:1.75rem}.w-6{width:1.5rem}.w-5{width:1.25rem}.max-w-7xl{max-width:80rem}.shrink-0{flex-shrink:0}.scale-100{--tw-scale-x:1;--tw-scale-y:1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.items-center{align-items:center}.justify-center{justify-content:center}.gap-6{gap:1.5rem}.gap-4{gap:1rem}.self-center{align-self:center}.rounded-lg{border-radius:0.5rem}.rounded-full{border-radius:9999px}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity))}.bg-dots-darker{background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E")}.from-gray-700\/50{--tw-gradient-from:rgb(55 65 81 / 0.5);--tw-gradient-to:rgb(55 65 81 / 0);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-transparent{--tw-gradient-to:rgb(0 0 0 / 0);--tw-gradient-stops:var(--tw-gradient-from), transparent, var(--tw-gradient-to)}.bg-center{background-position:center}.stroke-red-500{stroke:#ef4444}.stroke-gray-400{stroke:#9ca3af}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.text-center{text-align:center}.text-right{text-align:right}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-gray-500\/20{--tw-shadow-color:rgb(107 114 128 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.selection\:bg-red-500 *::selection{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.selection\:bg-red-500::selection{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.hover\:text-gray-900:hover{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity))}.hover\:text-gray-700:hover{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity))}.focus\:rounded-sm:focus{border-radius:0.125rem}.focus\:outline:focus{outline-style:solid}.focus\:outline-2:focus{outline-width:2px}.focus\:outline-red-500:focus{outline-color:#ef4444}.group:hover .group-hover\:stroke-gray-600{stroke:#4b5563}@media (prefers-reduced-motion: no-preference){.motion-safe\:hover\:scale-\[1\.01\]:hover{--tw-scale-x:1.01;--tw-scale-y:1.01;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}}@media (prefers-color-scheme: dark){.dark\:bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity))}.dark\:bg-gray-800\/50{background-color:rgb(31 41 55 / 0.5)}.dark\:bg-red-800\/20{background-color:rgb(153 27 27 / 0.2)}.dark\:bg-dots-lighter{background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E")}.dark\:bg-gradient-to-bl{background-image:linear-gradient(to bottom left, var(--tw-gradient-stops))}.dark\:stroke-gray-600{stroke:#4b5563}.dark\:text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity))}.dark\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.dark\:shadow-none{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.dark\:ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.dark\:ring-inset{--tw-ring-inset:inset}.dark\:ring-white\/5{--tw-ring-color:rgb(255 255 255 / 0.05)}.dark\:hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.group:hover .dark\:group-hover\:stroke-gray-400{stroke:#9ca3af}}@media (min-width: 640px){.sm\:fixed{position:fixed}.sm\:top-0{top:0px}.sm\:right-0{right:0px}.sm\:ml-0{margin-left:0px}.sm\:flex{display:flex}.sm\:items-center{align-items:center}.sm\:justify-center{justify-content:center}.sm\:justify-between{justify-content:space-between}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:gap-8{gap:2rem}.lg\:p-8{padding:2rem}}
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                    @auth
-                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                <div class="flex justify-center">
-                    <svg viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto bg-gray-100 dark:bg-gray-900">
-                        <path d="M61.8548 14.6253C61.8778 14.7102 61.8895 14.7978 61.8897 14.8858V28.5615C61.8898 28.737 61.8434 28.9095 61.7554 29.0614C61.6675 29.2132 61.5409 29.3392 61.3887 29.4265L49.9104 36.0351V49.1337C49.9104 49.4902 49.7209 49.8192 49.4118 49.9987L25.4519 63.7916C25.3971 63.8227 25.3372 63.8427 25.2774 63.8639C25.255 63.8714 25.2338 63.8851 25.2101 63.8913C25.0426 63.9354 24.8666 63.9354 24.6991 63.8913C24.6716 63.8838 24.6467 63.8689 24.6205 63.8589C24.5657 63.8389 24.5084 63.8215 24.456 63.7916L0.501061 49.9987C0.348882 49.9113 0.222437 49.7853 0.134469 49.6334C0.0465019 49.4816 0.000120578 49.3092 0 49.1337L0 8.10652C0 8.01678 0.0124642 7.92953 0.0348998 7.84477C0.0423783 7.8161 0.0598282 7.78993 0.0697995 7.76126C0.0884958 7.70891 0.105946 7.65531 0.133367 7.6067C0.152063 7.5743 0.179485 7.54812 0.20192 7.51821C0.230588 7.47832 0.256763 7.43719 0.290416 7.40229C0.319084 7.37362 0.356476 7.35243 0.388883 7.32751C0.425029 7.29759 0.457436 7.26518 0.498568 7.2415L12.4779 0.345059C12.6296 0.257786 12.8015 0.211853 12.9765 0.211853C13.1515 0.211853 13.3234 0.257786 13.475 0.345059L25.4531 7.2415H25.4556C25.4955 7.26643 25.5292 7.29759 25.5653 7.32626C25.5977 7.35119 25.6339 7.37362 25.6625 7.40104C25.6974 7.43719 25.7224 7.47832 25.7523 7.51821C25.7735 7.54812 25.8021 7.5743 25.8196 7.6067C25.8483 7.65656 25.8645 7.70891 25.8844 7.76126C25.8944 7.78993 25.9118 7.8161 25.9193 7.84602C25.9423 7.93096 25.954 8.01853 25.9542 8.10652V33.7317L35.9355 27.9844V14.8846C35.9355 14.7973 35.948 14.7088 35.9704 14.6253C35.9792 14.5954 35.9954 14.5692 36.0053 14.5405C36.0253 14.4882 36.0427 14.4346 36.0702 14.386C36.0888 14.3536 36.1163 14.3274 36.1375 14.2975C36.1674 14.2576 36.1923 14.2165 36.2272 14.1816C36.2559 14.1529 36.292 14.1317 36.3244 14.1068C36.3618 14.0769 36.3942 14.0445 36.4341 14.0208L48.4147 7.12434C48.5663 7.03694 48.7383 6.99094 48.9133 6.99094C49.0883 6.99094 49.2602 7.03694 49.4118 7.12434L61.3899 14.0208C61.4323 14.0457 61.4647 14.0769 61.5021 14.1055C61.5333 14.1305 61.5694 14.1529 61.5981 14.1803C61.633 14.2165 61.6579 14.2576 61.6878 14.2975C61.7103 14.3274 61.7377 14.3536 61.7551 14.386C61.7838 14.4346 61.8 14.4882 61.8199 14.5405C61.8312 14.5692 61.8474 14.5954 61.8548 14.6253ZM59.893 27.9844V16.6121L55.7013 19.0252L49.9104 22.3593V33.7317L59.8942 27.9844H59.893ZM47.9149 48.5566V37.1768L42.2187 40.4299L25.953 49.7133V61.2003L47.9149 48.5566ZM1.99677 9.83281V48.5566L23.9562 61.199V49.7145L12.4841 43.2219L12.4804 43.2194L12.4754 43.2169C12.4368 43.1945 12.4044 43.1621 12.3682 43.1347C12.3371 43.1097 12.3009 43.0898 12.2735 43.0624L12.271 43.0586C12.2386 43.0275 12.2162 42.9888 12.1887 42.9539C12.1638 42.9203 12.1339 42.8916 12.114 42.8567L12.1127 42.853C12.0903 42.8156 12.0766 42.7707 12.0604 42.7283C12.0442 42.6909 12.023 42.656 12.013 42.6161C12.0005 42.5688 11.998 42.5177 11.9931 42.4691C11.9881 42.4317 11.9781 42.3943 11.9781 42.3569V15.5801L6.18848 12.2446L1.99677 9.83281ZM12.9777 2.36177L2.99764 8.10652L12.9752 13.8513L22.9541 8.10527L12.9752 2.36177H12.9777ZM18.1678 38.2138L23.9574 34.8809V9.83281L19.7657 12.2459L13.9749 15.5801V40.6281L18.1678 38.2138ZM48.9133 9.14105L38.9344 14.8858L48.9133 20.6305L58.8909 14.8846L48.9133 9.14105ZM47.9149 22.3593L42.124 19.0252L37.9323 16.6121V27.9844L43.7219 31.3174L47.9149 33.7317V22.3593ZM24.9533 47.987L39.59 39.631L46.9065 35.4555L36.9352 29.7145L25.4544 36.3242L14.9907 42.3482L24.9533 47.987Z" fill="#FF2D20"/>
-                    </svg>
-                </div>
-
-                <div class="mt-16">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        <a href="https://laravel.com/docs" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                            <div>
-                                <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                                    </svg>
-                                </div>
-
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Documentation</h2>
-
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience with Laravel, we recommend reading our documentation from beginning to end.
-                                </p>
-                            </div>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                            </svg>
-                        </a>
-
-                        <a href="https://laracasts.com" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                            <div>
-                                <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
-                                        <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-                                    </svg>
-                                </div>
-
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Laracasts</h2>
-
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                </p>
-                            </div>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                            </svg>
-                        </a>
-
-                        <a href="https://laravel-news.com" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                            <div>
-                                <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
-                                    </svg>
-                                </div>
-
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Laravel News</h2>
-
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </p>
-                            </div>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                            </svg>
-                        </a>
-
-                        <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                            <div>
-                                <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64" />
-                                    </svg>
-                                </div>
-
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</h2>
-
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Forge</a>, <a href="https://vapor.laravel.com" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Vapor</a>, <a href="https://nova.laravel.com" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Nova</a>, and <a href="https://envoyer.io" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Telescope</a>, and more.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
-                        <div class="flex items-center gap-4">
-                            <a href="https://github.com/sponsors/taylorotwell" class="group inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="-mt-px mr-1 w-5 h-5 stroke-gray-400 dark:stroke-gray-600 group-hover:stroke-gray-600 dark:group-hover:stroke-gray-400">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+@extends('layouts.home')
+@section('title', 'Voiture occasion - Annonce auto')
+@section('content')
+<div class="bg-[#f6f6f9] rounded-[32px] lg:ltr:pr-0 p-8 lg:rtl:pl-0 min-h-[480px]" id="home-search-box">
+    <div class="grid sm:grid-cols-3 gap-10">
+        <div class="p-6 rounded-[32px] bg-white shadow-md flex items-center justify-center lg:w-[400px]">
+            <form action="{{route('vehicules.listing')}}" method="get">
+                <div class="w-full">
+                    <div class="mt-6 flex items-start gap-4 w-full">
+                        <!-- Brand -->
+                        <div class="w-full">
+                            <button id="brand-search-dropdown" data-dropdown-toggle="brands-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full relative rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Marque">
+                                <input type="hidden" id="selected-brands-list" name="brands" value="">
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
                                 </svg>
-                                Sponsor
-                            </a>
+                            </button>
+                            <div id="brands-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <div class="p-3">
+                                    <label for="brand-search" class="sr-only">Search</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                            </svg>
+                                        </div>
+                                        <input type="text" id="brand-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une marque">
+                                    </div>
+                                </div>
+                                <ul id="brands-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="brand-search-dropdown">
+                                    @foreach (App\Models\Brand::latest()->get() as $brand)
+                                    <li data-name="{{$brand->name}}">
+                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        <input id="brand-{{$brand->id}}" type="checkbox" data-name="{{$brand->name}}" value="{{$brand->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="brand-{{$brand->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$brand->name}}</label>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Models -->
+                        <div class="w-full">
+                            <button id="model-search-dropdown" data-dropdown-toggle="models-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Modèles">
+                                <input type="hidden" id="selected-models-list" name="models" value="">
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div id="models-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <div class="p-3">
+                                    <label for="model-search" class="sr-only">Search</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                        </div>
+                                        <input type="text" id="model-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une model">
+                                    </div>
+                                </div>
+                                <ul id="models-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="model-search-dropdown">
+                                    @foreach (App\Models\Type::latest()->get() as $type)
+                                    <li data-name="{{$type->name}}">
+                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        <input id="model-{{$type->id}}" type="checkbox" data-name="{{$type->name}}" value="{{$type->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="model-{{$type->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$type->name}}</label>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                    <div class="mt-4 flex items-start gap-4 w-full">
+                        <!-- Price -->
+                        <div class="w-full">
+                            <button data-dropdown-toggle="prices-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button"> 
+                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" id="price-range" readonly value="" placeholder="Prix">
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div id="prices-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <div class="p-3 flex items-start gap-2">
+                                    <div class="relative">
+                                        <input type="number" id="min-price" name="min_price" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 peer" placeholder=" " />
+                                        <label for="min-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-focus:dark:text-indigo-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix min</label>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="number" id="max-price" name="max_price" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 peer" placeholder=" " />
+                                        <label for="max-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-focus:dark:text-indigo-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix max</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Energie -->
+                        <div class="w-full">
+                            <button id="energy-search-dropdown" data-dropdown-toggle="energy-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Énergie">
+                                <input type="hidden" id="selected-energies-list" name="energies" value="">
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div id="energy-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <ul id="energies-list" class="max-h-96 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="energy-search-dropdown">
+                                    @foreach ($energies as $energy)
+                                    <li data-name="{{$energy->name}}">
+                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        <input id="energy-{{$energy->id}}" type="checkbox" data-name="{{$energy->name}}" value="{{$energy->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="energy-{{$energy->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$energy->name}}</label>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <div class="mt-4 flex items-start gap-4 w-full">
+                        <div class="w-full relative">
+                            <button data-dropdown-toggle="location-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button"> 
+                                <span>Localisation</span>
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div id="location-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-full dark:bg-gray-700">
+                                <div class="p-3">
+                                    <label for="location-search" class="sr-only">Search</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                        </div>
+                                        <input type="text" id="location-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Code Postal">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-center">
+                        <button type="submit" class="bg-indigo-600 font-semibold py-3 px-6 lg:min-w-72 w-full lg:w-max rounded-full text-white text-base"> Rechercher @if($vehiculesCount > 0) ({{number_format($vehiculesCount, 0, ' ', ' ')}}) @endif</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="justify-end w-full lg:col-span-2 lg:ltr:pl-20 lg:rtl:pr-20">
+            <h2 class="sm:text-4xl mb-6 font-bold">Nous sélectionnons les meilleures voitures d'occasion pour vous.</h2>
+            <img class="ltr:ml-auto rtl:mr-auto" src="https://www.lacentrale.fr/fragments/recherche-fragment-front/media/claims_landing_search_desktop.a7bae0d0.png" alt="">
+        </div>
+    </div>
+</div>
+<div class="mt-20 mb-20">
+    <h2 class="lg:text-3xl text-xl font-bold">Trouvez votre voiture d'occasion idéale</h2>
+    <div class="mt-6">
+        <div class="grid lg:grid-cols-5 grid-cols-2 overflow-x-auto relative gap-4">
+            <a href="http://">
+                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
+                    <div class="py-6">
+                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_petits_prix.5a9b23a2.png" alt="">
+                    </div>
+                    <div class="bg-[#f6f6f9] py-4 px-4">
+                        <h3 class="font-semibold">Petites prix</h3>
+                        <span class="text-sm font-medium text-gray-600">32 946 véhicules</span>
+                    </div>
+                </div>
+            </a>
+            <a href="http://">
+                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
+                    <div class="py-6">
+                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_familiales.f1ab8b21.png" alt="">
+                    </div>
+                    <div class="bg-[#f6f6f9] py-4 px-4">
+                        <h3 class="font-semibold">Familiales</h3>
+                        <span class="text-sm font-medium text-gray-600">35 794 véhicules</span>
+                    </div>
+                </div>
+            </a>
+            <a href="http://">
+                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
+                    <div class="py-6">
+                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_electriques.968e39af.png" alt="">
+                    </div>
+                    <div class="bg-[#f6f6f9] py-4 px-4">
+                        <h3 class="font-semibold">Électriques</h3>
+                        <span class="text-sm font-medium text-gray-600">26 219 véhicules</span>
+                    </div>
+                </div>
+            </a>
+            <a href="http://">
+                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
+                    <div class="py-6">
+                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_hybrides.d570f580.png" alt="">
+                    </div>
+                    <div class="bg-[#f6f6f9] py-4 px-4">
+                        <h3 class="font-semibold">Hybrides</h3>
+                        <span class="text-sm font-medium text-gray-600">42 542 véhicules</span>
+                    </div>
+                </div>
+            </a>
+            <a href="http://">
+                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
+                    <div class="py-6">
+                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_automatiques.581d042f.png" alt="">
+                    </div>
+                    <div class="bg-[#f6f6f9] py-4 px-4">
+                        <h3 class="font-semibold">Automatiques</h3>
+                        <span class="text-sm font-medium text-gray-600">190 644 véhicules</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="mt-20 mb-20">
+    <div class="grid sm:grid-cols-2 grid-cols-1">
+        <div>
+            <img src="https://lacentrale.fr/static/fragment-landing/media/usp_index.5b88ddd5.png" alt="">
+        </div>
+        <div>
+            <h2 class="lg:text-3xl text-xl font-bold">Notre expertise à votre service</h2>
+            <div class="mt-4">
+                <ul class="flex flex-col gap-3 font-medium">
+                    <li class="flex items-center gap-3">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 13.54-2.59-3.02a.7.7 0 0 0-1.12.08l-4.03 6.46a.7.7 0 1 0 1.17.74l3.54-5.68 2.6 3.04a.7.7 0 0 0 1.12-.09l3.6-5.84.74 1.12a7 7 0 0 1 1.44-.35l-1.64-2.44a.7.7 0 0 0-1.16.02zM18.58 10.4l4.31-6.8a.7.7 0 1 0-1.17-.74l-4.54 7.17a6 6 0 0 1 1.4.36"></path><path fill="currentColor" fill-rule="evenodd" d="M20.48 15.37q-.02 1.33-.71 2.4l2.53 2.53a.68.68 0 0 1-.96.96l-2.5-2.49a4.36 4.36 0 1 1 1.64-3.4m-7.35 0a3 3 0 1 0 5.99 0 3 3 0 0 0-5.99 0" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <span>Une analyse objective des prix</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M9.72 2.6a.73.73 0 1 0 0 1.45.73.73 0 0 0 0-1.46"></path><path fill="currentColor" fill-rule="evenodd" d="M11.88 2.5a2.4 2.4 0 0 0-1.27-1.3 2.2 2.2 0 0 0-1.82 0q-.86.4-1.27 1.31h-.36a1.6 1.6 0 0 0-1.54 1.24H2.69c-.32 0-.65.14-.85.38-.24.2-.37.52-.37.85v16.75c0 .33.13.66.38.86q.33.36.84.37h9.68c.3 0 .52-.23.52-.52a.5.5 0 0 0-.18-.36.6.6 0 0 0-.34-.12H2.7a.22.22 0 0 1-.22-.23V4.98q.02-.21.22-.23h2.87v.47q.01.38.25.6c.15.16.4.26.6.26H13q.38-.01.6-.25c.16-.16.25-.4.25-.6v-.48h2.88q.2.02.22.23v6.12c0 .29.23.52.52.52s.52-.23.52-.52V4.98c0-.33-.13-.66-.38-.86a1.2 1.2 0 0 0-.84-.37h-2.89q-.14-.52-.53-.87a1.6 1.6 0 0 0-1-.37h-.44zm-2.75-.33c.37-.19.82-.18 1.14 0q.59.3.71.93l.06.41h1.17q.27 0 .42.19.17.22.17.45v.97H6.56V4.1q0-.24.17-.44.16-.16.43-.16h1.2l.06-.41q.14-.63.7-.93" clip-rule="evenodd"></path><path fill="currentColor" d="M14.22 8.72H4.2v.91h10.02zM19.27 16.07q.17 0 .3.15.11.14.14.3a.4.4 0 0 1-.11.35l-2.61 2.73a.5.5 0 0 1-.36.14.5.5 0 0 1-.35-.14l-1.05-1.09-.01-.02c-.1-.2-.12-.48.07-.67l.02-.01.02-.01v-.01q.13-.08.31-.1.19.02.3.1h.02l.02.02.7.73 2.26-2.38.01-.01q.14-.1.32-.08"></path><path fill="currentColor" fill-rule="evenodd" d="M17.46 12.86a5.06 5.06 0 1 0-.02 10.16 5.06 5.06 0 0 0 .02-10.16M14.6 15c.76-.76 1.8-1.2 2.87-1.2a4.08 4.08 0 0 1 0 8.15A4.08 4.08 0 0 1 14.6 15" clip-rule="evenodd"></path><path fill="currentColor" d="M11.73 13.31H4.2v.92h7.53zM10.5 17.86H4.2v.92h6.3z"></path></svg>
+                        </div>
+                        <span>Une visibilité complète sur l'historique du véhicule</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M18.95 1c1.22 0 2.22.94 2.3 2.14l.01.18v17.36c0 1.23-.94 2.23-2.14 2.31l-.17.01H5.05a2.3 2.3 0 0 1-2.3-2.14l-.01-.18V3.32c0-1.23.94-2.23 2.14-2.31L5.05 1zm0 2.32H5.05v17.36h13.9zM9.1 16.05a1.74 1.74 0 1 1 0 3.48 1.74 1.74 0 0 1 0-3.48m5.78 0a1.74 1.74 0 1 1 0 3.48 1.74 1.74 0 0 1 0-3.48m-5.78-4.63a1.74 1.74 0 1 1 0 3.47 1.74 1.74 0 0 1 0-3.47m5.78 0a1.74 1.74 0 1 1 0 3.47 1.74 1.74 0 0 1 0-3.47m1.16-6.95c.9 0 1.65.7 1.73 1.57v2.49c0 .9-.68 1.64-1.56 1.73H7.95c-.9 0-1.65-.69-1.73-1.57l-.01-.16V6.2c0-.9.69-1.64 1.57-1.73h8.27m-.58 2.32H8.53v1.16h6.94z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <span>Votre budget maîtrisé avec notre simulateur de financement</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="m20.69 15.93-.7-.62c-.03-.04-.07-.12-.05-.16.16-.38.3-.78.52-1.12s.6-.48 1.03-.51c.4-.03.55-.18.55-.6v-1.8c0-.42-.14-.56-.55-.6a1.5 1.5 0 0 1-1.34-1.01q-.27-.7-.6-1.41a1.5 1.5 0 0 1 .22-1.7c.28-.33.27-.52-.04-.83l-1.25-1.24c-.33-.32-.5-.33-.86-.05a1.5 1.5 0 0 1-1.66.21l-1.4-.59a1.5 1.5 0 0 1-1.04-1.36c-.03-.38-.18-.53-.58-.53H11.1c-.4 0-.55.15-.58.56a1.5 1.5 0 0 1-.96 1.3l-1.5.62a1.5 1.5 0 0 1-1.64-.22c-.35-.29-.53-.28-.86.04L4.3 5.55c-.3.32-.32.5-.05.83q.63.77.21 1.7-.3.68-.58 1.38-.35.96-1.38 1.04c-.37.03-.52.19-.52.56v1.87c0 .39.15.53.55.57q.98.09 1.34 1.01.27.7.6 1.41a1.5 1.5 0 0 1-.22 1.7c-.28.33-.27.51.04.82l1.27 1.26c.3.3.5.31.8.04q.82-.66 1.75-.2.67.32 1.35.56.94.36 1.03 1.36c.03.38.19.53.58.53h1.84c.4 0 .54-.15.58-.56q.09-.95.97-1.3c.73-.29.73-.28 1.24.3l.18.22q-.5.2-.95.36c-.29.1-.43.27-.45.6A1.45 1.45 0 0 1 13.04 23h-2.06a1.45 1.45 0 0 1-1.47-1.4c-.02-.32-.16-.48-.44-.58l-1.38-.57q-.37-.17-.7.08c-.7.57-1.48.53-2.13-.1l-1.32-1.34c-.6-.62-.65-1.42-.09-2.07q.28-.34.1-.7-.3-.69-.58-1.39-.13-.41-.57-.43A1.46 1.46 0 0 1 1 13.02v-2.03c0-.81.58-1.43 1.4-1.48.31-.02.47-.17.58-.46q.26-.69.56-1.36c.12-.27.11-.48-.09-.72-.56-.66-.53-1.45.08-2.07l1.35-1.35c.64-.62 1.44-.65 2.12-.09q.31.26.69.1.7-.32 1.4-.59.4-.13.42-.55C9.56 1.6 10.17 1.01 11 1h2.03c.8.01 1.41.59 1.46 1.38q.02.46.44.6.7.26 1.38.57.37.18.7-.08c.67-.56 1.47-.52 2.1.1q.68.65 1.36 1.34c.6.62.64 1.41.08 2.08q-.28.33-.1.72.3.67.57 1.36c.1.29.27.44.59.46.8.05 1.38.67 1.39 1.48v2.03a1.45 1.45 0 0 1-1.4 1.47q-.45.02-.57.43l-.37.98z"></path><path fill="currentColor" d="m10.14 11.56 1.42-1.43-1.01-1.01c-.44-.44-.35-.83.24-1.01a4 4 0 0 1 5.08 4.5c-.05.25 0 .4.2.57l4.25 3.77q1.09.99.72 2.41-.38 1.38-1.78 1.7a2.3 2.3 0 0 1-2.34-.79q-1.87-2.1-3.75-4.23c-.16-.19-.3-.22-.53-.18a4 4 0 0 1-4.5-5.13c.17-.51.56-.61.94-.24zm-1.11.28-.08.04c.02.2 0 .43.05.63a3 3 0 0 0 3.81 2.29q.47-.16.77.22.28.34.58.66l3.5 3.95c.62.7 1.64.66 2.18-.05.45-.59.35-1.39-.26-1.93q-2.25-2-4.52-4c-.29-.25-.38-.5-.26-.87a2.96 2.96 0 0 0-2.01-3.7c-.3-.1-.61-.1-.94-.15l.01.1.7.7c.3.32.3.56 0 .87l-1.97 1.97c-.3.3-.55.3-.86 0l-.71-.72z"></path><path fill="currentColor" d="M19.08 14.51q-.4-.31-.7-.62c-.07-.08-.06-.26-.03-.4q.63-2.83-1-5.22a6.5 6.5 0 0 0-11.81 2.89 6.52 6.52 0 0 0 6.85 7.36c.41-.02.82-.13 1.23-.18q.17-.01.27.05.3.33.6.68a7.4 7.4 0 0 1-8.4-2.39A7.54 7.54 0 0 1 16.13 5.71a7.5 7.5 0 0 1 2.94 8.8M19.16 18.64a.5.5 0 0 0-.5-.49.5.5 0 1 0 .5.5"></path><path fill="currentColor" d="M19.16 18.65a.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.48.5.5 0 0 1 .5-.52.5.5 0 0 1 .48.5z"></path></svg>
+                        </div>
+                        <span>Une projection claire sur les futurs entretiens de votre voiture</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mb-20"><x-home.most-popular-brands :brands="$brands"></x-home.most-popular-brands></div>
+<div class="mb-20"><x-home.most-requested-models :models="$models"></x-home.most-requested-models></div>
+<div class="mt-20 mb-20">
+    <h2 class="lg:text-3xl text-xl font-bold">Notre sélection de véhicules d’occasion</h2>
+    <div class="mt-6">
+        <div class="grid lg:grid-cols-4 grid-cols-1 overflow-x-auto relative gap-4">
+            @foreach ($vehicules as $vehicule)
+            <a href="{{route('vehicule', $vehicule->id)}}">
+                <x-home.vehicule-show-box :vehicule="$vehicule"></x-home.vehicule-show-box>
+            </a>  
+            @endforeach
+        </div>
+    </div>
+</div>
+<div class="mt-20 mb-20">
+    <h2 class="lg:text-3xl text-xl font-bold">Bien choisir son électrique ou hybride d'occasion</h2>
+    <div class="grid sm:grid-cols-2 grid-cols-1 gap-6 mt-6">
+        <div>
+            <div>
+                <img class="rounded-[20px]" src="https://assets.prod.roole.fr/data/assets/medium_Visuel_article_bornes_de_recharge_electriques_2274bc68d4.jpg" alt="">
+            </div>
+            
+            <h2 class="font-semibold text-xl mb-2 mt-2">Voitures électriques : comment les recharger, combien ça coûte ?</h2>
+            <p>
+                Les spécificités de la voiture électrique entraînent des usages différents, principalement quand il s'agit de faire un plein d'énergie. Il y a un monde entre effectuer une recharge chez soi, sur la route ou sur l'autoroute
+            </p>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <div>
+                    <img class="rounded-[20px]" src="https://www.automobile-propre.com/wp-content/uploads/2013/02/recharge-voiture-electrique-cable.jpg" alt="">
+                </div>
+                <h2 class="font-semibold mb-2 mt-2">Les mots de la voiture électrique : un petit lexique afin d'y voir plus clair</h2>
+            </div>
+            <div>
+                <div>
+                    <img class="rounded-[20px]" src="https://www.01net.com/app/uploads/2022/10/charge-rapide-voiture-electrique.jpg" alt="">
+                </div>
+                <h2 class="font-semibold mb-2 mt-2">Les mots de la voiture électrique : un petit lexique afin d'y voir plus clair</h2>
+            </div>
+            <div>
+                <div>
+                    <img class="rounded-[20px]" src="https://www.turbo.fr/sites/default/files/2021-01/bmw%20i3.jpg" alt="">
+                </div>
+                <h2 class="font-semibold mb-2 mt-2">Voitures électriques neuves : quelles aides gouvernementales en 2023 ?</h2>
+            </div>
+            <div>
+                <div>
+                    <img class="rounded-[20px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRhOzvB_w3K89bYepP3idFrPsBaeVIHXWQLhgZzKWnig&s" alt="">
+                </div>
+                <h2 class="font-semibold mb-2 mt-2">Achat voitures électriques : quelles aides pour l'occasion en 2023</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-20 mb-10">
+    <h2 class="lg:text-3xl text-xl font-bold">A découvrir également</h2>
+    <div class="bg-[#f6f6f9] p-6 rounded-[20px] mt-6">
+        <div class="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4">
+            <div>
+                <h2 class="font-semibold">Marques de véhicules d'occasion</h2>
+                <div class="mt-3">
+                    <ul class="text-sm font-semibold">
+                        <li><a class="underline" href="#">Tesla</a></li>
+                        <li><a class="underline" href="#">Toyota</a></li>
+                        <li><a class="underline" href="#">Porshe</a></li>
+                        <li><a class="underline" href="#">Dacia</a></li>
+                        <li><a class="underline" href="#">Ford</a></li>
+                        <li><a class="underline" href="#">Kia</a></li>
+                        <li><a class="underline" href="#">Hyundai</a></li>
+                        <li><a class="underline" href="#">Skoda</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2 class="font-semibold">Modèles de véhicules d'occasion</h2>
+                <div class="mt-3">
+                    <ul class="text-sm font-semibold">
+                        <li><a class="underline" href="#">Fiat500</a></li>
+                        <li><a class="underline" href="#">Citreon c3</a></li>
+                        <li><a class="underline" href="#">Renault captur</a></li>
+                        <li><a class="underline" href="#">Dacia spring</a></li>
+                        <li><a class="underline" href="#">Peugeot 2008</a></li>
+                        <li><a class="underline" href="#">Toyota Yaris</a></li>
+                        <li><a class="underline" href="#">Dacia Duster</a></li>
+                        <li><a class="underline" href="#">Renault Clio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2 class="font-semibold">Catégories de véhicules</h2>
+                <div class="mt-3">
+                    <ul class="text-sm font-semibold">
+                        <li><a class="underline" href="#">4x4, SUV & Crossover</a></li>
+                        <li><a class="underline" href="#">Citadin</a></li>
+                        <li><a class="underline" href="#">Break</a></li>
+                        <li><a class="underline" href="#">Monospace</a></li>
+                        <li><a class="underline" href="#">Berline</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2 class="font-semibold">Petits prix</h2>
+                <div class="mt-3">
+                    <ul class="text-sm font-semibold">
+                        <li><a class="underline" href="#">Voiture occasion petit prix</a></li>
+                        <li><a class="underline" href="#">Voiture occasion à moins de 5 000 euros</a></li>
+                        <li><a class="underline" href="#">Voiture occasion à moins de 10 000 euros</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection
+@section('scripts')
+<script>
+    let brandList = document.getElementById('brands-list'); 
+    let modelList = document.getElementById('models-list'); 
+    let energyList = document.getElementById('energies-list'); 
+    let maxPrice = document.getElementById('max-price');
+    let minPrice = document.getElementById('min-price');
+    let priceRange = document.getElementById('price-range');
+    listFilterByName(document.getElementById('brand-search'), brandList);
+    listFilterByName(document.getElementById('model-search'), modelList);
+
+    minPrice.addEventListener('input', function (){
+        let value = this.value;
+        let max = maxPrice.value;
+        priceRange.value = (value != '' ? value + '€'  + (max != '' ? ' - ' : '') : '') + (max != '' ?  max + '€' : '');
+    });
+    maxPrice.addEventListener('input', function (){
+        let value = this.value;
+        let min = minPrice.value;
+        priceRange.value = (min != '' ? min + '€ ' : '') + (value != '' ? (min != '' ? ' - ' : '') + value + '€' : '');
+    });
+
+    let brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
+    brandList.querySelectorAll('li').forEach(item => {
+        let input = item.querySelector('input[type="checkbox"]');
+        input.addEventListener('change', function (){
+            let checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
+            brandSearchDropdownBtn.querySelector('input').value = '';
+            var names = [];
+            var ids = [];
+            checkedBrands.forEach(checkedBrand => {
+                names.push(checkedBrand.dataset.name);
+                ids.push(checkedBrand.value);
+            });
+            brandSearchDropdownBtn.querySelector('input').value = names.join(', ');
+            brandSearchDropdownBtn.querySelector('#selected-brands-list').value = ids.join(',');
+        });
+    });
+
+    
+    let modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
+    modelList.querySelectorAll('li').forEach(item => {
+        let input = item.querySelector('input[type="checkbox"]');
+        input.addEventListener('change', function (){
+            let checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
+            modelSearchDropdownBtn.querySelector('input').value = '';
+            var names = [];
+            var ids = [];
+            checkedModels.forEach(checkedModel => {
+                names.push(checkedModel.dataset.name);
+                ids.push(checkedModel.value);
+            });
+            modelSearchDropdownBtn.querySelector('input').value = names.join(', ');
+            modelSearchDropdownBtn.querySelector('#selected-models-list').value = ids.join(',');
+        });
+    });
+
+    let energiesSearchDropdownBtn = document.getElementById('energy-search-dropdown');
+    energyList.querySelectorAll('li').forEach(item => {
+        let input = item.querySelector('input[type="checkbox"]');
+        input.addEventListener('change', function (){
+            let checkedEnergies = energyList.querySelectorAll('li input[type="checkbox"]:checked');
+            energiesSearchDropdownBtn.querySelector('input').value = '';
+            var names = [];
+            var ids = [];
+            checkedEnergies.forEach(checkedEnergy => {
+                names.push(checkedEnergy.dataset.name);
+                ids.push(checkedEnergy.value);
+            });
+            energiesSearchDropdownBtn.querySelector('input').value = names.join(', ');
+            energiesSearchDropdownBtn.querySelector('#selected-energies-list').value = ids.join(',');
+        });
+    });
+</script>
+@endsection

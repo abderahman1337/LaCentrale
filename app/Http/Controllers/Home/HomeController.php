@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Color;
+use App\Models\Energy;
+use App\Models\Type;
+use App\Models\Vehicule;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    public function welcome(){
+        $brands = Brand::latest()->get();
+        $models = Type::latest()->with('brand:id,name')->get();
+        $energies = Energy::latest()->get();
+        $vehicules = Vehicule::latest()->with(['type' => function ($q){
+            $q->select('id', 'name', 'brand_id')->with('brand:id,name');
+        }, 'color:id,name', 'energy:id,name'])->limit(5)->get();
+        $vehiculesCount = Vehicule::count();
+        return view('welcome', [
+            'brands' => $brands,
+            'models' => $models,
+            'energies' => $energies,
+            'vehicules' => $vehicules,
+            'vehiculesCount' => $vehiculesCount
+        ]);
+    }
+
+    public function vehicule($id){
+        $vehicule = Vehicule::with(['options' => function ($q){
+            $q->select('option_id', 'vehicule_id')->with(['option' => function ($q){
+                $q->with('equipment:id,name');
+            }]);
+        }])->findOrFail($id);
+       /*  $groupedBy = $vehicule->options->groupBy('option.equipment.name');
+        return $groupedBy; */
+        return view('vehicule', [
+            'vehicule' => $vehicule
+        ]);
+    }
+
+    public function listing(Request $request){
+        $vehicules = Vehicule::when($request->brands, function ($q) use($request){
+            $q->whereHas('type', function ($q) use($request){
+                $q->whereIn('brand_id', explode(',', $request->brands));
+            });
+        })
+        ->when($request->models, function ($q) use($request){
+            $q->whereIn('type_id', explode(',', $request->models));
+        })
+        ->when($request->min_price, function ($q) use($request){
+            $q->where('price', '>=', $request->min_price);
+        })
+        ->when($request->max_price, function ($q) use($request){
+            $q->where('price', '<=', $request->max_price);
+        })
+        ->when($request->energies, function ($q) use($request){
+            $q->whereIn('energy_id', explode(',', $request->energies));
+        })
+        ->when($request->colors, function ($q) use($request){
+            $q->whereIn('color_id', explode(',', $request->colors));
+        })
+        ->when($request->min_year, function ($q) use($request){
+            $q->where('year', '>=', $request->min_year);
+        })
+        ->when($request->max_year, function ($q) use($request){
+            $q->where('year', '<=', $request->max_year);
+        })
+        ->when($request->min_mileage, function ($q) use($request){
+            $q->where('mileage', '>=', $request->min_mileage);
+        })
+        ->when($request->max_mileage, function ($q) use($request){
+            $q->where('mileage', '<=', $request->max_mileage);
+        })
+        ->when($request->min_fiscal_horse_power, function ($q) use($request){
+            $q->where('fiscal_horsepower', '>=', $request->min_fiscal_horse_power);
+        })
+        ->when($request->max_fiscal_horse_power, function ($q) use($request){
+            $q->where('fiscal_horsepower', '<=', $request->max_fiscal_horse_power);
+        })
+        ->when($request->min_power, function ($q) use($request){
+            $q->where('power', '>=', $request->min_power);
+        })
+        ->when($request->max_power, function ($q) use($request){
+            $q->where('power', '<=', $request->max_power);
+        })
+        ->when($request->gearbox, function ($q) use($request){
+            if(in_array($request->gearbox, ['automatic', 'manual'])){
+                $q->where('gearbox', $request->gearbox);
+            }
+        })
+        ->latest()->with(['type' => function ($q){
+            $q->select('id', 'name', 'brand_id')->with('brand:id,name');
+        }, 'color:id,name', 'energy:id,name'])
+        ->get();
+
+        
+
+        $brands = Brand::latest()->get();
+        $models = Type::latest()->with('brand:id,name')->get();
+        $energies = Energy::latest()->get();
+        $colors = Color::latest()->get();
+        return view('listing', [
+            'vehicules' => $vehicules,
+            'brands' => $brands,
+            'models' => $models,
+            'energies' => $energies,
+            'colors' => $colors
+        ]);
+        return $vehicules;
+    }
+}
