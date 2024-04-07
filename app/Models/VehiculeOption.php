@@ -15,6 +15,6 @@ class VehiculeOption extends Model
         return $this->belongsTo(Vehicule::class);
     }
     public function option(){
-        return $this->belongsTo(option::class);
+        return $this->belongsTo(Option::class);
     }
 }
