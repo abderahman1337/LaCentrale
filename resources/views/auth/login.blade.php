@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('content')
-    <div class="w-[373px] mx-auto lg:border rounded-lg p-6 py-8 mt-10">
+    <div class="lg:w-[373px] w-full mx-auto lg:border rounded-lg p-6 py-8 mt-10">
         <h2 class="font-medium text-xl text-center">Bienvenue</h2>
         <p class="text-center mt-2 text-sm">Inscrivez-vous ou connectez-vous pour profiter de toutes nos fonctionnalités</p>
         <div class="mt-6">

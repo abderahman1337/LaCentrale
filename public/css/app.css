@@ -3152,6 +3152,10 @@ input:checked + .toggle-bg {
     width: max-content;
   }
 
+  .lg\:w-\[373px\] {
+    width: 373px;
+  }
+
   .lg\:min-w-72 {
     min-width: 18rem;
   }
