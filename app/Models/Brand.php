@@ -11,12 +11,12 @@ class Brand extends Model
 
     protected $fillable = ['name', 'image'];
 
-    public function models(){
-        return $this->hasMany(Type::class);
+    public function series(){
+        return $this->hasMany(Serie::class);
     }
 
     public function vehicules(){
-        return $this->hasManyThrough(Vehicule::class, Type::class);
+        return $this->hasManyThrough(Vehicule::class, Serie::class);
     }
 
     public function getImage(){

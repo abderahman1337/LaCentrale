@@ -21,13 +21,12 @@ class BrandController extends Controller
     public function index(Request $request){
         $brands = Brand::when($request->order_by, function ($q) use($request){
             $q->orderBy($request->order_by, $request->order_type);
-        })->withCount('models', 'vehicules')->paginate(20);
+        })->withCount('series', 'vehicules')->paginate(20);
         return view('admin.brands.index', [
             'brands' => $brands
         ]);
     }
     public function store(Request $request){
-        //dd($request->all());
         $request->validate([
             'name' => 'required',
             'logo' => 'required',

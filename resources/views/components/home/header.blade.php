@@ -9,7 +9,7 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
                 </svg>
             </button>                 
-            <a href="{{route('welcome')}}"><h2 class="font-extrabold text-primary lg:text-3xl text-2xl">{{ config('app.name', 'Laravel') }}</h2></a>
+            <a href="{{route('welcome')}}"><h2 class="font-extrabold text-primary lg:text-3xl text-2xl">{{ $websiteName }}</h2></a>
         </div>
         <div class="flex items-center lg:divide-x-2 divide-primary">
             <ul id="menu-list" class="">

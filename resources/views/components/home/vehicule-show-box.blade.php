@@ -9,11 +9,11 @@
     </div>
     <div class="bg-white pb-4 pt-2 px-4">
         <h3 class="font-semibold">
-            @if ($vehicule->type)
-                @if ($vehicule->type->brand)
-                    {{$vehicule->type->brand->name}}
+            @if ($vehicule->serie)
+                @if ($vehicule->serie->brand)
+                    {{$vehicule->serie->brand->name}}
                 @endif
-                {{$vehicule->type->name}}
+                {{$vehicule->serie->name}}
             @endif
         </h3>
         <span class="text-sm text-gray-600">2.1 200 D 136 SPORT EDITION</span>

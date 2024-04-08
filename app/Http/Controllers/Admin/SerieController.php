@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\Type;
+use App\Models\Serie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class TypeController extends Controller
+class SerieController extends Controller
 {
     public $modelsImagesSavePath;
     public function __construct(){
@@ -19,8 +19,10 @@ class TypeController extends Controller
     }
      
     public function index(Request $request){
-        $models = Type::when($request->order_by, function ($q) use($request){
+        $models = Serie::when($request->order_by, function ($q) use($request){
             $q->orderBy($request->order_by, $request->order_type);
+        })->when($request->brand, function ($q) use($request){
+            $q->where('brand_id', $request->brand);
         })->withCount('vehicules')->paginate(20);
         $brands = Brand::latest()->get();
         return view('admin.models.index', [
@@ -35,7 +37,7 @@ class TypeController extends Controller
             'image' => 'required',
             'brand' => 'required|integer|exists:brands,id'
         ]);
-        $model = Type::create([
+        $model = Serie::create([
             'name' => $request->name,
             'brand_id' => $request->brand
         ]);
@@ -58,7 +60,7 @@ class TypeController extends Controller
             'image' => 'required',
             'brand' => 'required|integer|exists:brands,id'
         ]);
-        $model = Type::findOrFail($id);
+        $model = Serie::findOrFail($id);
         $model->update([
             'name' => $request->name,
             'brand_id' => $request->brand
@@ -79,7 +81,7 @@ class TypeController extends Controller
     }
 
     public function destroy(string $id){
-        $model = Type::findOrFail($id);
+        $model = Serie::findOrFail($id);
         $model->delete();
         return back()->with('success', 'La modèle a été supprimée avec succès');
     }

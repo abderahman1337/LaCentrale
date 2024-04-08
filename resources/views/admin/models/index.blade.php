@@ -26,7 +26,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form method="POST" action="{{route('admin.models.store')}}" enctype="multipart/form-data" class="p-4 md:p-5">
+                    <form method="POST" action="{{route('admin.series.store')}}" enctype="multipart/form-data" class="p-4 md:p-5">
                         @csrf
                         <div class="flex flex-col gap-4 mb-4">
                             <div class="">
@@ -66,7 +66,7 @@
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
                                     Marque
-                                    <a href="{{route('admin.models.index', ['order_by' => 'name', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
+                                    <a href="{{route('admin.series.index', ['order_by' => 'name', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
                                         <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                         </svg>
@@ -79,7 +79,7 @@
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
                                     Modèle
-                                    <a href="{{route('admin.models.index', ['order_by' => 'models_count', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
+                                    <a href="{{route('admin.series.index', ['order_by' => 'models_count', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
                                         <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                         </svg>
@@ -89,7 +89,7 @@
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
                                     Véhicules
-                                    <a href="{{route('admin.models.index', ['order_by' => 'vehicules_count', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
+                                    <a href="{{route('admin.series.index', ['order_by' => 'vehicules_count', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
                                         <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                         </svg>
@@ -146,7 +146,7 @@
                                                     </button>
                                                 </div>
                                                 <!-- Modal body -->
-                                                <form method="POST" action="{{route('admin.models.update', $model->id)}}" enctype="multipart/form-data" class="p-4 md:p-5">
+                                                <form method="POST" action="{{route('admin.series.update', $model->id)}}" enctype="multipart/form-data" class="p-4 md:p-5">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="flex flex-col gap-4 mb-4">
@@ -196,7 +196,7 @@
                                                     </svg>
                                                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Etes-vous sûr de vouloir supprimer cette marque ?</h3>
                                                     <div class="flex items-center justify-center">
-                                                       <form action="{{route('admin.models.destroy', $model->id)}}" method="POST" class="delete-model">
+                                                       <form action="{{route('admin.series.destroy', $model->id)}}" method="POST" class="delete-model">
                                                           @csrf
                                                           @method('DELETE')
                                                           <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">

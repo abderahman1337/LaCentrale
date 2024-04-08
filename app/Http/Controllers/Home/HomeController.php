@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Energy;
+use App\Models\Serie;
 use App\Models\Type;
 use App\Models\Vehicule;
 use Illuminate\Http\Request;
@@ -14,9 +15,9 @@ class HomeController extends Controller
 {
     public function welcome(){
         $brands = Brand::latest()->get();
-        $models = Type::latest()->with('brand:id,name')->get();
+        $models = Serie::latest()->with('brand:id,name')->get();
         $energies = Energy::latest()->get();
-        $vehicules = Vehicule::latest()->with(['type' => function ($q){
+        $vehicules = Vehicule::latest()->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
         }, 'color:id,name', 'energy:id,name'])->limit(5)->get();
         $vehiculesCount = Vehicule::count();
@@ -100,7 +101,7 @@ class HomeController extends Controller
         
 
         $brands = Brand::latest()->get();
-        $models = Type::latest()->with('brand:id,name')->get();
+        $models = Serie::latest()->with('brand:id,name')->get();
         $energies = Energy::latest()->get();
         $colors = Color::latest()->get();
         return view('listing', [

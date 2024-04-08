@@ -1,5 +1,5 @@
 @extends('layouts.home')
-@section('title', $vehicule->type->brand->name . ' ' . $vehicule->type->name)
+@section('title', $vehicule->serie ? ($vehicule->serie->brand?$vehicule->serie->brand->name:'' . ' ' . $vehicule->serie->name) : '')
 @section('content')
 <div class="mb-10 flex flex-col lg:flex-row items-start gap-10">
     <div class="lg:w-[65%] w-full">
@@ -109,7 +109,7 @@
         <hr>
         <div class="mt-10 mb-10">
             <h2 class="text-xl font-semibold">Informations générales</h2>
-            <p class="mt-2 text-gray-600 text-sm">{{$vehicule->type->brand->name}} {{$vehicule->type->name}}</p>
+            <p class="mt-2 text-gray-600 text-sm">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</p>
             <div class="mt-10">
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-10">
                     <div>
@@ -279,7 +279,7 @@
     <div class="lg:w-[35%] w-full">
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
             <div class="bg-white p-6 text-center px-4">
-                <h3 class="font-semibold text-xl">{{$vehicule->type->brand->name}} {{$vehicule->type->name}}</h3>
+                <h3 class="font-semibold text-xl">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</h3>
                 <span class="text-base text-gray-600">2.1 200 D 136 SPORT EDITION</span>
                 <div class="mt-2">
                     <ul class="text-base flex justify-center items-center text-ellipsis">
@@ -336,7 +336,7 @@
                         <img class="w-full h-full object-cover" src="{{$vehicule->getImage()}}" alt="">
                     </div>
                     <div class="bg-white pb-4 pt-2 px-4">
-                        <h3 class="font-semibold">{{$vehicule->type->brand->name}} {{$vehicule->type->name}}</h3>
+                        <h3 class="font-semibold">{{$vehicule->serie->brand->name}} {{$vehicule->serie->name}}</h3>
                         <span class="text-sm text-gray-600">2.0 ECOBLUE 130 TREND BUSINESS</span>
                         <div class="mt-2">
                             <ul class="text-xs flex items-center text-ellipsis divide-x">

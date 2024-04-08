@@ -42,8 +42,8 @@ class Vehicule extends Model
     public function getImage(){
         return asset('images/vehicules/'.$this->image);
     }
-    public function type(){
-        return $this->belongsTo(Type::class);
+    public function serie(){
+        return $this->belongsTo(Serie::class);
     }
     public function color(){
         return $this->belongsTo(Color::class);
