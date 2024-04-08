@@ -7,7 +7,7 @@
     </div>
     <form action="{{route('admin.vehicules.store')}}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="mt-6 flex items-start gap-4">
+        <div class="mt-6 flex lg:flex-row flex-col items-start gap-4">
             <div class="lg:w-[65%] w-full flex flex-col gap-4">
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Marques/Modèles</h2>
