@@ -15,6 +15,7 @@ class Vehicule extends Model
         'energy_id',
         'category_id',
         'image',
+        'description',
         'price',
         'year',
         'mileage',

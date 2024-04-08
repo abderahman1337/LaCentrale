@@ -52,6 +52,15 @@
                             <div class="error-msg">{{$message}}</div>
                         @enderror
                     </div>
+                    <div class="mt-4">
+                        <div class="relative">
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                            <textarea name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
+                        </div>
+                        @error('description')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Caractéristiques</h2>
