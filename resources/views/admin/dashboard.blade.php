@@ -6,7 +6,7 @@
             <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-sky-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total des marques</h2>
-                    <p class="text-3xl text-sky-400 font-bold">15</p>
+                    <p class="text-3xl text-sky-400 font-bold">{{$totalBrands}}</p>
                 </div>
                 <div class="h-[58px] w-[58px] rounded-full flex items-center justify-center bg-sky-400">
                     <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -17,7 +17,7 @@
             <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-orange-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total des modèles</h2>
-                    <p class="text-3xl text-orange-400 font-bold">125</p>
+                    <p class="text-3xl text-orange-400 font-bold">{{$totalSeries}}</p>
                 </div>
                 <div class="h-[58px] w-[58px] rounded-full flex items-center justify-center bg-orange-400">
                     <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -28,7 +28,7 @@
             <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-red-600 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total véhicules</h2>
-                    <p class="text-3xl text-red-600 font-bold">132</p>
+                    <p class="text-3xl text-red-600 font-bold">{{$totalVehicules}}</p>
                 </div>
                 <div class="h-[58px] w-[58px] rounded-full flex items-center justify-center bg-red-600">
                     <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@
             <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-green-600 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total visiteurs</h2>
-                    <p class="text-3xl text-green-600 font-bold">12500</p>
+                    <p class="text-3xl text-green-600 font-bold">{{$totalVisitors}}</p>
                 </div>
                 <div class="h-[58px] w-[58px] rounded-full flex items-center justify-center bg-green-600">
                     <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
