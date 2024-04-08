@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EquipmentController;
+use App\Http\Controllers\Admin\InsightController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\SerieController;
 use App\Http\Controllers\Admin\SettingController;
@@ -37,6 +38,15 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('equipments', EquipmentController::class)->except(['create', 'show', 'edit']);
     Route::resource('options', OptionController::class)->except(['create', 'show', 'edit']);
     Route::resource('vehicules', VehiculeController::class);
+
+    Route::get('/api/insights/top-wilayas', [InsightController::class, 'top_wilayas'])->name('insights.top_wilayas');
+    Route::get('/api/insights/top-visited-states', [InsightController::class, 'top_visited_states'])->name('insights.top_visited_states');
+    Route::get('/api/insights/top-visited-cities', [InsightController::class, 'top_visited_cities'])->name('insights.top_visited_cities');
+    Route::get('/api/insights/traffic-source', [InsightController::class, 'traffic_source'])->name('insights.traffic_source');
+    Route::get('/api/insights/top-browsers', [InsightController::class, 'top_browsers'])->name('insights.top_browsers');
+    Route::get('/api/insights/top-devices', [InsightController::class, 'top_devices'])->name('insights.top_devices');
+    Route::get('/api/insights/highest-access-countries', [InsightController::class, 'highest_access_countries'])->name('insights.highest_access_countries');
+    Route::get('/api/insights/traffic', [InsightController::class, 'traffic'])->name('insights.traffic');
 
     Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function (){
         Route::get('/', 'general')->name('general');

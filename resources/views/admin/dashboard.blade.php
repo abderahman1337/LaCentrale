@@ -48,13 +48,97 @@
                 </div>
             </div>
         </section>
+        <div class="inline-flex rounded-md shadow-sm mb-4" role="group">
+            <a href="?period=today">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700">
+                    Aujourd'hui
+                </button>
+            </a>
+            <a href="?period=yesterday">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+                    Hier
+                </button>
+            </a>
+            <a href="?period=last7days">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+                    Les 7 derniers jours
+                </button>
+            </a>
+            <a href="?period=last30days">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700">
+                    Les 30 derniers jours
+                </button>
+            </a>
+        </div>
         
-        <section>
-            <div class="p-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div id="traffics-chart"></div>
-            </div>
-        </section>
     </div>
+    <div class="flex justify-between lg:flex-row-reverse flex-col gap-4 mb-4 w-full">
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
+            <div class="py-4">
+                <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Visits Statistics')}}</h2>
+
+                <div class="overflow-hidden" id="visits-insights-chart-container">
+                    <x-loading-box></x-loading-box>
+                    <div class="chart h-full w-auto mx-auto flex items-center justify-center" dir="ltr" id="visits-insights-chart"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div>
+        <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
+            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
+                <div class="py-4">
+                    <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top reached Browsers')}}</h2>
+                    <div class="overflow-hidden" id="top-browsers-chart-container">
+                        <x-loading-box></x-loading-box>
+                        <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-browsers-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
+                <div class="py-4">
+                    <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top traffic sources')}}</h2>
+                    <div class="overflow-hidden" id="top-traffic-sources-chart-container">
+                        <x-loading-box></x-loading-box>
+                        <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-traffic-sources-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
+                <div class="py-4">
+                    <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top reached devices')}}</h2>
+                    <div class="overflow-hidden" id="top-devices-chart-container">
+                        <x-loading-box></x-loading-box>
+                        <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-devices-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-3/6">
+            <div class="py-4">
+                <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top visited cities')}}</h2>
+                <div class="overflow-hidden" id="top-visited-cities-chart-container">
+                    <x-loading-box></x-loading-box>
+                    <div class="chart h-full w-auto" dir="ltr" id="top-visited-cities-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
+            <div class="py-4">
+                <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Highest access countries')}}</h2>
+
+                <div class="overflow-hidden" id="highest-access-countries-chart-container">
+                    <x-loading-box></x-loading-box>
+                    <div class="chart h-full w-auto" dir="ltr" id="highest-access-countries-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>        
 @endsection
 @section('scripts')
     <script src="{{asset('libs/apexcharts/apexcharts.min.js')}}"></script>
@@ -101,5 +185,297 @@
         var trafficsChart = new ApexCharts(document.querySelector("#traffics-chart"), options);
         trafficsChart.render();
         
+
+
+        async function fetchTopBrowsers() {
+        let response = await fetch('/admin/api/insights/top-browsers'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchTopBrowsers()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('top-browsers-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#top-browsers-chart');
+        
+        var topBrowsersChart = new ApexCharts(document.querySelector("#top-browsers-chart"), {
+            series: response['data'],
+            chart: {
+            width: 350,
+            type: 'donut',
+            margin: 0
+        },
+        labels: response['labels'],
+        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
+        legend: {
+            position: 'bottom'
+        },
+        noData: {
+            text: '{{__("There is no data")}}',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+            chart: {
+                width: 350
+            },
+            legend: {
+                position: 'bottom'
+            }
+            }
+        }]
+        });
+        topBrowsersChart.render();
+    });  
+    async function fetchTopTrafficSources() {
+        let response = await fetch('/admin/api/insights/traffic-source'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchTopTrafficSources()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('top-traffic-sources-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#top-traffic-sources-chart');
+        var topTrafficSources = new ApexCharts(ctx, {
+            series: response['data'],
+            chart: {
+            width: 350,
+            type: 'donut',
+            margin: 0
+        },
+        labels: response['labels'],
+        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
+        legend: {
+            position: 'bottom'
+        },
+        noData: {
+            text: '{{__("There is no data")}}',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+            chart: {
+                width: 350
+            },
+            legend: {
+                position: 'bottom'
+            }
+            }
+        }]
+        });
+        topTrafficSources.render();
+    });
+    async function fetchTopDevices() {
+        let response = await fetch('/admin/api/insights/top-devices'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchTopDevices()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('top-devices-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#top-devices-chart');
+        var topDevices = new ApexCharts(ctx, {
+            series: response['data'],
+            chart: {
+            width: 350,
+            type: 'donut',
+            margin: 0
+        },
+        labels: response['labels'],
+        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
+        legend: {
+            position: 'bottom'
+        },
+        noData: {
+            text: '{{__("There is no data")}}',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+            chart: {
+                width: 350
+            },
+            legend: {
+                position: 'bottom'
+            }
+            }
+        }]
+        });
+        topDevices.render();
+    });
+    async function fetchHighestAccessCountries() {
+        let response = await fetch('/admin/api/insights/highest-access-countries'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchHighestAccessCountries()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('highest-access-countries-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#highest-access-countries-chart');
+        var chart = new ApexCharts(ctx, {
+            series: [{
+            name: "{{__('Visits')}}",
+            data: response['data']
+        }],
+            chart: {
+            type: 'bar',
+            height: 350,
+
+        },
+        plotOptions: {
+            bar: {
+            borderRadius: 4,
+            horizontal: true,
+            }
+        },
+        noData: {
+            text: '{{__("There is no data")}}',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: response['labels'],
+            labels: {
+                    formatter: function(val) {
+                        return val.toFixed(0);
+                    }
+                }
+        }
+        });
+        chart.render();
+    });
+    async function fetchTraffics() {
+        let response = await fetch('/admin/api/insights/traffic'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchTraffics()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('visits-insights-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#visits-insights-chart');
+        
+        var traffics = new ApexCharts(ctx, {
+            series: [{
+            name: "{{__('Traffics')}}",
+            data: response['visits']
+        },{
+            name: "{{__('Views')}}",
+            data: response['views']
+        }],
+            chart: {
+            height: 350,
+            type: 'line',
+            zoom: {
+            enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: true
+        },
+        legend: {
+            position: 'top'
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        noData: {
+            text: '{{__("There is no data")}}',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        grid: {
+            row: {
+            colors: ['#f3f3f3', 'transparent'],
+            opacity: 0.5
+            },
+        },
+        xaxis: {
+            categories: response['labels'],
+        },yaxis: [
+            {
+                labels: {
+                formatter: function(val) {
+                    return val.toFixed(0);
+                }
+                }
+            }
+            ],
+        });
+        traffics.render();
+    });
+
+
+    async function fetchTopVisitedCities() {
+        let response = await fetch('/admin/api/insights/top-visited-cities'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchTopVisitedCities()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('top-visited-cities-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#top-visited-cities-chart');
+        var topVisitedCities = new ApexCharts(ctx, {
+            series: response['data'],
+            chart: {
+            width: 600,
+            type: 'pie',
+            margin: 0
+        },
+        labels: response['labels'],
+        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
+        legend: {
+            position: 'bottom'
+        },
+        noData: {
+            text: '{{__("There is no data")}}',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+            chart: {
+                width: 350
+            },
+            legend: {
+                position: 'bottom'
+            }
+            }
+        }]
+        });
+        topVisitedCities.render();
+    });
     </script>
 @endsection

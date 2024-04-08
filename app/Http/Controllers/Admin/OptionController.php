@@ -12,8 +12,10 @@ class OptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(){
-        $options = Option::latest()->paginate();
+    public function index(Request $request){
+        $options = Option::when($request->equipment, function ($q) use($request){
+            $q->where('equipment_id', $request->equipment);
+        })->latest()->paginate();
         $equipments = Equipment::latest()->get();
         return view('admin.options.index', [
             'options' => $options,
