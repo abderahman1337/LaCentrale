@@ -47,6 +47,7 @@
                 @yield('content')
              </div>
         </div>
+        <script src="{{asset('js/scripts.js')}}"></script>
         <script>
             const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
         </script>
