@@ -48,29 +48,28 @@
                 </div>
             </div>
         </section>
-        <div class="rounded-md flex items-center justify-center shadow-sm mb-4" role="group">
-            <a href="?period=today">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='today'?'text-primary':''}}">
-                    Aujourd'hui
-                </button>
-            </a>
-            <a href="?period=yesterday">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')=='yesterday'?'text-primary':''}}">
-                    Hier
-                </button>
-            </a>
-            <a href="?period=last7days">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')==''||request('period')=='last7days'?'text-primary':''}}">
-                    Les 7 derniers jours
-                </button>
-            </a>
-            <a href="?period=last30days">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='last30days'?'text-primary':''}}">
-                    Les 30 derniers jours
-                </button>
-            </a>
-        </div>
-        
+    </div>
+    <div class="rounded-md flex relative overflow-x-auto items-center sm:justify-center mb-4" role="group">
+        <a href="?period=today">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='today'?'text-primary':''}}">
+                Aujourd'hui
+            </button>
+        </a>
+        <a href="?period=yesterday">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')=='yesterday'?'text-primary':''}}">
+                Hier
+            </button>
+        </a>
+        <a href="?period=last7days">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')==''||request('period')=='last7days'?'text-primary':''}}">
+                Les 7 derniers jours
+            </button>
+        </a>
+        <a href="?period=last30days">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='last30days'?'text-primary':''}}">
+                Les 30 derniers jours
+            </button>
+        </a>
     </div>
     <div class="flex justify-between lg:flex-row-reverse flex-col gap-4 mb-4 w-full">
         <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
@@ -124,11 +123,11 @@
                 <h2 class="text-center mb-4 text-xl font-medium mt-2">Villes les plus visitées</h2>
                 <div class="overflow-hidden" id="top-visited-cities-chart-container">
                     <x-loading-box></x-loading-box>
-                    <div class="chart h-full w-auto" dir="ltr" id="top-visited-cities-chart"></div>
+                    <div class="chart mx-auto flex justify-center h-full w-auto" dir="ltr" id="top-visited-cities-chart"></div>
                 </div>
             </div>
         </div>
-        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-3/6">
             <div class="py-4">
                 <h2 class="text-center mb-4 text-xl font-medium mt-2">Pays ayant l'accès le plus élevé</h2>
 
