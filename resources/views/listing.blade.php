@@ -11,7 +11,7 @@
             <form class="flex flex-col gap-3 divide-y" action="{{route('vehicules.listing')}}" method="get">
                 <div class="dropdown-container">
                     <div class="flex items-center gap-2 justify-between button">
-                        <h2 class="font-semibold text-xl">Marques/Modèles</h2>
+                        <h2 class="font-semibold text-base">Marques/Modèles</h2>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="dropdown-container">
                     <div class="flex items-center gap-2 justify-between mt-4 button">
-                        <h2 class="font-semibold text-xl">Caractéristiques</h2>
+                        <h2 class="font-semibold text-base">Caractéristiques</h2>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -183,7 +183,7 @@
                 </div>
                 <div class="dropdown-container">
                     <div class="flex items-center gap-2 justify-between mt-4 button">
-                        <h2 class="font-semibold text-xl">Couleurs</h2>
+                        <h2 class="font-semibold text-base">Couleurs</h2>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -219,7 +219,7 @@
                 </div>
                 <div class="dropdown-container">
                     <div class="flex items-center gap-2 justify-between mt-4 button">
-                        <h2 class="font-semibold text-xl">Performances</h2>
+                        <h2 class="font-semibold text-base">Performances</h2>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -253,7 +253,7 @@
                 </div>
                 <div class="dropdown-container">
                     <div class="flex items-center gap-2 justify-between mt-4 button">
-                        <h2 class="font-semibold text-xl">Equipements & options</h2>
+                        <h2 class="font-semibold text-base">Equipements & options</h2>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -264,6 +264,7 @@
                                 <div class="relative w-full">
                                     <div id="equipment-options-dropdown" class="bg-white rounded-lg shadow w-full dark:bg-gray-700">
                                         <div class="p-3">
+                                            <input type="hidden" id="selected-options-list" name="options" value="">
                                             <label for="option-search" class="sr-only">Search</label>
                                             <div class="relative">
                                                 <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -274,11 +275,11 @@
                                                 <input type="text" id="option-search" class="options-search block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher un équipement">
                                             </div>
                                         </div>
-                                        <ul class="options-list max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="option-search-dropdown">
+                                        <ul id="options-list" class="options-list max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="option-search-dropdown">
                                             @foreach ($options as $option)
                                             <li data-name="{{$option->name}}">
                                                 <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                <input name="options[]" id="model-{{$option->id}}" type="checkbox" data-name="{{$option->name}}" value="{{$option->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500 rounded">
+                                                <input id="model-{{$option->id}}" type="checkbox" data-name="{{$option->name}}" value="{{$option->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500 rounded">
                                                 <label for="model-{{$option->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$option->name}}</label>
                                                 </div>
                                             </li>
@@ -292,7 +293,7 @@
                 </div>
                 <div class="dropdown-container">
                     <div class="flex items-center gap-2 justify-between mt-4 button">
-                        <h2 class="font-semibold text-xl">Dimensions</h2>
+                        <h2 class="font-semibold text-base">Dimensions</h2>
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
                         </svg>
@@ -328,8 +329,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4 flex justify-center">
-                    <button type="submit" class="bg-primary hover:bg-primaryHover w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">Rechercher</button>
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-primary mt-4 hover:bg-primaryHover w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">Rechercher</button>
                 </div>
             </form>
         </div>
@@ -338,7 +339,7 @@
 
 
     <div class="w-full">
-        <h2 class="font-semibold text-xl">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->count(), 0 , ' ', ' ')}}</span> annonces </h2>
+        <h2 class="font-semibold text-base">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->count(), 0 , ' ', ' ')}}</span> annonces </h2>
         <div class="mt-4">
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">
                 @foreach ($vehicules as $vehicule)
@@ -356,11 +357,13 @@
     let brandList = document.getElementById('brands-list'); 
     let modelList = document.getElementById('models-list'); 
     let energyList = document.getElementById('energies-list'); 
+    let optionsList = document.getElementById('options-list'); 
     let maxPrice = document.getElementById('max-price');
     let minPrice = document.getElementById('min-price');
     let priceRange = document.getElementById('price-range');
     listFilterByName(document.getElementById('brand-search'), brandList);
     listFilterByName(document.getElementById('model-search'), modelList);
+    listFilterByName(document.getElementById('option-search'), optionsList);
 
  
 
@@ -419,20 +422,17 @@
         });
     });
 
-    let energiesSearchDropdownBtn = document.getElementById('energy-search-dropdown');
-    energyList.querySelectorAll('li').forEach(item => {
+    optionsList.querySelectorAll('li').forEach(item => {
         let input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedEnergies = energyList.querySelectorAll('li input[type="checkbox"]:checked');
-            energiesSearchDropdownBtn.querySelector('input').value = '';
+            let checkedOptions = optionsList.querySelectorAll('li input[type="checkbox"]:checked');
             var names = [];
             var ids = [];
-            checkedEnergies.forEach(checkedEnergy => {
+            checkedOptions.forEach(checkedEnergy => {
                 names.push(checkedEnergy.dataset.name);
                 ids.push(checkedEnergy.value);
             });
-            energiesSearchDropdownBtn.querySelector('input').value = names.join(', ');
-            energiesSearchDropdownBtn.querySelector('#selected-energies-list').value = ids.join(',');
+            document.querySelector('#selected-options-list').value = ids.join(',');
         });
     });
 </script>

@@ -89,6 +89,11 @@ class HomeController extends Controller
         ->when($request->max_power, function ($q) use($request){
             $q->where('power', '<=', $request->max_power);
         })
+        ->when($request->options, function ($q) use($request){
+            $q->whereHas('options', function ($q) use($request){
+                $q->whereIn('option_id', explode(',', $request->options));
+            });
+        })
         ->when($request->gearbox, function ($q) use($request){
             if(in_array($request->gearbox, ['automatic', 'manual'])){
                 $q->where('gearbox', $request->gearbox);
