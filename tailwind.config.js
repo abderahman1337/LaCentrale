@@ -14,8 +14,9 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
                 Rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
-                Rubik: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                Montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
             container: {
                 center: true,

@@ -48,24 +48,24 @@
                 </div>
             </div>
         </section>
-        <div class="inline-flex rounded-md shadow-sm mb-4" role="group">
+        <div class="rounded-md flex items-center justify-center shadow-sm mb-4" role="group">
             <a href="?period=today">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='today'?'text-primary':''}}">
                     Aujourd'hui
                 </button>
             </a>
             <a href="?period=yesterday">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')=='yesterday'?'text-primary':''}}">
                     Hier
                 </button>
             </a>
             <a href="?period=last7days">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')==''||request('period')=='last7days'?'text-primary':''}}">
                     Les 7 derniers jours
                 </button>
             </a>
             <a href="?period=last30days">
-                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700">
+                <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='last30days'?'text-primary':''}}">
                     Les 30 derniers jours
                 </button>
             </a>
@@ -75,7 +75,7 @@
     <div class="flex justify-between lg:flex-row-reverse flex-col gap-4 mb-4 w-full">
         <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
             <div class="py-4">
-                <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Visits Statistics')}}</h2>
+                <h2 class="text-center mb-4 text-xl font-medium mt-2">Statistiques de visites</h2>
 
                 <div class="overflow-hidden" id="visits-insights-chart-container">
                     <x-loading-box></x-loading-box>
@@ -89,7 +89,7 @@
         <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
             <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
                 <div class="py-4">
-                    <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top reached Browsers')}}</h2>
+                    <h2 class="text-center mb-4 text-xl font-medium mt-2">Navigateurs les plus touchés</h2>
                     <div class="overflow-hidden" id="top-browsers-chart-container">
                         <x-loading-box></x-loading-box>
                         <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-browsers-chart"></div>
@@ -98,7 +98,7 @@
             </div>
             <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
                 <div class="py-4">
-                    <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top traffic sources')}}</h2>
+                    <h2 class="text-center mb-4 text-xl font-medium mt-2">Principales sources de trafic</h2>
                     <div class="overflow-hidden" id="top-traffic-sources-chart-container">
                         <x-loading-box></x-loading-box>
                         <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-traffic-sources-chart"></div>
@@ -107,7 +107,7 @@
             </div>
             <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
                 <div class="py-4">
-                    <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top reached devices')}}</h2>
+                    <h2 class="text-center mb-4 text-xl font-medium mt-2">Appareils les plus touchés</h2>
                     <div class="overflow-hidden" id="top-devices-chart-container">
                         <x-loading-box></x-loading-box>
                         <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-devices-chart"></div>
@@ -121,7 +121,7 @@
     <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
         <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-3/6">
             <div class="py-4">
-                <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Top visited cities')}}</h2>
+                <h2 class="text-center mb-4 text-xl font-medium mt-2">Villes les plus visitées</h2>
                 <div class="overflow-hidden" id="top-visited-cities-chart-container">
                     <x-loading-box></x-loading-box>
                     <div class="chart h-full w-auto" dir="ltr" id="top-visited-cities-chart"></div>
@@ -130,7 +130,7 @@
         </div>
         <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
             <div class="py-4">
-                <h2 class="text-center mb-4 text-xl font-medium mt-2"> {{__('Highest access countries')}}</h2>
+                <h2 class="text-center mb-4 text-xl font-medium mt-2">Pays ayant l'accès le plus élevé</h2>
 
                 <div class="overflow-hidden" id="highest-access-countries-chart-container">
                     <x-loading-box></x-loading-box>
@@ -143,48 +143,6 @@
 @section('scripts')
     <script src="{{asset('libs/apexcharts/apexcharts.min.js')}}"></script>
     <script>
-        let days = [];
-        let data = [];
-        for(let i = 0;i < 31;i++){
-            days[i] = `Mar ${i+1}`;
-            data[i] = Number((Math.random() * (9000 - 1000) + 1000).toFixed(0));
-        }
-        var options = {
-          series: [{
-            name: "{{__('Number of Visitors')}}",
-            data: data
-        }],
-          chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        title: {
-          text: '{{__("Visitors Trend")}}',
-          align: 'left'
-        },
-        grid: {
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5
-          },
-        },
-        xaxis: {
-          categories: days,
-        }
-        };
-
-        var trafficsChart = new ApexCharts(document.querySelector("#traffics-chart"), options);
-        trafficsChart.render();
-        
 
 
         async function fetchTopBrowsers() {
@@ -212,7 +170,7 @@
             position: 'bottom'
         },
         noData: {
-            text: '{{__("There is no data")}}',
+            text: "Il n'y a pas de données",
             align: 'center',
             verticalAlign: 'middle',
             offsetX: 0,
@@ -256,7 +214,7 @@
             position: 'bottom'
         },
         noData: {
-            text: '{{__("There is no data")}}',
+            text: "Il n'y a pas de données",
             align: 'center',
             verticalAlign: 'middle',
             offsetX: 0,
@@ -300,7 +258,7 @@
             position: 'bottom'
         },
         noData: {
-            text: '{{__("There is no data")}}',
+            text: "Il n'y a pas de données",
             align: 'center',
             verticalAlign: 'middle',
             offsetX: 0,
@@ -333,7 +291,7 @@
         let ctx = chartContainer.querySelector('#highest-access-countries-chart');
         var chart = new ApexCharts(ctx, {
             series: [{
-            name: "{{__('Visits')}}",
+            name: "Visites",
             data: response['data']
         }],
             chart: {
@@ -348,7 +306,7 @@
             }
         },
         noData: {
-            text: '{{__("There is no data")}}',
+            text: "Il n'y a pas de données",
             align: 'center',
             verticalAlign: 'middle',
             offsetX: 0,
@@ -382,10 +340,10 @@
         
         var traffics = new ApexCharts(ctx, {
             series: [{
-            name: "{{__('Traffics')}}",
+            name: "Visites",
             data: response['visits']
         },{
-            name: "{{__('Views')}}",
+            name: "Vues",
             data: response['views']
         }],
             chart: {
@@ -405,7 +363,7 @@
             curve: 'straight'
         },
         noData: {
-            text: '{{__("There is no data")}}',
+            text: "Il n'y a pas de données",
             align: 'center',
             verticalAlign: 'middle',
             offsetX: 0,
@@ -457,7 +415,7 @@
             position: 'bottom'
         },
         noData: {
-            text: '{{__("There is no data")}}',
+            text: "Il n'y a pas de données",
             align: 'center',
             verticalAlign: 'middle',
             offsetX: 0,

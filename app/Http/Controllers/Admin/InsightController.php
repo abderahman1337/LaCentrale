@@ -149,7 +149,7 @@ class InsightController extends Controller
             array_push($datesList, $value->format('Y-m-d'));
         }
         $topVisitedCities = ['labels' => [],'data' => []];
-        $storeVisits = RateLimit::select(DB::raw("COUNT(city_name) AS cities_count"),'city_name', 'region_name')
+        $storeVisits = RateLimit::select(DB::raw("COUNT(city_name) AS cities_count"),'city_name')
         ->when($this->fromDate, function ($q){
             $q->where(DB::raw('DATE(created_at)'), '>=', $this->fromDate);
         })
@@ -162,7 +162,7 @@ class InsightController extends Controller
         ->get();
         if($storeVisits->isNotEmpty()){
             foreach($storeVisits as $region){
-                array_push($topVisitedCities['labels'], $region->city_name . ' (' . $region->region_name . ')');
+                array_push($topVisitedCities['labels'], $region->city_name);
                 array_push($topVisitedCities['data'], (int) $region->cities_count);
             }
         }
