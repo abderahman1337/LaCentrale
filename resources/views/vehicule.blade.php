@@ -110,6 +110,7 @@
         <div class="mt-10 mb-10">
             <h2 class="text-xl font-semibold">Informations générales</h2>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</p>
+            <p class="mt-2 text-gray-600 text-sm">{{$vehicule->description}}</p>
             <div class="mt-10">
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-10">
                     <div>
@@ -280,7 +281,7 @@
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
             <div class="bg-white p-6 text-center px-4">
                 <h3 class="font-semibold text-xl">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</h3>
-                <span class="text-base text-gray-600">2.1 200 D 136 SPORT EDITION</span>
+                <span class="text-base text-gray-600">{{$vehicule->description}}</span>
                 <div class="mt-2">
                     <ul class="text-base flex justify-center items-center text-ellipsis">
                         @if ($vehicule->year)
