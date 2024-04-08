@@ -92,7 +92,7 @@
                                 <div class="error-msg">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="flex items-start gap-4">
+                        <div class="flex flex-col sm:flex-row items-start gap-4">
                             <div class="w-full">
                                 <div class="relative">
                                     <input type="number" max="10" name="doors_number" id="vehicule-doors-number" value="{{old('doors_number')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
@@ -112,7 +112,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
+                        <div class="flex flex-col sm:flex-row items-start gap-4">
                             <div class="w-full">
                                 <div class="relative">
                                     <input type="number" step=".01" name="length" id="vehicule-length" value="{{old('length')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
@@ -227,7 +227,7 @@
 
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Puissance</h2>
-                    <div class="flex items-start gap-4">
+                    <div class="flex flex-col sm:flex-row items-start gap-4">
                         <div class="w-full">
                             <div class="relative">
                                 <input type="number" name="fiscal_horsepower" id="vehicule-fiscal-horsepower" value="{{old('fiscal_horsepower')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
@@ -250,7 +250,7 @@
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Consommation</h2>
-                    <div class="flex items-start gap-4">
+                    <div class="flex flex-col sm:flex-row items-start gap-4">
                         <div class="w-full">
                             <div class="relative">
                                 <input type="number" name="consumption" id="vehicule-consumption" value="{{old('consumption')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
