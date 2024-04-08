@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Energy;
+use App\Models\Option;
 use App\Models\Serie;
 use App\Models\Type;
 use App\Models\Vehicule;
@@ -45,12 +46,12 @@ class HomeController extends Controller
 
     public function listing(Request $request){
         $vehicules = Vehicule::when($request->brands, function ($q) use($request){
-            $q->whereHas('type', function ($q) use($request){
+            $q->whereHas('serie', function ($q) use($request){
                 $q->whereIn('brand_id', explode(',', $request->brands));
             });
         })
         ->when($request->models, function ($q) use($request){
-            $q->whereIn('type_id', explode(',', $request->models));
+            $q->whereIn('serie_id', explode(',', $request->models));
         })
         ->when($request->min_price, function ($q) use($request){
             $q->where('price', '>=', $request->min_price);
@@ -93,7 +94,7 @@ class HomeController extends Controller
                 $q->where('gearbox', $request->gearbox);
             }
         })
-        ->latest()->with(['type' => function ($q){
+        ->latest()->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
         }, 'color:id,name', 'energy:id,name'])
         ->get();
@@ -104,12 +105,14 @@ class HomeController extends Controller
         $models = Serie::latest()->with('brand:id,name')->get();
         $energies = Energy::latest()->get();
         $colors = Color::latest()->get();
+        $options = Option::latest()->get();
         return view('listing', [
             'vehicules' => $vehicules,
             'brands' => $brands,
             'models' => $models,
             'energies' => $energies,
-            'colors' => $colors
+            'colors' => $colors,
+            'options' => $options
         ]);
         return $vehicules;
     }
