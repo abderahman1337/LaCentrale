@@ -10,7 +10,7 @@ class Vehicule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type_id',
+        'serie_id',
         'color_id',
         'energy_id',
         'category_id',
@@ -56,5 +56,8 @@ class Vehicule extends Model
     }
     public function options(){
         return $this->hasMany(VehiculeOption::class);
+    }
+    public function images(){
+        return $this->hasMany(VehiculeImage::class);
     }
 }

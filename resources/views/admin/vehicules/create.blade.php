@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between">
         <h2 class="lg:text-2xl text-xl font-bold">Ajouter un véhicules</h2>
     </div>
-    <form action="{{route('admin.vehicules.store')}}" method="post">
+    <form action="{{route('admin.vehicules.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mt-6 flex items-start gap-4">
             <div class="lg:w-[65%] w-full flex flex-col gap-4">
@@ -43,6 +43,15 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <div class="relative">
+                            <input type="text" name="price" id="vehicule-price" value="{{old('price')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <label for="vehicule-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix</label>
+                        </div>
+                        @error('price')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Caractéristiques</h2>
@@ -50,7 +59,7 @@
                         <div>
                             <div class="relative">
                                 <input type="text" name="origin" id="vehicule-origin" value="{{old('origin', 'France')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="vehicule-origin" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Année</label>
+                                <label for="vehicule-origin" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Provenance</label>
                             </div>
                             @error('origin')
                                 <div class="error-msg">{{$message}}</div>
@@ -86,7 +95,7 @@
                         <div class="flex items-start gap-4">
                             <div class="w-full">
                                 <div class="relative">
-                                    <input type="number" name="doors_number" id="vehicule-doors-number" value="{{old('doors_number')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" max="10" name="doors_number" id="vehicule-doors-number" value="{{old('doors_number')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="vehicule-doors-number" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nombre de portes</label>
                                 </div>
                                 @error('doors_number')
@@ -95,7 +104,7 @@
                             </div>
                             <div class="w-full">
                                 <div class="relative">
-                                    <input type="number" name="places_number" id="vehicule-places-number" value="{{old('places_number')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" max="10" name="places_number" id="vehicule-places-number" value="{{old('places_number')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="vehicule-places-number" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nombre de places</label>
                                 </div>
                                 @error('places_number')
@@ -106,7 +115,7 @@
                         <div class="flex items-start gap-4">
                             <div class="w-full">
                                 <div class="relative">
-                                    <input type="number" name="length" id="vehicule-length" value="{{old('length')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" step=".01" name="length" id="vehicule-length" value="{{old('length')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="vehicule-length" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Longeur</label>
                                 </div>
                                 @error('length')
@@ -115,7 +124,7 @@
                             </div>
                             <div class="w-full">
                                 <div class="relative">
-                                    <input type="number" name="width" id="vehicule-width" value="{{old('width')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" step=".01" name="width" id="vehicule-width" value="{{old('width')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="vehicule-width" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Largeur</label>
                                 </div>
                                 @error('width')
@@ -124,7 +133,7 @@
                             </div>
                             <div class="w-full">
                                 <div class="relative">
-                                    <input type="number" name="height" id="vehicule-height" value="{{old('height')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" step=".01" name="height" id="vehicule-height" value="{{old('height')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="vehicule-height" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Hauteur</label>
                                 </div>
                                 @error('height')
@@ -168,29 +177,44 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="bg-white rounded-md shadow-md group w-full p-6">
-                    <h2 class="mb-6 font-semibold text-xl">Puissance</h2>
-                    <div class="flex items-start gap-4">
-                        <div class="w-full">
-                            <div class="relative">
-                                <input type="number" name="fiscal_horsepower" id="vehicule-fiscal-horsepower" value="{{old('fiscal_horsepower')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="vehicule-fiscal-horsepower" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Puissance fiscale (CV)</label>
+                <div class="bg-white rounded-md shadow-md group w-full p-6">
+                    <h2 class="mb-6 font-semibold text-xl">Equipements & options</h2>
+                    <div id="equipments-list" class="flex flex-col gap-4">
+                        @foreach($equipments as $equipment)
+                        <div class="bg-gray-50 rounded p-4 shadow-sm equipment">
+                            <h2 class="mb-6 font-semibold text-base">{{$equipment->name}}</h2>
+                            <div class="flex flex-col items-start gap-4">
+                                <div class="relative w-full">
+                                    <div id="equipment-{{$equipment->id}}-options-dropdown" class="bg-white rounded-lg shadow w-full dark:bg-gray-700">
+                                        <div class="p-3">
+                                            <label for="option-search-{{$equipment->id}}" class="sr-only">Search</label>
+                                            <div class="relative">
+                                                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                                </svg>
+                                                </div>
+                                                <input type="text" id="option-search-{{$equipment->id}}" class="options-search block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher">
+                                            </div>
+                                        </div>
+                                        <ul class="options-list max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="option-search-{{$equipment->id}}-dropdown">
+                                            @foreach ($equipment->options as $option)
+                                            <li data-name="{{$option->name}}">
+                                                <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                <input name="options[]" id="model-{{$option->id}}" type="checkbox" data-name="{{$option->name}}" value="{{$option->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500 rounded">
+                                                <label for="model-{{$option->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$option->name}}</label>
+                                                </div>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            @error('fiscal_horsepower')
-                                <div class="error-msg">{{$message}}</div>
-                            @enderror
                         </div>
-                        <div class="w-full">
-                            <div class="relative">
-                                <input type="number" name="power" id="vehicule-power" value="{{old('power')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="vehicule-power" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Puissance (DIN) ch</label>
-                            </div>
-                            @error('power')
-                                <div class="error-msg">{{$message}}</div>
-                            @enderror
-                        </div>
+                        @endforeach
                     </div>
-                </div> --}}
+                    
+                </div>
             </div>
             <div class="lg:w-[35%] w-full flex flex-col gap-4">
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
@@ -262,11 +286,12 @@
                         <label for="vehicule-euro-standars" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Norme euro</label>
                         <select name="euro_standars" id="vehicule-euro-standars" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Norme euro</option>
-                            <option value="Euro1">Euro1</option>
-                            <option value="Euro2">Euro2</option>
-                            <option value="Euro3">Euro3</option>
-                            <option value="Euro4">Euro4</option>
-                            <option value="Euro5">Euro5</option>
+                            <option value="EURO1">Euro1</option>
+                            <option value="EURO2">Euro2</option>
+                            <option value="EURO3">Euro3</option>
+                            <option value="EURO4">Euro4</option>
+                            <option value="EURO5">Euro5</option>
+                            <option value="EURO6">Euro6</option>
                           </select>
                     </div>
                 </div>
@@ -300,6 +325,14 @@
             modelSearchDropdownBtn.querySelector('input').value = selected.dataset.name;
             modelSearchDropdownBtn.querySelector('#selected-model').value = selected.value;
         });
+    });
+
+    let equipmentsList = document.querySelectorAll('#equipments-list .equipment');
+    equipmentsList.forEach(equipment => {
+        let optionsList = equipment.querySelector('.options-list');
+        let optionsSearch = equipment.querySelector('.options-search');
+        listFilterByName(optionsSearch, optionsList);
+
     });
     </script>
 @endsection

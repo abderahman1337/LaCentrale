@@ -1516,6 +1516,9 @@ input:checked + .toggle-bg {
 .max-h-full {
   max-height: 100%;
 }
+.max-h-\[92px\] {
+  max-height: 92px;
+}
 .min-h-\[480px\] {
   min-height: 480px;
 }
@@ -1618,6 +1621,15 @@ input:checked + .toggle-bg {
 }
 .max-w-3xl {
   max-width: 48rem;
+}
+.max-w-\[172px\] {
+  max-width: 172px;
+}
+.max-w-\[17px\] {
+  max-width: 17px;
+}
+.max-w-\[170px\] {
+  max-width: 170px;
 }
 .flex-1 {
   flex: 1 1 0%;

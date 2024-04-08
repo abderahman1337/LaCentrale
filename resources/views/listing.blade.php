@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                     <ul id="models-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="model-search-dropdown">
-                                        @foreach (App\Models\Type::latest()->get() as $type)
+                                        @foreach (App\Models\Serie::latest()->get() as $type)
                                         <li data-name="{{$type->name}}">
                                             <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                             <input id="model-{{$type->id}}" @checked(request('models') != '' && in_array($type->id, explode(',', request('models')))) type="checkbox" data-name="{{$type->name}}" value="{{$type->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
