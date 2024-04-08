@@ -22,10 +22,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-Route::get('/annonce/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
-Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
+Route::middleware('RateLimit')->group(function (){
+    Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+    Route::get('/annonce/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
+    Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
 
+});
 Route::get('/admin', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

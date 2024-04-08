@@ -61,4 +61,7 @@ class Vehicule extends Model
     public function images(){
         return $this->hasMany(VehiculeImage::class);
     }
+    public function auctions(){
+        return $this->hasMany(Auction::class);
+    }
 }

@@ -10,12 +10,11 @@ use App\Models\Vehicule;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
 
 class VehiculeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public $vehiculesSavePath;
     public function __construct(){
         $this->vehiculesSavePath = public_path('images/vehicules/');
@@ -23,21 +22,21 @@ class VehiculeController extends Controller
             File::makeDirectory($this->vehiculesSavePath, 0777, true, true);
         }
     }
-    public function index()
-    {
+    public function index(Request $request){
         $vehicules = Vehicule::with(['serie' => function ($q){
             $q->with('brand');
-        }])->latest()->paginate();
+        }])->when($request->order_by, function ($q) use($request){
+            $q->orderBy($request->order_by, $request->order_type);
+        }, function ($q){
+            $q->latest();
+        })->paginate();
         return view('admin.vehicules.index', [
             'vehicules' => $vehicules
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
+
+    public function create(){
         $models = Serie::with('brand')->latest()->get();
         $energies = Energy::latest()->get();
         $colors = Color::where('exterior', 1)->latest()->get();
@@ -50,11 +49,8 @@ class VehiculeController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
+
+    public function store(Request $request){
         //dd($request->all());
         $vehicule = Vehicule::create([
             'serie_id' => $request->model,
@@ -99,6 +95,15 @@ class VehiculeController extends Controller
                     $vehicule->images()->create([
                         'image' => $imageName
                     ]);
+                    $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
+                    $imageEdit->place(
+                        public_path('images/static/watermark.png'),
+                        'center', 
+                        10, 
+                        10,
+                        25
+                    );
+                    $imageEdit->save();
                     if($vehicule->image == null){
                         $vehicule->update(['image' => $imageName]);
                     }
