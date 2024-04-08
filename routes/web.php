@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\EquipmentController;
+use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\SerieController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TypeController;
@@ -35,6 +37,8 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 
     Route::resource('brands', BrandController::class)->except(['create', 'show', 'edit']);
     Route::resource('series', SerieController::class)->except(['create', 'show', 'edit']);
+    Route::resource('equipments', EquipmentController::class)->except(['create', 'show', 'edit']);
+    Route::resource('options', OptionController::class)->except(['create', 'show', 'edit']);
     Route::resource('vehicules', VehiculeController::class);
 
     Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function (){

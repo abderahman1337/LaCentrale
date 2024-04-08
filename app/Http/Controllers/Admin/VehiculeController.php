@@ -137,7 +137,7 @@ class VehiculeController extends Controller
      */
     public function destroy(string $id)
     {
-        $vehicule = Vehicule::find($id);
+        $vehicule = Vehicule::findOrFail($id);
         $vehicule->delete();
         return back()->with('success', 'Le véhicule a été supprimé avec succès');
 
