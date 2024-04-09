@@ -13,18 +13,11 @@
         </div>
         <div class="flex items-center lg:divide-x-2 divide-primary">
             <ul id="menu-list" class="">
+                @foreach (App\Models\MenuItem::whereHas('menu', function($q){$q->where('location', 'header');})->get() as $menuItem)
                 <li>
-                    <a href="http://">Acheter</a>
+                    <a href="{{$menuItem->url}}">{{$menuItem->name}}</a>
                 </li>
-                <li>
-                    <a href="http://">Vendre</a>
-                </li>
-                <li>
-                    <a href="http://">La Cote</a>
-                </li>
-                <li>
-                    <a href="http://">Vous conseiller</a>
-                </li>
+                @endforeach
             </ul>
             <div class="flex items-center lg:gap-6 gap-3 sm:ltr:ml-6 sm:ltr:pl-8 sm:rtl:pr-8 sm:rtl:mr-6">
                 <button>

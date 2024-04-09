@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', $vehicule->serie ? ($vehicule->serie->brand?$vehicule->serie->brand->name:'' . ' ' . $vehicule->serie->name) : '')
 @section('content')
-<div class="mb-10 flex flex-col lg:flex-row items-start gap-10">
+<div class="mb-10 flex flex-col-reverse lg:flex-row items-start gap-10">
     <div class="lg:w-[65%] w-full">
         <div id="controls-carousel" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
