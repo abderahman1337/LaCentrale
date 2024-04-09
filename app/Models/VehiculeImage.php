@@ -13,4 +13,7 @@ class VehiculeImage extends Model
     public function vehicule(){
         return $this->belongsTo(Vehicule::class);
     }
+    public function getImage(){
+        return asset('images/vehicules/'.$this->image);
+    }
 }

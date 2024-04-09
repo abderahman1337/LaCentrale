@@ -6,26 +6,11 @@
         <div id="controls-carousel" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden rounded-lg md:h-[500px]">
-                <!-- Item 1 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                @foreach ($vehicule->images as $vehiculeImage)
+                <div class="hidden duration-700 ease-in-out" data-carousel-item="{{$loop->first?'active':''}}">
+                    <img src="{{$vehiculeImage->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                    <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-                <!-- Item 3 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-                <!-- Item 4 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
-                <!-- Item 5 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                </div>
+                @endforeach
             </div>
             <!-- Slider controls -->
             <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
@@ -283,7 +268,7 @@
                 <h3 class="font-semibold text-xl">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</h3>
                 <span class="text-base text-gray-600">{{$vehicule->description}}</span>
                 <div class="mt-2">
-                    <ul class="text-base flex justify-center items-center text-ellipsis">
+                    <ul class="text-base flex justify-center divide-x items-center flex-wrap overflow-hidden text-ellipsis">
                         @if ($vehicule->year)
                         <li class="whitespace-nowrap pr-2">{{$vehicule->year}}</li>
                         @endif
@@ -311,7 +296,10 @@
                 <div class="mt-4 text-sm">
                     <span>Publiée {{Carbon\Carbon::parse($vehicule->created_at)->diffForHumans()}}</span>
                 </div>
-                <div class="flex justify-center mt-4">
+                <div class="flex justify-center flex-wrap gap-2 mt-4">
+                    <button class="bg-green-500 hover:bg-green-400 w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
+                        <span>Place un offre</span>
+                    </button>
                     <button class="bg-primary hover:bg-primaryHover w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M22.25 17c-1.24-1.09-3.38-2.96-4.16-3.38a1.9 1.9 0 0 0-1.69-.07q-.5.23-.85.66a7 7 0 0 1-1.82 1.69c-.42.22-1.98-.68-3.3-1.9l-.41-.41c-1.24-1.32-2.13-2.9-1.9-3.3A8 8 0 0 1 9.8 8.45q.42-.33.65-.82c.25-.55.22-1.17-.07-1.7C9.97 5.15 8.08 3 7 1.78a2.4 2.4 0 0 0-1.02-.68 1.5 1.5 0 0 0-1.18.05C4.23 1.45 2.33 3.4 1.76 4c-.16.16-1.21 1.36-.53 4.28.7 3.07 2.66 6.57 5.04 9.07l.06.07a20.7 20.7 0 0 0 9.42 5.36q.88.2 1.79.22c1.65 0 2.35-.64 2.47-.77.6-.57 2.54-2.47 2.84-3.05.18-.36.2-.8.05-1.18a2.4 2.4 0 0 0-.65-1m-.38 1.64q-1.23 1.47-2.63 2.77c-.08.06-.96.76-3.21.24a20 20 0 0 1-8.58-4.76 20 20 0 0 1-5.1-8.86c-.51-2.25.18-3.14.24-3.21Q3.9 3.4 5.35 2.18q.15-.03.3.03.3.1.51.35A41 41 0 0 1 9.39 6.5q.16.34 0 .7a1 1 0 0 1-.32.4 9 9 0 0 0-1.96 2.17c-.78 1.4 1.38 3.9 2.06 4.63.2.23.45.46.46.47.74.67 3.25 2.83 4.64 2.06a9 9 0 0 0 2.16-1.97q.16-.21.4-.32.36-.15.7.02c.58.3 2.42 1.87 3.95 3.22q.24.21.35.52.06.12.04.26z"></path></svg>
                         <span>N° téléphone</span>

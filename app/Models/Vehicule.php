@@ -14,6 +14,7 @@ class Vehicule extends Model
         'color_id',
         'energy_id',
         'category_id',
+        'user_id',
         'image',
         'description',
         'price',
@@ -38,7 +39,8 @@ class Vehicule extends Model
         'upholstery',
         'release_date',
         'technical_control',
-        'gearbox'
+        'gearbox',
+        'guarantee'
     ];
     public function getImage(){
         return asset('images/vehicules/'.$this->image);
@@ -52,11 +54,14 @@ class Vehicule extends Model
     public function energy(){
         return $this->belongsTo(Energy::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public function category(){
         return $this->belongsTo(Category::class);
     }
     public function options(){
-        return $this->hasMany(VehiculeOption::class);
+        return $this->hasMany(VehiculeOption::class, 'vehicule_id');
     }
     public function images(){
         return $this->hasMany(VehiculeImage::class);

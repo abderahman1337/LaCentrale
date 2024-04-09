@@ -72,10 +72,11 @@
         </a>
     </div>
     <div class="flex justify-between lg:flex-row-reverse flex-col gap-4 mb-4 w-full">
-        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full">
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full">
+            <div class="shadow py-3 px-3 rounded-t-md">
+                <h2 class="text-center text-xl font-medium">Statistiques de visites</h2>
+            </div>
             <div class="py-4">
-                <h2 class="text-center mb-4 text-xl font-medium mt-2">Statistiques de visites</h2>
-
                 <div class="overflow-hidden" id="visits-insights-chart-container">
                     <x-loading-box></x-loading-box>
                     <div class="chart h-full w-auto mx-auto flex items-center justify-center" dir="ltr" id="visits-insights-chart"></div>
@@ -86,27 +87,33 @@
     </div>
     <div>
         <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
-            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
+            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full lg:w-4/12">
+                <div class="shadow py-3 px-3 rounded-t-md">
+                    <h2 class="text-center text-xl font-medium">Navigateurs les plus touchés</h2>
+                </div>
                 <div class="py-4">
-                    <h2 class="text-center mb-4 text-xl font-medium mt-2">Navigateurs les plus touchés</h2>
                     <div class="overflow-hidden" id="top-browsers-chart-container">
                         <x-loading-box></x-loading-box>
                         <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-browsers-chart"></div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
+            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full lg:w-4/12">
+                <div class="shadow py-3 px-3 rounded-t-md">
+                    <h2 class="text-center text-xl font-medium">Principales sources de trafic</h2>
+                </div>
                 <div class="py-4">
-                    <h2 class="text-center mb-4 text-xl font-medium mt-2">Principales sources de trafic</h2>
                     <div class="overflow-hidden" id="top-traffic-sources-chart-container">
                         <x-loading-box></x-loading-box>
                         <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-traffic-sources-chart"></div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-4/12">
+            <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full lg:w-4/12">
+                <div class="shadow py-3 px-3 rounded-t-md">
+                    <h2 class="text-center text-xl font-medium">Appareils les plus touchés</h2>
+                </div>
                 <div class="py-4">
-                    <h2 class="text-center mb-4 text-xl font-medium mt-2">Appareils les plus touchés</h2>
                     <div class="overflow-hidden" id="top-devices-chart-container">
                         <x-loading-box></x-loading-box>
                         <div class="chart h-full w-auto mx-auto flex items-center justify-center" id="top-devices-chart"></div>
@@ -118,19 +125,22 @@
 
     
     <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
-        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-3/6">
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full lg:w-3/6">
+            <div class="shadow py-3 px-3 rounded-t-md">
+                <h2 class="text-center text-xl font-medium">Villes les plus visitées</h2>
+            </div>
             <div class="py-4">
-                <h2 class="text-center mb-4 text-xl font-medium mt-2">Villes les plus visitées</h2>
                 <div class="overflow-hidden" id="top-visited-cities-chart-container">
                     <x-loading-box></x-loading-box>
                     <div class="chart mx-auto flex justify-center h-full w-auto" dir="ltr" id="top-visited-cities-chart"></div>
                 </div>
             </div>
         </div>
-        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-[14px] shadow-sm transition ease-linear w-full lg:w-3/6">
+        <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full lg:w-3/6">
+            <div class="shadow py-3 px-3 rounded-t-md">
+                <h2 class="text-center text-xl font-medium">Pays ayant l'accès le plus élevé</h2>
+            </div>
             <div class="py-4">
-                <h2 class="text-center mb-4 text-xl font-medium mt-2">Pays ayant l'accès le plus élevé</h2>
-
                 <div class="overflow-hidden" id="highest-access-countries-chart-container">
                     <x-loading-box></x-loading-box>
                     <div class="chart h-full w-auto" dir="ltr" id="highest-access-countries-chart"></div>
@@ -141,10 +151,10 @@
 @endsection
 @section('scripts')
     <script src="{{asset('libs/apexcharts/apexcharts.min.js')}}"></script>
+
     <script>
-
-
-        async function fetchTopBrowsers() {
+        
+    async function fetchTopBrowsers() {
         let response = await fetch('/admin/api/insights/top-browsers'+window.location.search);
         let json = await response.json();
         return json;
@@ -155,7 +165,7 @@
         let chartContainer = document.getElementById('top-browsers-chart-container');
         chartContainer.querySelector('.loading-box').remove();
         let ctx = chartContainer.querySelector('#top-browsers-chart');
-        
+      
         var topBrowsersChart = new ApexCharts(document.querySelector("#top-browsers-chart"), {
             series: response['data'],
             chart: {
@@ -164,7 +174,6 @@
             margin: 0
         },
         labels: response['labels'],
-        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
         legend: {
             position: 'bottom'
         },
@@ -208,7 +217,6 @@
             margin: 0
         },
         labels: response['labels'],
-        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
         legend: {
             position: 'bottom'
         },
@@ -252,7 +260,6 @@
             margin: 0
         },
         labels: response['labels'],
-        //colors: ['rgb(255, 205, 86)', 'rgb(255, 99, 132)', 'rgb(54, 162, 235)',],
         legend: {
             position: 'bottom'
         },
@@ -296,7 +303,6 @@
             chart: {
             type: 'bar',
             height: 350,
-
         },
         plotOptions: {
             bar: {
@@ -317,10 +323,10 @@
         xaxis: {
             categories: response['labels'],
             labels: {
-                    formatter: function(val) {
-                        return val.toFixed(0);
-                    }
+                formatter: function(val) {
+                    return val.toFixed(0);
                 }
+            }
         }
         });
         chart.render();
