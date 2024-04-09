@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('vehicules', function (Blueprint $table) {
             $table->string('status')->default('available');
-            $table->boolean('first_owner')->default(1);
+            $table->boolean('first_owner')->nullable()->default(1);
             $table->unsignedTinyInteger('previous_owners')->nullable();
         });
     }
