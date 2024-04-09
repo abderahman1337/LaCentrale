@@ -214,10 +214,30 @@
                                 </span>
                             </div>
                             <div>
-                                <span class="font-medium">Nombre de places :</span> 
+                                <span class="font-medium">Longeur :</span> 
                                 <span class="text-gray-700">
                                     @if ($vehicule->length)
                                     {{$vehicule->length}} m
+                                    @else
+                                    donnés non disponsable
+                                    @endif
+                                </span>
+                            </div>
+                            <div>
+                                <span class="font-medium">Hauter :</span> 
+                                <span class="text-gray-700">
+                                    @if ($vehicule->height)
+                                    {{$vehicule->height}} m
+                                    @else
+                                    donnés non disponsable
+                                    @endif
+                                </span>
+                            </div>
+                            <div>
+                                <span class="font-medium">Largeur :</span> 
+                                <span class="text-gray-700">
+                                    @if ($vehicule->width)
+                                    {{$vehicule->width}} m
                                     @else
                                     donnés non disponsable
                                     @endif
