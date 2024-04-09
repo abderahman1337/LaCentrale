@@ -121,6 +121,9 @@
                             </td>
                             <td class="px-6 py-4 flex gap-2 items-center justify-end">
                                 <div>
+                                    <a target="__blank" href="{{route('vehicule', $vehicule->id)}}" class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Voir</a>
+                                </div>
+                                <div>
                                     <a href="{{route('admin.vehicules.edit', $vehicule->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
                                 </div>
                                 <div>
