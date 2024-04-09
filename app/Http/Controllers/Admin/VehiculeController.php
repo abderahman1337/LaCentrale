@@ -29,7 +29,17 @@ class VehiculeController extends Controller
             $q->orderBy($request->order_by, $request->order_type);
         }, function ($q){
             $q->latest();
-        })->paginate();
+        })
+        ->when($request->color, function ($q) use($request){
+            $q->where('color_id', $request->color);
+        })
+        ->when($request->energy, function ($q) use($request){
+            $q->where('energy_id', $request->energy);
+        })
+        ->when($request->serie, function ($q) use($request){
+            $q->where('serie_id', $request->serie);
+        })
+        ->paginate();
         return view('admin.vehicules.index', [
             'vehicules' => $vehicules
         ]);

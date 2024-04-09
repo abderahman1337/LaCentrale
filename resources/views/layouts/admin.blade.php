@@ -23,7 +23,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
     </head>
-    <body class="font-Nunito bg-gray-100 antialiased">
+    <body class="font-Roboto bg-gray-100 antialiased">
         <x-admin.navigation></x-admin.navigation>
         <x-admin.aside></x-admin.aside>
         <div class="mt-14">

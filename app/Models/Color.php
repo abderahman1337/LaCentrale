@@ -10,4 +10,8 @@ class Color extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'exterior', 'interior'];
+
+    public function vehicules(){
+        return $this->hasMany(Vehicule::class);
+    }
 }

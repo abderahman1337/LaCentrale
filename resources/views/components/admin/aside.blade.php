@@ -47,6 +47,15 @@
                     {{-- <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> --}}
                 </a>
             </li>
+            <li class="{{request()->routeIs('admin.colors.*')?'active':''}}">
+                <a href="{{route('admin.colors.index')}}" class="group">
+                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v14M9 5v14M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Couleurs</span>
+                    {{-- <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> --}}
+                </a>
+            </li>
             <li class="{{request()->routeIs('admin.vehicules.*')?'active':''}}">
                 <a href="{{route('admin.vehicules.index')}}" class="group">
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

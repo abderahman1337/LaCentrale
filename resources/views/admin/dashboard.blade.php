@@ -2,8 +2,8 @@
 @section('title', 'Statistiques')
 @section('content')
     <div>
-        <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
-            <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-sky-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
+        <section class="grid grid-cols-2 sm:grid-cols-4 lg:gap-4 gap-2 mb-4">
+            <div class="border-sky-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total des marques</h2>
                     <p class="text-3xl text-sky-400 font-bold">{{$totalBrands}}</p>
@@ -14,7 +14,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-orange-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
+            <div class="border-orange-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total des modèles</h2>
                     <p class="text-3xl text-orange-400 font-bold">{{$totalSeries}}</p>
@@ -25,7 +25,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-red-600 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
+            <div class="border-red-600 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total véhicules</h2>
                     <p class="text-3xl text-red-600 font-bold">{{$totalVehicules}}</p>
@@ -36,7 +36,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="sm:ltr:border-l sm:border-l-2 border-t border-b sm:border-b-0 sm:border-t-0 border-green-600 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
+            <div class="border-green-600 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
                 <div class="text-center sm:ltr:text-left sm:rtl:text-right">
                     <h2 class="text-gray-800 font-semibold">Total visiteurs</h2>
                     <p class="text-3xl text-green-600 font-bold">{{$totalVisitors}}</p>
