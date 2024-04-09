@@ -151,14 +151,26 @@
                             </div>
                         </div>
                         <div>
-                            <label for="vehicule-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Couleur</label>
-                            <select name="color" id="vehicule-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Couleur</option>
-                                @foreach ($colors as $color)
-                                <option value="{{$color->id}}">{{$color->name}}</option>
+                            <label for="vehicule-exterior-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Couleur</label>
+                            <select name="exterior_color" id="vehicule-exterior-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Couleur</option>
+                                @foreach ($exteriorColors as $interiorColor)
+                                <option value="{{$interiorColor->id}}">{{$interiorColor->name}}</option>
                                 @endforeach
                             </select>
-                            @error('color')
+                            @error('exterior_color')
+                                <div class="error-msg">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="vehicule-interior-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sellerie</label>
+                            <select name="interior_color" id="vehicule-interior-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Sellerie</option>
+                                @foreach ($interiorColors as $interiorColor)
+                                <option value="{{$interiorColor->id}}">{{$interiorColor->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('interior_color')
                                 <div class="error-msg">{{$message}}</div>
                             @enderror
                         </div>

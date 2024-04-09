@@ -37,7 +37,6 @@ return new class extends Migration
             $table->string('guarantee')->nullable();
             $table->string('origin')->nullable();
             $table->string('postal_code')->nullable();
-            $table->string('upholstery')->nullable();
             $table->date('release_date')->nullable();
             $table->boolean('technical_control')->nullable();
             $table->enum('gearbox', ['automatic', 'manual'])->default('manual');

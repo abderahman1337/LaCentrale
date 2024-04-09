@@ -39,23 +39,25 @@ class VehiculeController extends Controller
     public function create(){
         $models = Serie::with('brand')->latest()->get();
         $energies = Energy::latest()->get();
-        $colors = Color::where('exterior', 1)->latest()->get();
+        $exteriorColors = Color::where('exterior', 1)->latest()->get();
+        $interiorColors = Color::where('interior', 1)->latest()->get();
         $equipments = Equipment::with('options')->get();
         return view('admin.vehicules.create', [
             'models' => $models,
             'energies' => $energies,
-            'colors' => $colors,
+            'exteriorColors' => $exteriorColors,
+            'interiorColors' => $interiorColors,
             'equipments' => $equipments
         ]);
     }
 
 
     public function store(Request $request){
-        //dd($request->all());
         $vehicule = Vehicule::create([
             'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
-            'color_id' => $request->color,
+            'color_id' => $request->exterior_color,
+            'interior_color_id' => $request->interior_color,
             'energy_id' => $request->energy,
             'price' => $request->price,
             'year' => $request->year,
@@ -78,7 +80,6 @@ class VehiculeController extends Controller
             'first_owner' => $request->first_owner,
             'previous_owners' => $request->first_owner == 1 ? 0 : $request->previous_owners,
             'origin' => $request->origin,
-            'upholstery' => null,
             'release_date' => $request->release_date,
             'technical_control' => $request->technical_control,
             'gearbox' => $request->gearbox,
@@ -133,12 +134,14 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::with(['images', 'options'])->findOrFail($id);
         $models = Serie::with('brand')->latest()->get();
         $energies = Energy::latest()->get();
-        $colors = Color::where('exterior', 1)->latest()->get();
+        $exteriorColors = Color::where('exterior', 1)->latest()->get();
+        $interiorColors = Color::where('interior', 1)->latest()->get();
         $equipments = Equipment::with('options')->get();
         return view('admin.vehicules.edit', [
             'models' => $models,
             'energies' => $energies,
-            'colors' => $colors,
+            'exteriorColors' => $exteriorColors,
+            'interiorColors' => $interiorColors,
             'equipments' => $equipments,
             'vehicule' => $vehicule
         ]);
@@ -152,7 +155,8 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::with(['images', 'options'])->findOrFail($id);
         $vehicule->update([
             'serie_id' => $request->model,
-            'color_id' => $request->color,
+            'color_id' => $request->exterior_color,
+            'interior_color_id' => $request->interior_color,
             'energy_id' => $request->energy,
             'price' => $request->price,
             'year' => $request->year,
@@ -175,7 +179,6 @@ class VehiculeController extends Controller
             'first_owner' => $request->first_owner,
             'previous_owners' => $request->first_owner == 1 ? 0 : $request->previous_owners,
             'origin' => $request->origin,
-            'upholstery' => null,
             'release_date' => $request->release_date,
             'technical_control' => $request->technical_control,
             'gearbox' => $request->gearbox,

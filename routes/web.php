@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('RateLimit')->group(function (){
     Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-    Route::get('/annonce/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
+    Route::get('/ad/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
     Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
 
 });

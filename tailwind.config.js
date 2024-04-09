@@ -17,6 +17,7 @@ export default {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
                 Rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
                 Montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                Nunito: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
             container: {
                 center: true,

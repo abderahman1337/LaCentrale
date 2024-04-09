@@ -14,6 +14,7 @@ class Vehicule extends Model
         'color_id',
         'energy_id',
         'category_id',
+        'interior_color_id',
         'user_id',
         'image',
         'description',
@@ -36,7 +37,6 @@ class Vehicule extends Model
         'quarantee',
         'origin',
         'postal_code',
-        'upholstery',
         'release_date',
         'technical_control',
         'gearbox',
@@ -58,6 +58,9 @@ class Vehicule extends Model
     }
     public function color(){
         return $this->belongsTo(Color::class);
+    }
+    public function interiorColor(){
+        return $this->belongsTo(Color::class, 'interior_color_id');
     }
     public function energy(){
         return $this->belongsTo(Energy::class);
