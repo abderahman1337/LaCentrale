@@ -40,8 +40,16 @@ class Vehicule extends Model
         'release_date',
         'technical_control',
         'gearbox',
-        'guarantee'
+        'guarantee',
+        'first_owner',
+        'previous_owners',
+        'status'
     ];
+
+    protected $casts = [
+        'first_owner' => 'boolean'
+    ];
+
     public function getImage(){
         return asset('images/vehicules/'.$this->image);
     }

@@ -196,6 +196,32 @@
                                 <div class="error-msg">{{$message}}</div>
                             @enderror
                         </div>
+                        <div>
+                            <label for="vehicule-first-owner" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Première main</label>
+                            <select name="first_owner" id="vehicule-first-owner" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Première main</option>
+                                <option value="1">Oui</option>
+                                <option value="0">Non</option>
+                            </select>
+                            @error('technical_control')
+                                <div class="error-msg">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div id="previous-owners-container" class="hidden">
+                            <label for="vehicule-previous-owners" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Numéro de propriétaire précédent</label>
+                            <select name="previous_owners" id="vehicule-previous-owners" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Numéro de propriétaire précédent</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">2</option>
+                                <option value="4">3</option>
+                                <option value="5">4</option>
+                            </select>
+                            @error('previous_owners')
+                                <div class="error-msg">{{$message}}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
@@ -324,13 +350,18 @@
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Garantie</h2>
-                    <div class="relative">
-                        <input type="text" name="guarantee" id="vehicule-guarantee" value="{{old('guarantee')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                        <label for="vehicule-guarantee" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Garantie</label>
+                    <div>
+                        <label for="vehicule-guarantee" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Garantie</label>
+                        <select name="guarantee" id="vehicule-guarantee" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="Non">Non</option>
+                            @for ($i = 1; $i < 13; $i++)
+                            <option value="{{$i}} mois" @selected(old('guarantee')==$i.' mois')>{{$i}} mois</option>
+                            @endfor
+                        </select>
+                        @error('guarantee')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
                     </div>
-                    @error('guarantee')
-                        <div class="error-msg">{{$message}}</div>
-                    @enderror
                 </div>
             </div>
         </div>

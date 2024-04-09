@@ -53,6 +53,7 @@ class VehiculeController extends Controller
     public function store(Request $request){
         //dd($request->all());
         $vehicule = Vehicule::create([
+            'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
             'color_id' => $request->color,
             'energy_id' => $request->energy,
@@ -73,6 +74,8 @@ class VehiculeController extends Controller
             'consumption' => $request->consumption,
             'air_quality_certificate' => $request->air_quality_certificate,
             'guarantee' => $request->guarantee,
+            'first_owner' => $request->first_owner,
+            'previous_owners' => $request->first_owner == 1 ? 0 : $request->previous_owners,
             'origin' => $request->origin,
             'upholstery' => null,
             'release_date' => $request->release_date,
@@ -167,6 +170,8 @@ class VehiculeController extends Controller
             'consumption' => $request->consumption,
             'air_quality_certificate' => $request->air_quality_certificate,
             'guarantee' => $request->guarantee,
+            'first_owner' => $request->first_owner,
+            'previous_owners' => $request->first_owner == 1 ? 0 : $request->previous_owners,
             'origin' => $request->origin,
             'upholstery' => null,
             'release_date' => $request->release_date,
