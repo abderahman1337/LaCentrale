@@ -92,11 +92,12 @@
             </div>
         </div> --}}
         <hr>
-        <div class="mt-10 mb-10">
+        <div class="mt-6 mb-6">
             <h2 class="text-xl font-semibold">Informations générales</h2>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</p>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->description}}</p>
-            <div class="mt-10">
+            <hr>
+            <div class="mt-6">
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-10">
                     <div>
                         <h2 class="text-xl font-semibold">Caractéristiques</h2>
@@ -172,7 +173,7 @@
                                 </span>
                             </div>
                             <div>
-                                <span class="font-medium">Boite de vitesse :</span> 
+                                <span class="font-medium">Boîte de vitesse :</span> 
                                 <span class="text-gray-700">
                                     @if ($vehicule->gearbox == 'automatic')
                                     Automatique
@@ -363,23 +364,23 @@
             </div>
         </div>
         <hr>
-        <div class="mt-10 mb-10">
+        <div class="mt-6 mb-6">
             <h2 class="text-xl font-semibold">Garantie</h2>
             <div class="mt-4">
                 <div><span class="font-medium">Garantie :</span> <span class="text-gray-700">{{$vehicule->guarantee}}</span></div>
             </div>
         </div>
         <hr>
-        <div class="mt-10 mb-10">
+        <div class="mt-6 mb-6">
             <h2 class="text-xl font-semibold">Équipements & options</h2>
             <div class="mt-6">
-                <div class="grid grid-cols-2 gap-10 auto-cols-min">
+                <div class="flex flex-col gap-4">
                     @php
                         $groupedByEquipments = $vehicule->options->groupBy('option.equipment.name');
                     @endphp
                     @foreach ($groupedByEquipments->sortByDesc->count() as $equipemnt => $options)
                     <div class="">
-                        <h2 class="text-xl font-semibold">{{$equipemnt}}</h2>
+                        <h2 class="text-base font-semibold">{{$equipemnt}}</h2>
                         <div class="mt-4 flex flex-col gap-2">
                             @foreach ($options as $option)
                             <li><span class="text-gray-700">{{$option->option->name}}</span></li>
@@ -468,6 +469,15 @@
                 <div class="mt-4">
                     <span class="font-semibold underline text-xl">{{number_format($vehicule->price, 0, ' ', ' ')}} €</span>
                 </div>
+                @if ($vehicule->status == 'available')
+                <div class="mt-2">
+                    <span class="bg-green-100 text-green-800 text-xs font-bold me-2 px-3 py-1 rounded-full dark:bg-green-900 dark:text-green-300">Disponible</span>
+                </div>
+                @elseif ($vehicule->status == 'sold')
+                <div class="mt-2">
+                    <span class="bg-red-100 text-red-800 text-xs font-bold me-2 px-3 py-1 rounded-full dark:bg-red-900 dark:text-red-300">Vendu</span>
+                </div>
+                @endif
                 <div class="mt-4 text-sm">
                     <span>Publiée {{Carbon\Carbon::parse($vehicule->created_at)->diffForHumans()}}</span>
                 </div>
@@ -484,62 +494,19 @@
         </div>
     </div>
 </div>
-{{-- <hr class="mb-10">
+@if ($similarVehicules->isNotEmpty())
+<hr class="mb-10">
 <div class="mb-20">
     <h2 class="lg:text-2xl text-xl font-bold">Annonces similaires</h2>
     <div class="mt-6">
         <div class="grid lg:grid-cols-4 grid-cols-1 overflow-x-auto relative gap-4">
-            <a href="http://">
-                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
-                    <div class="relative">
-                        <button class="h-[40px] w-[40px] rounded-full bg-white absolute flex items-center justify-center rtl:left-2 ltr:right-2 top-2">
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                            </svg>
-                        </button>
-                        <img class="w-full h-full object-cover" src="{{$vehicule->getImage()}}" alt="">
-                    </div>
-                    <div class="bg-white pb-4 pt-2 px-4">
-                        <h3 class="font-semibold">{{$vehicule->serie->brand->name}} {{$vehicule->serie->name}}</h3>
-                        <span class="text-sm text-gray-600">2.0 ECOBLUE 130 TREND BUSINESS</span>
-                        <div class="mt-2">
-                            <ul class="text-xs flex items-center text-ellipsis divide-x">
-                                @if ($vehicule->year)
-                                <li class="whitespace-nowrap pr-2">{{$vehicule->year}}</li>
-                                @endif
-                                @if ($vehicule->mileage)
-                                <li class="whitespace-nowrap px-2">{{number_format($vehicule->mileage, 0, ' ', ' ')}} km</li>
-                                @endif
-                                @if ($vehicule->gearbox)
-                                <li class="whitespace-nowrap px-2">
-                                    @if ($vehicule->gearbox == 'automatic')
-                                    Automatique
-                                    @elseif($vehicule->gearbox == 'manual')
-                                    Manuelle
-                                    @endif
-                                </li>
-                                @endif
-                                @if ($vehicule->energy)
-                                <li class="whitespace-nowrap px-2">{{$vehicule->energy->name}}</li>
-                                @endif
-                            </ul>
-                        </div>
-                        <hr class="mt-4">
-                        <div class="mt-4 flex items-center flex-wrap gap-3">
-                            <div class="font-semibold">18 490 €</div> <div class="py-1 px-2 font-semibold ltr:ml-2 rtl:mr-2 rounded-full bg-white border text-xs flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="h-4 w-4 text-green-600" data-src="https://www.lacentrale.fr/static/fragment-lc-mozart-commons//statics/icons/circleCheck.svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img"><path d="M12 23C5.93675 23 1 18.0633 1 12C1 5.93675 5.93675 1 12 1C18.0633 1 23 5.93675 23 12C23 18.0633 18.0633 23 12 23ZM12 2.3253C6.66566 2.3253 2.3253 6.66566 2.3253 12C2.3253 17.3343 6.66566 21.6747 12 21.6747C17.3343 21.6747 21.6747 17.3343 21.6747 12C21.6747 6.66566 17.3343 2.3253 12 2.3253Z" fill="currentColor"></path><path d="M10.7078 16.6719C10.5422 16.6719 10.3655 16.6056 10.244 16.4731L6.57731 12.8064C6.3233 12.5524 6.3233 12.1327 6.57731 11.8677C6.83133 11.6026 7.25101 11.6137 7.51607 11.8677L10.7189 15.0705L17.2681 8.5213C17.5221 8.26728 17.9418 8.26728 18.2068 8.5213C18.4608 8.77532 18.4608 9.19499 18.2068 9.46006L11.1938 16.4731C11.0612 16.6056 10.8956 16.6719 10.7299 16.6719H10.7078Z" fill="currentColor"></path></svg><span>Garantie 6 moins</span></div>
-                        </div>
-                        <div class="flex justify-center mt-4">
-                            <button class="bg-primary hover:bg-primaryHover w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
-                                Voir l'annonce
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </a>  
+            @foreach ($similarVehicules as $similarVehicule)
+                <x-home.vehicule-show-box :vehicule="$similarVehicule"></x-home.vehicule-show-box>
+            @endforeach
         </div>
     </div>
-</div> --}}
-
+</div>
+@endif
 
 <div class="fixed bottom-0 inset-x-0 bg-white py-2 px-4 sm:hidden">
     <div class="flex justify-center">

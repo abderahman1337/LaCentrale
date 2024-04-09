@@ -37,10 +37,16 @@ class HomeController extends Controller
                 $q->with('equipment:id,name');
             }]);
         }])->findOrFail($id);
-       /*  $groupedBy = $vehicule->options->groupBy('option.equipment.name');
-        return $groupedBy; */
+        $similarVehicules = Vehicule::when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){
+            $q->whereHas('serie', function ($q) use($vehicule){
+                $q->where('brand_id', $vehicule->serie->brand_id);
+            });
+        }, function ($q) use($vehicule){
+            $q->where('serie_id', $vehicule->serie_id);
+        })->latest()->limit(5)->get();
         return view('vehicule', [
-            'vehicule' => $vehicule
+            'vehicule' => $vehicule,
+            'similarVehicules' => $similarVehicules
         ]);
     }
 

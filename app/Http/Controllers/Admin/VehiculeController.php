@@ -53,6 +53,14 @@ class VehiculeController extends Controller
 
 
     public function store(Request $request){
+        $request->validate([
+            'serie' => 'required|integer|exists:series,id',
+            'color' => 'required|integer|exists:colors,id',
+            'energy' => 'required|integer|exists:energies,id',
+            'price' => 'required|integer',
+            'year' => 'nullable|integer',
+            'mileage' => 'nullable|integer',
+        ]);
         $vehicule = Vehicule::create([
             'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
@@ -182,6 +190,7 @@ class VehiculeController extends Controller
             'release_date' => $request->release_date,
             'technical_control' => $request->technical_control,
             'gearbox' => $request->gearbox,
+            'status' => $request->status,
         ]);
         if($vehicule){
             $vehicule->options()->delete();

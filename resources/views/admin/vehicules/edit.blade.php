@@ -12,7 +12,17 @@
             <div class="lg:w-[65%] w-full flex flex-col gap-4">
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Marques/Modèles</h2>
-                    <div class="w-full relative">
+                    <div>
+                        <label for="vehicule-status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Statut</label>
+                        <select name="status" id="vehicule-status" class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="available" @selected(old('status', $vehicule->status) == 'available')>Disponible</option>
+                            <option value="sold" @selected(old('status', $vehicule->status) == 'sold')>Vendu</option>
+                        </select>
+                        @error('status')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="w-full relative mt-4">
                         <button id="model-search-dropdown" data-dropdown-toggle="models-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
                             <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="{{$vehicule->serie ? $vehicule->serie->name : ''}}" placeholder="Modèles">
                             <input type="hidden" id="selected-model" name="model" value="{{$vehicule->serie_id}}">
@@ -151,29 +161,31 @@
                                 @enderror
                             </div>
                         </div>
-                        <div>
-                            <label for="vehicule-exterior-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Couleur</label>
-                            <select name="exterior_color" id="vehicule-exterior-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">Couleur</option>
-                                @foreach ($exteriorColors as $interiorColor)
-                                <option value="{{$interiorColor->id}}" @selected($interiorColor->id==$vehicule->color_id)>{{$interiorColor->name}}</option>
-                                @endforeach
-                            </select>
-                            @error('exterior_color')
-                                <div class="error-msg">{{$message}}</div>
-                            @enderror
-                        </div>
-                        <div>
-                            <label for="vehicule-interior-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sellerie</label>
-                            <select name="interior_color" id="vehicule-interior-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">Sellerie</option>
-                                @foreach ($interiorColors as $interiorColor)
-                                <option value="{{$interiorColor->id}}" @selected($interiorColor->id==$vehicule->interior_color_id)>{{$interiorColor->name}}</option>
-                                @endforeach
-                            </select>
-                            @error('interior_color')
-                                <div class="error-msg">{{$message}}</div>
-                            @enderror
+                        <div class="flex flex-col sm:flex-row items-start gap-4">
+                            <div class="w-full">
+                                <label for="vehicule-exterior-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Couleur</label>
+                                <select name="exterior_color" id="vehicule-exterior-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="">Couleur</option>
+                                    @foreach ($exteriorColors as $interiorColor)
+                                    <option value="{{$interiorColor->id}}" @selected($interiorColor->id==$vehicule->color_id)>{{$interiorColor->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('exterior_color')
+                                    <div class="error-msg">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="w-full">
+                                <label for="vehicule-interior-color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sellerie</label>
+                                <select name="interior_color" id="vehicule-interior-color" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="">Sellerie</option>
+                                    @foreach ($interiorColors as $interiorColor)
+                                    <option value="{{$interiorColor->id}}" @selected($interiorColor->id==$vehicule->interior_color_id)>{{$interiorColor->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('interior_color')
+                                    <div class="error-msg">{{$message}}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div>
                             <label for="vehicule-energy" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Energie</label>
@@ -238,58 +250,62 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
-                    <h2 class="mb-6 font-semibold text-xl">Equipements & options</h2>
-                    <div id="equipments-list" class="flex flex-col gap-4">
-                        @foreach($equipments as $equipment)
-                        <div class="bg-gray-50 rounded p-4 shadow-sm equipment">
-                            <h2 class="mb-6 font-semibold text-base">{{$equipment->name}}</h2>
-                            <div class="flex flex-col items-start gap-4">
-                                <div class="relative w-full">
-                                    <div id="equipment-{{$equipment->id}}-options-dropdown" class="bg-white rounded-lg shadow w-full dark:bg-gray-700">
-                                        <div class="p-3">
-                                            <label for="option-search-{{$equipment->id}}" class="sr-only">Search</label>
-                                            <div class="relative">
-                                                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                                </svg>
+                    <div class="dropdown-container">
+                        <div class="button flex items-center gap-2 justify-between">
+                            <h2 class="font-semibold text-xl">Equipements & options</h2>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                            </svg>
+                        </div>
+                        <div class="dropdown mt-6">
+                            <div id="equipments-list" class="flex flex-col gap-4">
+                                @foreach($equipments as $equipment)
+                                <div class="bg-gray-50 rounded p-4 shadow-sm equipment">
+                                    <h2 class="mb-6 font-semibold text-base">{{$equipment->name}}</h2>
+                                    <div class="flex flex-col items-start gap-4">
+                                        <div class="relative w-full">
+                                            <div id="equipment-{{$equipment->id}}-options-dropdown" class="bg-white rounded-lg shadow w-full dark:bg-gray-700">
+                                                <div class="p-3">
+                                                    <label for="option-search-{{$equipment->id}}" class="sr-only">Search</label>
+                                                    <div class="relative">
+                                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                                        </svg>
+                                                        </div>
+                                                        <input type="text" id="option-search-{{$equipment->id}}" class="options-search block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher">
+                                                    </div>
                                                 </div>
-                                                <input type="text" id="option-search-{{$equipment->id}}" class="options-search block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher">
+                                                <ul class="options-list max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="option-search-{{$equipment->id}}-dropdown">
+                                                    @foreach ($equipment->options as $option)
+                                                    <li data-name="{{$option->name}}">
+                                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                        <input @checked($vehicule->options->isNotEmpty() && in_array($option->id, $vehicule->options->pluck('option_id')->toArray())) name="options[]" id="model-{{$option->id}}" type="checkbox" data-name="{{$option->name}}" value="{{$option->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500 rounded">
+                                                        <label for="model-{{$option->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$option->name}}</label>
+                                                        </div>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
                                         </div>
-                                        <ul class="options-list max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="option-search-{{$equipment->id}}-dropdown">
-                                            @foreach ($equipment->options as $option)
-                                            <li data-name="{{$option->name}}">
-                                                <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                <input @checked($vehicule->options->isNotEmpty() && in_array($option->id, $vehicule->options->pluck('option_id')->toArray())) name="options[]" id="model-{{$option->id}}" type="checkbox" data-name="{{$option->name}}" value="{{$option->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500 rounded">
-                                                <label for="model-{{$option->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$option->name}}</label>
-                                                </div>
-                                            </li>
-                                            @endforeach
-                                        </ul>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
                     </div>
-                    
                 </div>
             </div>
             <div class="lg:w-[35%] w-full flex flex-col gap-4">
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Images</h2>
-                    <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="vehicule-images">Les images</label>
-                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="vehicule-images" name="images[]" multiple type="file">
-                    </div>
                     @if ($vehicule->images->isNotEmpty())
-                    <div id="controls-carousel" class="relative w-full mt-4" data-carousel="static">
+                    <div id="controls-carousel" class="relative w-full mb-4" data-carousel="static">
                         <!-- Carousel wrapper -->
                         <div class="relative h-96 overflow-hidden rounded-lg">
                             @foreach ($vehicule->images as $vehiculeImage)
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item="{{$loop->first?'active':''}}">
-                                <img src="{{$vehiculeImage->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item="{{$vehiculeImage->image == $vehicule->image?'active':''}}">
+                                <img src="{{$vehiculeImage->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{$vehiculeImage->image}}">
                             </div>
                             @endforeach
                         </div>
@@ -312,6 +328,10 @@
                         </button>
                     </div>
                     @endif
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="vehicule-images">Les images</label>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="vehicule-images" name="images[]" multiple type="file">
+                    </div>
                     @error('images.*')
                         <div class="error-msg">{{$message}}</div>
                     @enderror
