@@ -113,6 +113,7 @@
                             <div><span class="font-medium">Nombre de portes :</span> <span class="text-gray-700">{{$vehicule->doors_number}}</span></div>
                             <div><span class="font-medium">Nombre de places :</span> <span class="text-gray-700">{{$vehicule->places_number}}</span></div>
                             <div><span class="font-medium">Longueur :</span> <span class="text-gray-700">{{$vehicule->length}} m</span></div>
+                            <div><span class="font-medium">Première main :</span> <span class="text-gray-700">{{$vehicule->first_owner ? 'Oui' : 'Non'}}</span></div>
                         </div>
                     </div>
                     <div>
