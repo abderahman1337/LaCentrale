@@ -29,8 +29,8 @@ return new class extends Migration
             $table->unsignedDecimal('height', 8 , 2)->nullable();
             $table->unsignedDecimal('co2_emission', 8 , 2);
             $table->string('trunk_volume')->nullable();
-            $table->unsignedDecimal('fiscal_horsepower')->nullable();
-            $table->unsignedDecimal('power')->nullable();
+            $table->unsignedTinyInteger('fiscal_horsepower')->nullable();
+            $table->unsignedInteger('power')->nullable();
             $table->string('euro_standars')->nullable();
             $table->unsignedTinyInteger('consumption')->nullable();
             $table->unsignedTinyInteger('air_quality_certificate')->nullable();

@@ -34,7 +34,6 @@ class SerieController extends Controller
         //dd($request->all());
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
             'brand' => 'required|integer|exists:brands,id'
         ]);
         $model = Serie::create([
@@ -57,7 +56,6 @@ class SerieController extends Controller
     public function update(Request $request, string $id){
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
             'brand' => 'required|integer|exists:brands,id'
         ]);
         $model = Serie::findOrFail($id);
