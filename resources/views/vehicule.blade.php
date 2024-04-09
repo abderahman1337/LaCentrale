@@ -96,7 +96,7 @@
             <h2 class="text-xl font-semibold">Informations générales</h2>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</p>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->description}}</p>
-            <hr>
+            <hr class="mt-4">
             <div class="mt-6">
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-10">
                     <div>

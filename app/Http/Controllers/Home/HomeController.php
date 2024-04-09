@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function welcome(){
         $brands = Brand::latest()->get();
-        $models = Serie::latest()->with('brand:id,name')->get();
+        $models = Serie::whereNotNull('image')->latest()->with('brand:id,name')->limit(5)->get();
         $energies = Energy::latest()->get();
         $vehicules = Vehicule::latest()->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
@@ -37,7 +37,7 @@ class HomeController extends Controller
                 $q->with('equipment:id,name');
             }]);
         }])->findOrFail($id);
-        $similarVehicules = Vehicule::when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){
+        $similarVehicules = Vehicule::where('id', '!=', $id)->when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){
             $q->whereHas('serie', function ($q) use($vehicule){
                 $q->where('brand_id', $vehicule->serie->brand_id);
             });
