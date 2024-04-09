@@ -31,7 +31,7 @@
                               </div>
                            @endforeach
                         @else
-                        Pas encore de liens !
+                        Pas encore de liens
                         @endif
                      </div>
                   </div>
