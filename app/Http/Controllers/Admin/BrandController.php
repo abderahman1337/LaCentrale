@@ -21,6 +21,8 @@ class BrandController extends Controller
     public function index(Request $request){
         $brands = Brand::when($request->order_by, function ($q) use($request){
             $q->orderBy($request->order_by, $request->order_type);
+        })->when($request->q, function ($q) use($request){
+            $q->where('name', 'LIKE', "%{$request->q}%");
         })->withCount('series', 'vehicules')->paginate(20);
         return view('admin.brands.index', [
             'brands' => $brands

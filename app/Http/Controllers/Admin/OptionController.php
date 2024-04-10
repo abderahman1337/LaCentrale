@@ -15,6 +15,10 @@ class OptionController extends Controller
     public function index(Request $request){
         $options = Option::when($request->equipment, function ($q) use($request){
             $q->where('equipment_id', $request->equipment);
+        })->when($request->q, function ($q) use($request){
+            $q->where('name', 'LIKE', "%{$request->q}%");
+        })->when($request->equipment, function ($q) use($request){
+            $q->where('equipment_id', $request->equipment);
         })->latest()->paginate();
         $equipments = Equipment::latest()->get();
         return view('admin.options.index', [

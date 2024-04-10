@@ -23,6 +23,8 @@ class SerieController extends Controller
             $q->orderBy($request->order_by, $request->order_type);
         })->when($request->brand, function ($q) use($request){
             $q->where('brand_id', $request->brand);
+        })->when($request->q, function ($q) use($request){
+            $q->where('name', 'LIKE', "%{$request->q}%");
         })->withCount('vehicules')->paginate(20);
         $brands = Brand::latest()->get();
         return view('admin.models.index', [

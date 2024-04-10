@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class EquipmentController extends Controller
 {
 
-    public function index(){
-        $equipments = Equipment::withCount('options')->latest()->paginate();
+    public function index(Request $request){
+        $equipments = Equipment::withCount('options')->when($request->q, function ($q) use($request){
+            $q->where('name', 'LIKE', "%{$request->q}%");
+        })->latest()->paginate();
         return view('admin.equipments.index', [
             'equipments' => $equipments
         ]);

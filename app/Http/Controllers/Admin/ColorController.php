@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class ColorController extends Controller
 {
 
-    public function index(){
-        $colors = Color::withCount('vehicules')->latest()->paginate();
+    public function index(Request $request){
+        $colors = Color::withCount('vehicules')->when($request->q, function ($q) use($request){
+            $q->where('name', 'LIKE', "%{$request->q}%");
+        })->latest()->paginate();
         return view('admin.colors.index', [
             'colors' => $colors
         ]);

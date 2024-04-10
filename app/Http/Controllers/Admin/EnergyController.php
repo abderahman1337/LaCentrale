@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class EnergyController extends Controller
 {
 
-    public function index(){
-        $energies = Energy::withCount('vehicules')->latest()->paginate();
+    public function index(Request $request){
+        $energies = Energy::withCount('vehicules')->when($request->q, function ($q) use($request){
+            $q->where('name', 'LIKE', "%{$request->q}%");
+        })->latest()->paginate();
         return view('admin.energies.index', [
             'energies' => $energies
         ]);
