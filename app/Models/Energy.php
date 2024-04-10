@@ -9,4 +9,8 @@ class Energy extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    public function vehicules(){
+        return $this->hasMany(Vehicule::class);
+    }
 }

@@ -29,3 +29,47 @@
 #dashboard-sidebar li.active a{
     @apply bg-primary text-primaryText font-bold;
 }
+
+input.input-control {
+    @apply border h-[50px] text-gray-900 text-sm dark:border-gray-300 dark:border-opacity-10 rounded-lg focus:ring-primary focus:border-primary block w-full py-2.5 px-3 border-[#e3e8ef];
+ }
+ input.input-control-m {
+    @apply border h-[45px] text-gray-900 text-sm dark:border-gray-300 dark:border-opacity-10 rounded-lg focus:ring-primary focus:border-primary block w-full py-2.5 px-3 border-[#e3e8ef] ;
+ }
+ input.input-control:disabled {
+    @apply bg-gray-50;
+ }
+ select.input-control {
+    @apply border h-[50px] rtl:appearance-none rtl:bg-none text-gray-900 text-sm dark:border-gray-300 dark:border-opacity-10 rounded-lg focus:ring-primary focus:border-primary block w-full py-2.5 px-3 border-[#e3e8ef] ;
+ }
+ textarea.input-control {
+    @apply border text-gray-900 text-sm dark:border-gray-300 dark:border-opacity-10 rounded-lg focus:ring-primary focus:border-primary block w-full py-2.5 px-3 border-[#e3e8ef] ;
+ }
+ .input-control.error{
+    @apply border-red-500 ring-red-500 bg-red-200;
+ }
+ .label-control {
+    @apply block mb-2 text-sm font-medium;
+ }
+ form .success-msg {
+    @apply mt-2 text-sm text-green-600 dark:text-green-500;
+ }
+ form .error-msg {
+    @apply mt-2 text-sm text-red-600 dark:text-red-500;
+ }
+
+ .dropdown-container{
+   @apply transition-all;
+}
+.dropdown-container .button i{
+   @apply transition-all ease-linear;
+}
+.dropdown-container.active .button .down-icon{
+   @apply transform rotate-180;
+}
+.dropdown-container .dropdown{
+   @apply h-0 overflow-hidden;
+}
+.dropdown-container.active .dropdown{
+   @apply h-auto;
+}

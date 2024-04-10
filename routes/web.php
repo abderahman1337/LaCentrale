@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EnergyController;
 use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\InsightController;
 use App\Http\Controllers\Admin\MenuController;
@@ -40,8 +41,10 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('equipments', EquipmentController::class)->except(['create', 'show', 'edit']);
     Route::resource('options', OptionController::class)->except(['create', 'show', 'edit']);
     Route::resource('vehicules', VehiculeController::class);
+    Route::post('/menu/items/order/update', [MenuController::class, 'updateOrder'])->name('menu.items.order.update');
     Route::resource('/menus', MenuController::class);
-    Route::resource('/colors', ColorController::class);
+    Route::resource('/colors', ColorController::class)->except(['create', 'show', 'edit']);
+    Route::resource('/energies', EnergyController::class)->except(['create', 'show', 'edit']);
 
     Route::get('/api/insights/top-wilayas', [InsightController::class, 'top_wilayas'])->name('insights.top_wilayas');
     Route::get('/api/insights/top-visited-states', [InsightController::class, 'top_visited_states'])->name('insights.top_visited_states');

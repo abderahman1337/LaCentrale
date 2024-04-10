@@ -13,7 +13,7 @@
         </div>
         <div class="flex items-center lg:divide-x-2 divide-primary">
             <ul id="menu-list" class="">
-                @foreach (App\Models\MenuItem::whereHas('menu', function($q){$q->where('location', 'header');})->get() as $menuItem)
+                @foreach (App\Models\MenuItem::whereHas('menu', function($q){$q->where('location', 'header');})->orderBy('order')->get() as $menuItem)
                 <li>
                     <a href="{{$menuItem->url}}">{{$menuItem->name}}</a>
                 </li>
