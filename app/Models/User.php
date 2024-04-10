@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'phone'
     ];
 
     /**
@@ -46,5 +47,9 @@ class User extends Authenticatable
 
     public function vehicules(){
         return $this->hasMany(Vehicule::class);
+    }
+
+    public function isAdmin(){
+        return $this->role == 'admin' ? true : false;
     }
 }

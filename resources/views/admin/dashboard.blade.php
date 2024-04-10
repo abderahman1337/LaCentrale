@@ -1,6 +1,28 @@
 @extends('layouts.admin')
 @section('title', 'Statistiques')
 @section('content')
+    <div class="rounded-md flex relative overflow-x-auto items-center sm:justify-center mb-4" role="group">
+        <a href="?period=today">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='today'?'text-primary':''}}">
+                Aujourd'hui
+            </button>
+        </a>
+        <a href="?period=yesterday">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')=='yesterday'?'text-primary':''}}">
+                Hier
+            </button>
+        </a>
+        <a href="?period=last7days">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')==''||request('period')=='last7days'?'text-primary':''}}">
+                Les 7 derniers jours
+            </button>
+        </a>
+        <a href="?period=last30days">
+            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='last30days'?'text-primary':''}}">
+                Les 30 derniers jours
+            </button>
+        </a>
+    </div>
     <div>
         <section class="grid grid-cols-2 sm:grid-cols-4 lg:gap-4 gap-2 mb-4">
             <div class="border-sky-400 shadow rounded-lg flex items-center justify-between sm:flex-row gap-3 flex-col-reverse bg-white py-3 sm:py-6 px-2 sm:px-5">
@@ -49,28 +71,7 @@
             </div>
         </section>
     </div>
-    <div class="rounded-md flex relative overflow-x-auto items-center sm:justify-center mb-4" role="group">
-        <a href="?period=today">
-            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='today'?'text-primary':''}}">
-                Aujourd'hui
-            </button>
-        </a>
-        <a href="?period=yesterday">
-            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')=='yesterday'?'text-primary':''}}">
-                Hier
-            </button>
-        </a>
-        <a href="?period=last7days">
-            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 {{request('period')==''||request('period')=='last7days'?'text-primary':''}}">
-                Les 7 derniers jours
-            </button>
-        </a>
-        <a href="?period=last30days">
-            <button type="button" class="whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 {{request('period')=='last30days'?'text-primary':''}}">
-                Les 30 derniers jours
-            </button>
-        </a>
-    </div>
+    
     <div class="flex justify-between lg:flex-row-reverse flex-col gap-4 mb-4 w-full">
         <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full">
             <div class="shadow py-3 px-3 rounded-t-md">

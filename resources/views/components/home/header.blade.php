@@ -1,3 +1,8 @@
+@php
+    $headerMenu = Cache::remember('header-menu-items', 60*60*24, function () {
+        return App\Models\MenuItem::whereHas('menu', function($q){$q->where('location', 'header');})->orderBy('order')->get();
+    });
+@endphp
 <header id="home-header">
     <div class="container lg:px-4 px-2 mx-auto flex items-center gap-4 justify-between h-full">
         <div class="flex items-center gap-3">
@@ -13,7 +18,7 @@
         </div>
         <div class="flex items-center lg:divide-x-2 divide-primary">
             <ul id="menu-list" class="">
-                @foreach (App\Models\MenuItem::whereHas('menu', function($q){$q->where('location', 'header');})->orderBy('order')->get() as $menuItem)
+                @foreach ($headerMenu as $menuItem)
                 <li>
                     <a href="{{$menuItem->url}}">{{$menuItem->name}}</a>
                 </li>
@@ -30,6 +35,44 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
                         </svg>                                                   
                 </button>
+                @auth
+                    @if (auth()->user()->isAdmin())
+                    <a class="flex items-center" href="{{route('admin.dashboard')}}">
+                        <button>
+                            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                            </svg>
+                        </button>
+                    </a>
+                    @else
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center">
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                </svg>
+                            </button>
+                        </x-slot>
+    
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">
+                                Profil
+                            </x-dropdown-link>
+    
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+    
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    Se déconnecter
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
+                    @endif
+                @else
                 <a class="flex items-center" href="{{route('login')}}">
                     <button>
                         <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -37,23 +80,17 @@
                         </svg>
                     </button>
                 </a>
+                @endauth
             </div>
         </div>
     </div>
     <div id="drawer-example" class="fixed top-[55px] left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
         <ul class="text-xl flex flex-col gap-1 divide-y">
+            @foreach ($headerMenu as $menuItem)
             <li>
-                <a class="py-3 block" href="http://">Acheter</a>
+                <a class="py-3 block" href="{{$menuItem->url}}">{{$menuItem->name}}</a>
             </li>
-            <li>
-                <a class="py-3 block" href="http://">Vendre</a>
-            </li>
-            <li>
-                <a class="py-3 block" href="http://">La Cote</a>
-            </li>
-            <li>
-                <a class="py-3 block" href="http://">Vous conseiller</a>
-            </li>
+            @endforeach
         </ul>
     </div>
 </header>

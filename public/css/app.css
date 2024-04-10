@@ -1396,9 +1396,6 @@ input:checked + .toggle-bg {
 .mt-10 {
   margin-top: 2.5rem;
 }
-.mt-14 {
-  margin-top: 3.5rem;
-}
 .mt-16 {
   margin-top: 4rem;
 }
@@ -1420,8 +1417,8 @@ input:checked + .toggle-bg {
 .mt-8 {
   margin-top: 2rem;
 }
-.ms-2\.5 {
-  margin-inline-start: 0.625rem;
+.mt-14 {
+  margin-top: 3.5rem;
 }
 .block {
   display: block;
@@ -1519,12 +1516,6 @@ input:checked + .toggle-bg {
 .h-screen {
   height: 100vh;
 }
-.h-2 {
-  height: 0.5rem;
-}
-.h-2\.5 {
-  height: 0.625rem;
-}
 .max-h-48 {
   max-height: 12rem;
 }
@@ -1563,6 +1554,9 @@ input:checked + .toggle-bg {
 }
 .w-3\/4 {
   width: 75%;
+}
+.w-32 {
+  width: 8rem;
 }
 .w-4 {
   width: 1rem;
@@ -1610,18 +1604,6 @@ input:checked + .toggle-bg {
   width: -moz-max-content;
   width: max-content;
 }
-.w-2 {
-  width: 0.5rem;
-}
-.w-2\.5 {
-  width: 0.625rem;
-}
-.w-44 {
-  width: 11rem;
-}
-.w-32 {
-  width: 8rem;
-}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -1648,9 +1630,6 @@ input:checked + .toggle-bg {
 }
 .max-w-xl {
   max-width: 36rem;
-}
-.max-w-lg {
-  max-width: 32rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1963,10 +1942,6 @@ input:checked + .toggle-bg {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
 }
-.rounded-l {
-  border-top-left-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
-}
 .border {
   border-width: 1px;
 }
@@ -1975,9 +1950,6 @@ input:checked + .toggle-bg {
 }
 .border-4 {
   border-width: 4px;
-}
-.border-2 {
-  border-width: 2px;
 }
 .border-b {
   border-bottom-width: 1px;
@@ -1991,17 +1963,11 @@ input:checked + .toggle-bg {
 .border-r {
   border-right-width: 1px;
 }
-.border-t {
-  border-top-width: 1px;
-}
 .border-s-2 {
   border-inline-start-width: 2px;
 }
-.border-l {
-  border-left-width: 1px;
-}
-.border-l-2 {
-  border-left-width: 2px;
+.border-t {
+  border-top-width: 1px;
 }
 .border-solid {
   border-style: solid;
@@ -2067,20 +2033,24 @@ input:checked + .toggle-bg {
 .border-transparent {
   border-color: transparent;
 }
-.border-gray-50 {
+.border-orange-800 {
   --tw-border-opacity: 1;
-  border-color: rgb(249 250 251 / var(--tw-border-opacity));
+  border-color: rgb(138 44 13 / var(--tw-border-opacity));
 }
-.border-t-transparent {
-  border-top-color: transparent;
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 .border-s-gray-50 {
   --tw-border-opacity: 1;
   border-inline-start-color: rgb(249 250 251 / var(--tw-border-opacity));
 }
-.border-l-gray-50 {
-  --tw-border-opacity: 1;
-  border-left-color: rgb(249 250 251 / var(--tw-border-opacity));
+.border-t-transparent {
+  border-top-color: transparent;
 }
 .border-opacity-30 {
   --tw-border-opacity: 0.3;
@@ -2370,6 +2340,9 @@ input:checked + .toggle-bg {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pt-16 {
+  padding-top: 4rem;
 }
 .text-center {
   text-align: center;
@@ -3174,10 +3147,6 @@ input.input-control:is(.dark *) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(240 82 82 / var(--tw-ring-opacity));
 }
-.focus\:ring-gray-100:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(243 244 246 / var(--tw-ring-opacity));
-}
 .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
@@ -3192,6 +3161,9 @@ input.input-control:is(.dark *) {
 .active\:bg-red-700:active {
   --tw-bg-opacity: 1;
   background-color: rgb(200 30 30 / var(--tw-bg-opacity));
+}
+.active\:bg-primaryHover:active {
+  background-color: var(--primary-hover);
 }
 .active\:text-gray-500:active {
   --tw-text-opacity: 1;
@@ -3590,10 +3562,6 @@ input.input-control:is(.dark *) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(155 28 28 / var(--tw-ring-opacity));
 }
-.dark\:focus\:ring-gray-700:focus:is(.dark *) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity));
-}
 .dark\:focus\:ring-offset-gray-700:focus:is(.dark *) {
   --tw-ring-offset-color: #374151;
 }
@@ -3855,13 +3823,13 @@ input.input-control:is(.dark *) {
     width: 65%;
   }
 
+  .lg\:w-auto {
+    width: auto;
+  }
+
   .lg\:w-max {
     width: -moz-max-content;
     width: max-content;
-  }
-
-  .lg\:w-auto {
-    width: auto;
   }
 
   .lg\:min-w-72 {

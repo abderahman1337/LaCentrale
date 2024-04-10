@@ -1,6 +1,6 @@
 <div>
-    <footer class="bg-[#edeefe] py-10 px-10">
-        <div class="container mx-auto text-gray-800 flex lg:flex-row flex-col items-start justify-between gap-4">
+    <footer class="bg-primary py-10 px-10">
+        <div class="container mx-auto text-white flex lg:flex-row flex-col items-start justify-between gap-4">
             @foreach (App\Models\Menu::where('location', 'footer')->with('items')->get() as $menu)
             <div>
                 <h2 class="mb-3 font-bold">{{$menu->name}}</h2>
@@ -14,7 +14,7 @@
             </div>
             @endforeach
         </div>
-        <div class="pt-10 border-t mt-16 mx-auto container text-gray-800 border-opacity-30 border-purple-800">
+        <div class="pt-10 border-t mt-16 mx-auto container text-white border-opacity-30 border-white">
             <div class="flex items-center justify-center w-full">
                 <p class="text-xs">Copyright ® {{ $websiteName }} - Tous droits réservés</p>
             </div>

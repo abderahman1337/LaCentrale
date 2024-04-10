@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuctionController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -30,11 +31,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('RateLimit')->group(function (){
     Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
     Route::get('/ad/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
+    Route::post('/ad/{id}/auction', [HomeController::class, 'auction'])->name('vehicule.auction');
     Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
 
 });
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'CheckRole:customer'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('brands', BrandController::class)->except(['create', 'show', 'edit']);
     Route::resource('series', SerieController::class)->except(['create', 'show', 'edit']);
@@ -43,6 +51,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('vehicules', VehiculeController::class);
     Route::post('/menu/items/order/update', [MenuController::class, 'updateOrder'])->name('menu.items.order.update');
     Route::resource('/menus', MenuController::class);
+    Route::resource('/auctions', AuctionController::class);
     Route::resource('/colors', ColorController::class)->except(['create', 'show', 'edit']);
     Route::resource('/energies', EnergyController::class)->except(['create', 'show', 'edit']);
 
@@ -62,10 +71,5 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';

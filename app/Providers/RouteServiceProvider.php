@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
             return '/admin';
         }
         if(auth()->check() && auth()->user()->role == 'customer'){
-            return '/customer';
+            return '/';
         }
        
 

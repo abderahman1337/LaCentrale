@@ -26,8 +26,8 @@
         <x-home.header></x-home.header>
         <div class="container lg:px-0 px-2 mx-auto">
             @yield('content')
-            <x-home.footer></x-home.footer>
         </div>
+        <x-home.footer></x-home.footer>
         <script src="{{asset('js/scripts.js')}}"></script>
         @yield('scripts')
     </body>
