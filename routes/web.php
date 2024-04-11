@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\InsightController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SerieController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TypeController;
@@ -52,6 +53,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::post('/menu/items/order/update', [MenuController::class, 'updateOrder'])->name('menu.items.order.update');
     Route::resource('/menus', MenuController::class);
     Route::resource('/auctions', AuctionController::class);
+    Route::resource('/pages', PageController::class);
     Route::resource('/colors', ColorController::class)->except(['create', 'show', 'edit']);
     Route::resource('/energies', EnergyController::class)->except(['create', 'show', 'edit']);
 

@@ -37,7 +37,7 @@ class HomeController extends Controller
                 $q->with('equipment:id,name');
             }]);
         }, 'auctions' => function ($q){
-            $q->with('user:id,name');
+            $q->with('user:id,name')->orderBy('price', 'desc');
         }])->findOrFail($id);
         $similarVehicules = Vehicule::where('id', '!=', $id)->when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){
             $q->whereHas('serie', function ($q) use($vehicule){
@@ -131,11 +131,20 @@ class HomeController extends Controller
     }
 
     public function auction(Request $request, $id){
+        $request->validate([
+            'price' => 'required|integer',
+            'phone' => 'required',
+        ]);
         $vehicule = Vehicule::findOrFail($id);
         $vehicule->auctions()->create([
             'user_id' => auth()->user()->id,
             'price' => $request->price
         ]);
+        if(auth()->user()->phone == null){
+            auth()->user()->update([
+                'phone' => $request->phone
+            ]);
+        }
         return back()->with('success', 'Votre offre a été enregistrée avec succès');
     }
 }

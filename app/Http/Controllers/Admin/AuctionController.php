@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 class AuctionController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $auctions = Auction::latest()->paginate();
+        $auctions = Auction::when($request->vehicule, function ($q) use($request){
+            $q->where('vehicule_id', $request->vehicule);
+        })->latest()->paginate();
         return view('admin.auctions.index', [
             'auctions' => $auctions
         ]);
@@ -54,7 +56,12 @@ class AuctionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $auction = Auction::findOrFail($id);
+        $auction->update([
+            'price' => $request->price
+        ]);
+        return back()->with('success', "l'enchère a été modifiée avec succès");
+
     }
 
 

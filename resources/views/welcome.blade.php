@@ -268,47 +268,7 @@
         </div>
     </div>
 </div>
-<div class="mt-20 mb-20">
-    <h2 class="lg:text-3xl text-xl font-bold">Bien choisir son électrique ou hybride d'occasion</h2>
-    <div class="grid sm:grid-cols-2 grid-cols-1 gap-6 mt-6">
-        <div>
-            <div>
-                <img class="rounded-[20px]" src="https://assets.prod.roole.fr/data/assets/medium_Visuel_article_bornes_de_recharge_electriques_2274bc68d4.jpg" alt="">
-            </div>
-            
-            <h2 class="font-semibold text-xl mb-2 mt-2">Voitures électriques : comment les recharger, combien ça coûte ?</h2>
-            <p>
-                Les spécificités de la voiture électrique entraînent des usages différents, principalement quand il s'agit de faire un plein d'énergie. Il y a un monde entre effectuer une recharge chez soi, sur la route ou sur l'autoroute
-            </p>
-        </div>
-        <div class="grid grid-cols-2 gap-6">
-            <div>
-                <div>
-                    <img class="rounded-[20px]" src="https://www.automobile-propre.com/wp-content/uploads/2013/02/recharge-voiture-electrique-cable.jpg" alt="">
-                </div>
-                <h2 class="font-semibold mb-2 mt-2">Les mots de la voiture électrique : un petit lexique afin d'y voir plus clair</h2>
-            </div>
-            <div>
-                <div>
-                    <img class="rounded-[20px]" src="https://www.01net.com/app/uploads/2022/10/charge-rapide-voiture-electrique.jpg" alt="">
-                </div>
-                <h2 class="font-semibold mb-2 mt-2">Les mots de la voiture électrique : un petit lexique afin d'y voir plus clair</h2>
-            </div>
-            <div>
-                <div>
-                    <img class="rounded-[20px]" src="https://www.turbo.fr/sites/default/files/2021-01/bmw%20i3.jpg" alt="">
-                </div>
-                <h2 class="font-semibold mb-2 mt-2">Voitures électriques neuves : quelles aides gouvernementales en 2023 ?</h2>
-            </div>
-            <div>
-                <div>
-                    <img class="rounded-[20px]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRhOzvB_w3K89bYepP3idFrPsBaeVIHXWQLhgZzKWnig&s" alt="">
-                </div>
-                <h2 class="font-semibold mb-2 mt-2">Achat voitures électriques : quelles aides pour l'occasion en 2023</h2>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="mt-20 mb-10">
     <h2 class="lg:text-3xl text-xl font-bold">A découvrir également</h2>
     <div class="bg-[#f6f6f9] p-6 rounded-[20px] mt-6">

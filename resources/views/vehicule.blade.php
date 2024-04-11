@@ -6,14 +6,17 @@
         <div id="controls-carousel" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden rounded-lg md:h-[500px]">
+                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                    <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
                 @foreach ($vehicule->images as $vehiculeImage)
-                <div class="hidden duration-700 ease-in-out" data-carousel-item="{{$vehicule->image == $vehiculeImage->image?'active':''}}">
+                <div class="hidden duration-700 ease-in-out" data-carousel-item="">
                     <img src="{{$vehiculeImage->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 @endforeach
             </div>
-            <!-- Slider controls -->
-            <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+            @if ($vehicule->images->isNotEmpty())
+            <button type="button" class="absolute top-0 start-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                     <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
@@ -21,7 +24,7 @@
                     <span class="sr-only">Previous</span>
                 </span>
             </button>
-            <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+            <button type="button" class="absolute top-0 end-0 z-10 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                     <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
@@ -29,6 +32,7 @@
                     <span class="sr-only">Next</span>
                 </span>
             </button>
+            @endif
         </div>
 {{--         <div class="mt-10 mb-10">
             <h2 class="text-xl font-semibold">Points forts</h2>
@@ -487,41 +491,56 @@
                         <span>Place un offre</span>
                     </button>
                     @endif
-                    <button onclick="this.querySelector('span').textContent = this.dataset.phone;" data-phone="{{$vehicule->user?$vehicule->user->phone:''}}" class="bg-primary hover:bg-primaryHover w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
+                    <button onclick="this.querySelector('span').textContent = this.dataset.phone;" data-phone="{{$vehicule->user?$vehicule->user->phone:''}}" class="bg-primary hidden sm:flex hover:bg-primaryHover w-full items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M22.25 17c-1.24-1.09-3.38-2.96-4.16-3.38a1.9 1.9 0 0 0-1.69-.07q-.5.23-.85.66a7 7 0 0 1-1.82 1.69c-.42.22-1.98-.68-3.3-1.9l-.41-.41c-1.24-1.32-2.13-2.9-1.9-3.3A8 8 0 0 1 9.8 8.45q.42-.33.65-.82c.25-.55.22-1.17-.07-1.7C9.97 5.15 8.08 3 7 1.78a2.4 2.4 0 0 0-1.02-.68 1.5 1.5 0 0 0-1.18.05C4.23 1.45 2.33 3.4 1.76 4c-.16.16-1.21 1.36-.53 4.28.7 3.07 2.66 6.57 5.04 9.07l.06.07a20.7 20.7 0 0 0 9.42 5.36q.88.2 1.79.22c1.65 0 2.35-.64 2.47-.77.6-.57 2.54-2.47 2.84-3.05.18-.36.2-.8.05-1.18a2.4 2.4 0 0 0-.65-1m-.38 1.64q-1.23 1.47-2.63 2.77c-.08.06-.96.76-3.21.24a20 20 0 0 1-8.58-4.76 20 20 0 0 1-5.1-8.86c-.51-2.25.18-3.14.24-3.21Q3.9 3.4 5.35 2.18q.15-.03.3.03.3.1.51.35A41 41 0 0 1 9.39 6.5q.16.34 0 .7a1 1 0 0 1-.32.4 9 9 0 0 0-1.96 2.17c-.78 1.4 1.38 3.9 2.06 4.63.2.23.45.46.46.47.74.67 3.25 2.83 4.64 2.06a9 9 0 0 0 2.16-1.97q.16-.21.4-.32.36-.15.7.02c.58.3 2.42 1.87 3.95 3.22q.24.21.35.52.06.12.04.26z"></path></svg>
                         <span>N° téléphone</span>
                     </button>
+                    @if ($vehicule->user)
+                    <a class="block w-full" href="https://wa.me/{{$vehicule->user->phone}}">
+                        <button class="bg-[#25d366] hover:bg-[#128c7e] w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base tracking-widest">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                              </svg>
+                            <span>WhatsApp</span>
+                        </button>
+                    </a>
+                    @endif
                 </div>
             </div>
         </div>
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
             <div class="bg-white p-6 text-center px-4">
                 <h3 class="font-semibold text-xl">Les enchères</h3>
-                <div class="mt-2">
-                    @foreach ($vehicule->auctions->sortByDesc->count() as $auction)
-                        <div class="flex items-center justify-between">
-                            <div>
-                                @php
-                                $name = $auction->user->name;
-                                $length = strlen($name);
-                                if ($length <= 2) {
-                                    echo $name;
-                                }else{
-                                    $firstChar = substr($name, 0, 1); // Get the first character
-                                    $lastChar = substr($name, -1);    // Get the last character
-                                    $maskedName = $firstChar;          // Start with the first character
-                                    
-                                    // Replace middle characters with stars
-                                    for ($i = 1; $i < $length - 1; $i++) {
-                                        $maskedName .= '*';
-                                    }
-                                    
-                                    $maskedName .= $lastChar;  // Append the last character
-                                    echo $maskedName;
-                                }
-                                @endphp
+                <div class="mt-4 flex flex-col gap-3">
+                    @foreach ($vehicule->auctions as $auction)
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg py-2 px-4 border">
+                            <div class="flex items-center gap-2">
+                                <div>
+                                    <div class="text-sm text-left">
+                                        @php
+                                        $name = $auction->user->name;
+                                        $length = strlen($name);
+                                        if ($length <= 2) {
+                                            echo $name;
+                                        }else{
+                                            $firstChar = substr($name, 0, 1); // Get the first character
+                                            $lastChar = substr($name, -1);    // Get the last character
+                                            $maskedName = $firstChar;          // Start with the first character
+                                            
+                                            // Replace middle characters with stars
+                                            for ($i = 1; $i < 10; $i++) {
+                                                $maskedName .= '*';
+                                            }
+                                            
+                                            $maskedName .= $lastChar;  // Append the last character
+                                            echo $maskedName;
+                                        }
+                                        @endphp
+                                    </div>
+                                    <div class="text-left"><span class="whitespace-nowrap font-semibold">{{number_format($auction->price, 0 , ' ', ' ')}} €</span></div>
                                 </div>
-                            <div><span class="whitespace-nowrap">{{number_format($auction->price, 0 , ' ', ' ')}} €</span></div>
+                            </div>
+                            <div class="text-sm">{{Carbon\Carbon::parse($auction->created_at)->diffForHumans(['short' => true])}}</div>
                         </div>
                     @endforeach
                 </div>
@@ -545,6 +564,20 @@
                         type="number"
                         class="mt-1 block w-full"
                         placeholder="Le prix de votre offre"
+                    />
+    
+                </div>
+                <div class="mt-6">
+                    <x-input-label for="phone" value="Téléphone" class="sr-only" />
+
+                    <x-text-input
+                        id="phone"
+                        name="phone"
+                        type="text"
+                        class="mt-1 block w-full"
+                        placeholder="Téléphone"
+                        value="{{auth()->user()->phone}}"
+                        required="required"
                     />
     
                 </div>
@@ -580,7 +613,7 @@
 </div>
 @endif
 
-<div class="fixed bottom-0 inset-x-0 bg-white py-2 px-4 sm:hidden z-10">
+<div class="fixed bottom-0 inset-x-0 bg-white py-2 px-4 sm:hidden z-20">
     <div class="flex justify-center">
         <button onclick="this.querySelector('span').textContent = this.dataset.phone;" data-phone="{{$vehicule->user?$vehicule->user->phone:''}}" class="bg-primary hover:bg-primaryHover w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M22.25 17c-1.24-1.09-3.38-2.96-4.16-3.38a1.9 1.9 0 0 0-1.69-.07q-.5.23-.85.66a7 7 0 0 1-1.82 1.69c-.42.22-1.98-.68-3.3-1.9l-.41-.41c-1.24-1.32-2.13-2.9-1.9-3.3A8 8 0 0 1 9.8 8.45q.42-.33.65-.82c.25-.55.22-1.17-.07-1.7C9.97 5.15 8.08 3 7 1.78a2.4 2.4 0 0 0-1.02-.68 1.5 1.5 0 0 0-1.18.05C4.23 1.45 2.33 3.4 1.76 4c-.16.16-1.21 1.36-.53 4.28.7 3.07 2.66 6.57 5.04 9.07l.06.07a20.7 20.7 0 0 0 9.42 5.36q.88.2 1.79.22c1.65 0 2.35-.64 2.47-.77.6-.57 2.54-2.47 2.84-3.05.18-.36.2-.8.05-1.18a2.4 2.4 0 0 0-.65-1m-.38 1.64q-1.23 1.47-2.63 2.77c-.08.06-.96.76-3.21.24a20 20 0 0 1-8.58-4.76 20 20 0 0 1-5.1-8.86c-.51-2.25.18-3.14.24-3.21Q3.9 3.4 5.35 2.18q.15-.03.3.03.3.1.51.35A41 41 0 0 1 9.39 6.5q.16.34 0 .7a1 1 0 0 1-.32.4 9 9 0 0 0-1.96 2.17c-.78 1.4 1.38 3.9 2.06 4.63.2.23.45.46.46.47.74.67 3.25 2.83 4.64 2.06a9 9 0 0 0 2.16-1.97q.16-.21.4-.32.36-.15.7.02c.58.3 2.42 1.87 3.95 3.22q.24.21.35.52.06.12.04.26z"></path></svg>

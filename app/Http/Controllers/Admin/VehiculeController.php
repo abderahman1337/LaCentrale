@@ -39,6 +39,7 @@ class VehiculeController extends Controller
         ->when($request->serie, function ($q) use($request){
             $q->where('serie_id', $request->serie);
         })
+        ->withCount('auctions')
         ->paginate();
         return view('admin.vehicules.index', [
             'vehicules' => $vehicules
@@ -202,37 +203,40 @@ class VehiculeController extends Controller
             'gearbox' => $request->gearbox,
             'status' => $request->status,
         ]);
-        if($vehicule){
-            $vehicule->options()->delete();
-            if($request->options){
-                foreach($request->options as $option){
-                    $vehicule->options()->create([
-                        'option_id' => $option
-                    ]);
+        $vehicule->options()->delete();
+        if($request->options){
+            foreach($request->options as $option){
+                $vehicule->options()->create([
+                    'option_id' => $option
+                ]);
+            }
+        }
+        if($request->hasFile('images')){
+            foreach($request->file('images') as $key => $image){
+                $extension = $image->getClientOriginalExtension();
+                $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
+                $image->move($this->vehiculesSavePath, $imageName);
+                $vehicule->images()->create([
+                    'image' => $imageName
+                ]);
+                $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
+                $imageEdit->place(
+                    public_path('images/static/watermark.png'),
+                    'center', 
+                    10, 
+                    10,
+                    25
+                );
+                $imageEdit->save();
+                if($vehicule->image == null){
+                    $vehicule->update(['image' => $imageName]);
                 }
             }
-            if($request->hasFile('images')){
-                foreach($request->file('images') as $key => $image){
-                    $extension = $image->getClientOriginalExtension();
-                    $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
-                    $image->move($this->vehiculesSavePath, $imageName);
-                    $vehicule->images()->create([
-                        'image' => $imageName
-                    ]);
-                    $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
-                    $imageEdit->place(
-                        public_path('images/static/watermark.png'),
-                        'center', 
-                        10, 
-                        10,
-                        25
-                    );
-                    $imageEdit->save();
-                    if($vehicule->image == null){
-                        $vehicule->update(['image' => $imageName]);
-                    }
-                }
-            }
+        }
+        if(!$vehicule->user){
+            $vehicule->update([
+                'user_id' => auth()->user()->id
+            ]);
         }
         return back()->with('success', 'Le véhicule a été modifiée avec succès');
     }
