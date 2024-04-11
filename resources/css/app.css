@@ -19,7 +19,7 @@
     @apply hidden;
 }
 .dropdown-container .dropdown.active{
-    @apply block h-auto;
+    @apply block h-auto overflow-visible;
 }
 
 
