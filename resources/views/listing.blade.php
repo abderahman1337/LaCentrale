@@ -2,9 +2,9 @@
 @section('title', 'Voiture occasion')
 @section('content')
 <div class="flex items-start lg:flex-row flex-col lg:gap-10 gap-5 mb-10 mt-10">
-    <div class="lg:w-[32%] w-full ltr:border-r rtl:border-l ltr:pr-4 lg:block">
+    <div class="lg:w-[32%] w-full lg:ltr:border-r lg:rtl:border-l lg:ltr:pr-4 lg:block">
         <div class="flex justify-center sm:hidden">
-            <button onclick="document.getElementById('filter-container').classList.toggle('hidden')" type="submit" class="bg-primary hover:bg-primaryHover w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">Filtres</button>
+            <button onclick="document.getElementById('filter-container').classList.toggle('hidden')" type="submit" class="bg-blue-600 hover:bg-blue-500 w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">Filtres</button>
         </div>
         <div class="sm:flex items-center gap-2 hidden">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><g fill="#1C1C1C" clip-path="url(#tune_svga)"><path d="M22.25 5.72a.75.75 0 0 0 0-1.5H9.12a1.6 1.6 0 0 1 0 1.5zM6.3 5.72a1.6 1.6 0 0 1 0-1.5H1.75a.75.75 0 1 0 0 1.5z"></path><path fill-rule="evenodd" d="M7.7 7.7a2.72 2.72 0 1 0 0-5.45 2.72 2.72 0 0 0 0 5.44m0-1.13a1.6 1.6 0 1 0 0-3.19 1.6 1.6 0 0 0 0 3.19" clip-rule="evenodd"></path><path d="M1.75 12.75a.75.75 0 0 1 0-1.5h13.13a1.6 1.6 0 0 0 0 1.5zM17.7 12.75a1.6 1.6 0 0 0 0-1.5h4.55a.75.75 0 0 1 0 1.5z"></path><path fill-rule="evenodd" d="M16.3 14.72a2.72 2.72 0 1 1 0-5.44 2.72 2.72 0 0 1 0 5.44m0-1.13a1.6 1.6 0 1 1 0-3.18 1.6 1.6 0 0 1 0 3.18" clip-rule="evenodd"></path><path d="M22.25 19.78a.75.75 0 0 0 0-1.5H9.12a1.6 1.6 0 0 1 0 1.5zM6.3 19.78a1.6 1.6 0 0 1 0-1.5H1.75a.75.75 0 0 0 0 1.5z"></path><path fill-rule="evenodd" d="M7.7 21.75a2.72 2.72 0 1 0 0-5.44 2.72 2.72 0 0 0 0 5.44m0-1.13a1.6 1.6 0 1 0 0-3.19 1.6 1.6 0 0 0 0 3.19" clip-rule="evenodd"></path></g><defs><clipPath id="tune_svga"><path fill="#fff" d="M0 0h24v24H0z"></path></clipPath></defs></svg>

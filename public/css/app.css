@@ -2969,6 +2969,10 @@ input.input-control:is(.dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.hover\:bg-blue-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 131 248 / var(--tw-bg-opacity));
+}
 .hover\:text-blue-600:hover {
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
@@ -3982,12 +3986,20 @@ input.input-control:is(.dark *) {
 }
 @media (min-width: 1024px) {
 
+  .lg\:ltr\:border-r:where([dir="ltr"], [dir="ltr"] *) {
+    border-right-width: 1px;
+  }
+
   .lg\:ltr\:pl-20:where([dir="ltr"], [dir="ltr"] *) {
     padding-left: 5rem;
   }
 
   .lg\:ltr\:pr-0:where([dir="ltr"], [dir="ltr"] *) {
     padding-right: 0px;
+  }
+
+  .lg\:ltr\:pr-4:where([dir="ltr"], [dir="ltr"] *) {
+    padding-right: 1rem;
   }
 }
 .rtl\:left-2:where([dir="rtl"], [dir="rtl"] *) {
@@ -4043,6 +4055,10 @@ input.input-control:is(.dark *) {
   }
 }
 @media (min-width: 1024px) {
+
+  .lg\:rtl\:border-l:where([dir="rtl"], [dir="rtl"] *) {
+    border-left-width: 1px;
+  }
 
   .lg\:rtl\:pl-0:where([dir="rtl"], [dir="rtl"] *) {
     padding-left: 0px;
