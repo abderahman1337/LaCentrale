@@ -82,7 +82,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="w-full">
+                            <div class="w-full relative">
                                 <button id="model-search-dropdown" data-dropdown-toggle="models-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
                                     <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Modèles">
                                     <input type="hidden" id="selected-models-list" name="models" value="">
@@ -90,7 +90,7 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
                                     </svg>
                                 </button>
-                                <div id="models-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <div id="models-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-full dark:bg-gray-700">
                                     <div class="p-3">
                                         <label for="model-search" class="sr-only">Search</label>
                                         <div class="relative">
