@@ -80,4 +80,10 @@ class Vehicule extends Model
     public function auctions(){
         return $this->hasMany(Auction::class);
     }
+    public function favorites(){
+        return $this->hasMany(Favorite::class);
+    }
+    public function getName(){
+        return $this->serie ? (($this->serie->brand?$this->serie->brand->name:'') . ' ' . $this->serie->name) : '';
+    }
 }

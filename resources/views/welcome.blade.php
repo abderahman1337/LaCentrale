@@ -264,9 +264,7 @@
     <div class="mt-6">
         <div class="grid lg:grid-cols-4 grid-cols-1 overflow-x-auto relative gap-4">
             @foreach ($vehicules as $vehicule)
-            <a href="{{route('vehicule', $vehicule->id)}}">
                 <x-home.vehicule-show-box :vehicule="$vehicule"></x-home.vehicule-show-box>
-            </a>  
             @endforeach
         </div>
     </div>

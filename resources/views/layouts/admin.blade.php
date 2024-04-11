@@ -51,9 +51,6 @@
         @routes()
         @yield('top-scripts')
         <script src="{{asset('js/scripts.js')}}"></script>
-        <script>
-            const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
-        </script>
         @yield('scripts')
     </body>
 </html>

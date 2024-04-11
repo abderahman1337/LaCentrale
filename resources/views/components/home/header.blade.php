@@ -25,16 +25,20 @@
                 @endforeach
             </ul>
             <div class="flex items-center lg:gap-6 gap-3 sm:ltr:ml-6 sm:ltr:pl-8 sm:rtl:pr-8 sm:rtl:mr-6">
-                <button>
-                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-                    </svg>                          
-                </button>
-                <button>
-                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                        </svg>                                                   
-                </button>
+                <a class="flex items-center" href="{{route('vehicules.listing')}}">
+                    <button>
+                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                        </svg>                          
+                    </button>
+                </a>
+                <a class="flex items-center" href="{{route('favorite.list')}}">
+                    <button>
+                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+                            </svg>                                                   
+                    </button>
+                </a>
                 @auth
                     @if (auth()->user()->isAdmin())
                     <a class="flex items-center" href="{{route('admin.dashboard')}}">
@@ -58,7 +62,9 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 Profil
                             </x-dropdown-link>
-    
+                            <x-dropdown-link :href="route('favorite.list')">
+                                Favoris
+                            </x-dropdown-link>
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

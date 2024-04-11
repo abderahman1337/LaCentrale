@@ -1,5 +1,5 @@
 @extends('layouts.home')
-@section('title', $vehicule->serie ? ($vehicule->serie->brand?$vehicule->serie->brand->name:'' . ' ' . $vehicule->serie->name) : '')
+@section('title', $vehicule->getName())
 @section('content')
 <div class="mb-10 flex flex-col-reverse lg:flex-row items-start gap-10">
     <div class="lg:w-[65%] w-full">
@@ -98,7 +98,7 @@
         <hr>
         <div class="mt-6 mb-6">
             <h2 class="text-xl font-semibold">Informations générales</h2>
-            <p class="mt-2 text-gray-600 text-sm">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</p>
+            <p class="mt-2 text-gray-600 text-sm">{{$vehicule->getName()}}</p>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->description}}</p>
             <hr class="mt-4">
             <div class="mt-6">
@@ -445,7 +445,7 @@
     <div class="lg:w-[35%] w-full">
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
             <div class="bg-white p-6 text-center px-4">
-                <h3 class="font-semibold text-xl">{{$vehicule->serie ? ($vehicule->serie->brand ? $vehicule->serie->brand->name : '') : ''}} {{$vehicule->serie ? $vehicule->serie->name : ''}}</h3>
+                <h3 class="font-semibold text-xl">{{$vehicule->getName()}}</h3>
                 <span class="text-base text-gray-600">{{$vehicule->description}}</span>
                 <div class="mt-2">
                     <ul class="text-base flex justify-center divide-x items-center flex-wrap overflow-hidden text-ellipsis">

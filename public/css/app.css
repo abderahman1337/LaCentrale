@@ -2311,11 +2311,11 @@ input:checked + .toggle-bg {
 .pt-10 {
   padding-top: 2.5rem;
 }
-.pt-16 {
-  padding-top: 4rem;
-}
 .pt-2 {
   padding-top: 0.5rem;
+}
+.pt-20 {
+  padding-top: 5rem;
 }
 .pt-4 {
   padding-top: 1rem;
@@ -2325,9 +2325,6 @@ input:checked + .toggle-bg {
 }
 .pt-8 {
   padding-top: 2rem;
-}
-.pt-20 {
-  padding-top: 5rem;
 }
 .text-left {
   text-align: left;
@@ -2713,6 +2710,14 @@ input:checked + .toggle-bg {
   overflow: visible;
 }
 
+.favorite-btn.active svg {
+  fill: currentColor;
+  --tw-text-opacity: 1;
+  color: rgb(200 30 30 / var(--tw-text-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 
 #dashboard-sidebar li a {
   display: flex;
@@ -2727,18 +2732,15 @@ input:checked + .toggle-bg {
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
-
 #dashboard-sidebar li a:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-
 #dashboard-sidebar li a:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-
 
 #dashboard-sidebar li a:hover:is(.dark *) {
   --tw-bg-opacity: 1;
