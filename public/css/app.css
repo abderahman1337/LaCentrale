@@ -1264,15 +1264,6 @@ input:checked + .toggle-bg {
 .top-\[55px\] {
   top: 55px;
 }
-.top-\[58px\] {
-  top: 58px;
-}
-.top-\[5px\] {
-  top: 5px;
-}
-.top-\[56px\] {
-  top: 56px;
-}
 .z-0 {
   z-index: 0;
 }
@@ -2180,9 +2171,6 @@ input:checked + .toggle-bg {
 .p-6 {
   padding: 1.5rem;
 }
-.p-8 {
-  padding: 2rem;
-}
 .p-\[20px\] {
   padding: 20px;
 }
@@ -2715,6 +2703,7 @@ input:checked + .toggle-bg {
 }
 .dropdown-container .dropdown.active {
   display: block;
+  height: auto;
 }
 
 
@@ -3875,6 +3864,10 @@ input.input-control:is(.dark *) {
     gap: 1.5rem;
   }
 
+  .lg\:gap-10 {
+    gap: 2.5rem;
+  }
+
   .lg\:divide-x-2 > :not([hidden]) ~ :not([hidden]) {
     --tw-divide-x-reverse: 0;
     border-right-width: calc(2px * var(--tw-divide-x-reverse));
@@ -3883,6 +3876,10 @@ input.input-control:is(.dark *) {
 
   .lg\:border {
     border-width: 1px;
+  }
+
+  .lg\:p-8 {
+    padding: 2rem;
   }
 
   .lg\:px-0 {

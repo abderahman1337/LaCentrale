@@ -19,7 +19,7 @@
     @apply hidden;
 }
 .dropdown-container .dropdown.active{
-    @apply block;
+    @apply block h-auto;
 }
 
 

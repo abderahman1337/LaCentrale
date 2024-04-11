@@ -1,4 +1,5 @@
 @extends('layouts.home')
+@section('title', 'Profil')
 @section('content')
 <div class="mx-auto sm:px-6 lg:px-8 space-y-6 mb-10">
     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">

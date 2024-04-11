@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Setting;
 use App\Observers\SettingObserver;
@@ -27,6 +28,7 @@ class EventServiceProvider extends ServiceProvider
     protected $observers = [
         Setting::class => [SettingObserver::class],
         MenuItem::class => [MenuItemSeeder::class],
+        Menu::class => [MenuItemSeeder::class],
     ];
 
     /**

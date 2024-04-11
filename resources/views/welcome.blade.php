@@ -1,155 +1,158 @@
 @extends('layouts.home')
 @section('title', 'Voiture occasion - Annonce auto')
 @section('content')
-<div class="bg-[#f6f6f9] rounded-[32px] lg:ltr:pr-0 p-8 lg:rtl:pl-0 min-h-[480px]" id="home-search-box">
+<div class="bg-[#f6f6f9] rounded-[32px] lg:ltr:pr-0 lg:p-8 p-4 lg:rtl:pl-0 min-h-[480px]" id="home-search-box">
     <div class="grid sm:grid-cols-3 gap-10">
-        <div class="p-6 rounded-[32px] bg-white shadow-md flex items-center justify-center lg:w-[400px]">
-            <form action="{{route('vehicules.listing')}}" method="get">
-                <div class="w-full">
-                    <div class="mt-6 flex items-start gap-4 w-full">
-                        <!-- Brand -->
-                        <div class="w-full">
-                            <button id="brand-search-dropdown" data-dropdown-toggle="brands-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full relative rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
-                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Marque">
-                                <input type="hidden" id="selected-brands-list" name="brands" value="">
-                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                </svg>
-                            </button>
-                            <div id="brands-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-                                <div class="p-3">
-                                    <label for="brand-search" class="sr-only">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+        <div class="p-6 rounded-[32px] bg-white shadow-md lg:w-[400px]">
+            <h2 class="text-2xl font-bold text-center mt-4">Filtrer les véhicules</h2>
+            <div class="flex items-center justify-center">
+                <form action="{{route('vehicules.listing')}}" method="get">
+                    <div class="w-full">
+                        <div class="mt-6 flex items-start lg:gap-4 gap-2 w-full">
+                            <!-- Brand -->
+                            <div class="w-full">
+                                <button id="brand-search-dropdown" data-dropdown-toggle="brands-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full relative rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                    <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Marque">
+                                    <input type="hidden" id="selected-brands-list" name="brands" value="">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="brands-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                    <div class="p-3">
+                                        <label for="brand-search" class="sr-only">Search</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                                </svg>
+                                            </div>
+                                            <input type="text" id="brand-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une marque">
+                                        </div>
+                                    </div>
+                                    <ul id="brands-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="brand-search-dropdown">
+                                        @foreach (App\Models\Brand::latest()->get() as $brand)
+                                        <li data-name="{{$brand->name}}">
+                                            <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input id="brand-{{$brand->id}}" type="checkbox" data-name="{{$brand->name}}" value="{{$brand->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="brand-{{$brand->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$brand->name}}</label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Models -->
+                            <div class="w-full">
+                                <button id="model-search-dropdown" data-dropdown-toggle="models-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                    <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Modèles">
+                                    <input type="hidden" id="selected-models-list" name="models" value="">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="models-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                    <div class="p-3">
+                                        <label for="model-search" class="sr-only">Search</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                                             </svg>
+                                            </div>
+                                            <input type="text" id="model-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une model">
                                         </div>
-                                        <input type="text" id="brand-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une marque">
                                     </div>
-                                </div>
-                                <ul id="brands-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="brand-search-dropdown">
-                                    @foreach (App\Models\Brand::latest()->get() as $brand)
-                                    <li data-name="{{$brand->name}}">
-                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="brand-{{$brand->id}}" type="checkbox" data-name="{{$brand->name}}" value="{{$brand->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="brand-{{$brand->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$brand->name}}</label>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Models -->
-                        <div class="w-full">
-                            <button id="model-search-dropdown" data-dropdown-toggle="models-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
-                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Modèles">
-                                <input type="hidden" id="selected-models-list" name="models" value="">
-                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                </svg>
-                            </button>
-                            <div id="models-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-                                <div class="p-3">
-                                    <label for="model-search" class="sr-only">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                        </svg>
-                                        </div>
-                                        <input type="text" id="model-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une model">
-                                    </div>
-                                </div>
-                                <ul id="models-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="model-search-dropdown">
-                                    @foreach (App\Models\Serie::latest()->get() as $type)
-                                    <li data-name="{{$type->name}}">
-                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="model-{{$type->id}}" type="checkbox" data-name="{{$type->name}}" value="{{$type->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="model-{{$type->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$type->name}}</label>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex items-start gap-4 w-full">
-                        <!-- Price -->
-                        <div class="w-full">
-                            <button data-dropdown-toggle="prices-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button"> 
-                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" id="price-range" readonly value="" placeholder="Prix">
-                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                </svg>
-                            </button>
-                            <div id="prices-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-                                <div class="p-3 flex items-start gap-2">
-                                    <div class="relative">
-                                        <input type="number" id="min-price" name="min_price" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 peer" placeholder=" " />
-                                        <label for="min-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-focus:dark:text-indigo-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix min</label>
-                                    </div>
-                                    <div class="relative">
-                                        <input type="number" id="max-price" name="max_price" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 peer" placeholder=" " />
-                                        <label for="max-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-focus:dark:text-indigo-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix max</label>
-                                    </div>
+                                    <ul id="models-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="model-search-dropdown">
+                                        @foreach (App\Models\Serie::latest()->get() as $type)
+                                        <li data-name="{{$type->name}}">
+                                            <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input id="model-{{$type->id}}" type="checkbox" data-name="{{$type->name}}" value="{{$type->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="model-{{$type->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$type->name}}</label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <!-- Energie -->
-                        <div class="w-full">
-                            <button id="energy-search-dropdown" data-dropdown-toggle="energy-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
-                                <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Énergie">
-                                <input type="hidden" id="selected-energies-list" name="energies" value="">
-                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                </svg>
-                            </button>
-                            <div id="energy-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
-                                <ul id="energies-list" class="max-h-96 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="energy-search-dropdown">
-                                    @foreach ($energies as $energy)
-                                    <li data-name="{{$energy->name}}">
-                                        <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <input id="energy-{{$energy->id}}" type="checkbox" data-name="{{$energy->name}}" value="{{$energy->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="energy-{{$energy->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$energy->name}}</label>
+                        <div class="mt-4 flex items-start lg:gap-4 gap-2 w-full">
+                            <!-- Price -->
+                            <div class="w-full">
+                                <button data-dropdown-toggle="prices-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button"> 
+                                    <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" id="price-range" readonly value="" placeholder="Prix">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="prices-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                    <div class="p-3 flex items-start gap-2">
+                                        <div class="relative">
+                                            <input type="number" id="min-price" name="min_price" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 peer" placeholder=" " />
+                                            <label for="min-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-focus:dark:text-indigo-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix min</label>
                                         </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
+                                        <div class="relative">
+                                            <input type="number" id="max-price" name="max_price" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-indigo-500 focus:outline-none focus:ring-0 focus:border-indigo-600 peer" placeholder=" " />
+                                            <label for="max-price" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-focus:dark:text-indigo-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Prix max</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Energie -->
+                            <div class="w-full">
+                                <button id="energy-search-dropdown" data-dropdown-toggle="energy-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                    <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Énergie">
+                                    <input type="hidden" id="selected-energies-list" name="energies" value="">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="energy-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                    <ul id="energies-list" class="max-h-96 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="energy-search-dropdown">
+                                        @foreach ($energies as $energy)
+                                        <li data-name="{{$energy->name}}">
+                                            <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <input id="energy-{{$energy->id}}" type="checkbox" data-name="{{$energy->name}}" value="{{$energy->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="energy-{{$energy->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$energy->name}}</label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mt-4 flex items-start gap-4 w-full">
-                        <div class="w-full relative">
-                            <button data-dropdown-toggle="location-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button"> 
-                                <span>Localisation</span>
-                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                </svg>
-                            </button>
-                            <div id="location-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-full dark:bg-gray-700">
-                                <div class="p-3">
-                                    <label for="location-search" class="sr-only">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                        </svg>
+                        <div class="mt-4 flex items-start gap-4 w-full">
+                            <div class="w-full relative">
+                                <button data-dropdown-toggle="location-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button"> 
+                                    <span>Localisation</span>
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                <div id="location-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-full dark:bg-gray-700">
+                                    <div class="p-3">
+                                        <label for="location-search" class="sr-only">Search</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                            </svg>
+                                            </div>
+                                            <input type="text" id="location-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Code Postal">
                                         </div>
-                                        <input type="text" id="location-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Code Postal">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-4 flex justify-center">
+                            <button type="submit" class="bg-primary font-semibold py-3 px-6 lg:min-w-72 w-full lg:w-max rounded-full text-white text-base"> Rechercher @if($vehiculesCount > 0) ({{number_format($vehiculesCount, 0, ' ', ' ')}}) @endif</button>
+                        </div>
                     </div>
-                    <div class="mt-4 flex justify-center">
-                        <button type="submit" class="bg-primary font-semibold py-3 px-6 lg:min-w-72 w-full lg:w-max rounded-full text-white text-base"> Rechercher @if($vehiculesCount > 0) ({{number_format($vehiculesCount, 0, ' ', ' ')}}) @endif</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div class="justify-end w-full lg:col-span-2 lg:ltr:pl-20 lg:rtl:pr-20">
-            <h2 class="sm:text-4xl mb-6 font-bold">Nous sélectionnons les meilleures voitures d'occasion pour vous.</h2>
+            <h2 class="sm:text-4xl text-xl mb-6 font-bold">Nous sélectionnons les meilleures voitures d'occasion pour vous.</h2>
             <img class="ltr:ml-auto rtl:mr-auto" src="https://www.lacentrale.fr/fragments/recherche-fragment-front/media/claims_landing_search_desktop.a7bae0d0.png" alt="">
         </div>
     </div>
