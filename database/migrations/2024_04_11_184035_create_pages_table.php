@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->string('slug')->unique();
+            $table->longText('content')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on("users")->onDelete('cascade');
+            $table->tinyInteger('is_active')->default(1)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

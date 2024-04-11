@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', 'Voiture occasion')
 @section('content')
-<div class="flex items-start lg:flex-row flex-col lg:gap-10 gap-5 mb-10 mt-10">
+<div class="flex items-start lg:flex-row flex-col lg:gap-10 gap-5 mb-10 sm:mt-10">
     <div class="lg:w-[32%] w-full sm:ltr:border-r sm:rtl:border-l sm:ltr:pr-4 sm:block">
         <div class="flex justify-center sm:hidden">
             <button onclick="document.getElementById('filter-container').classList.toggle('hidden')" type="submit" class="bg-blue-600 hover:bg-blue-500 w-full font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">Filtres</button>

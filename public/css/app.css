@@ -2287,6 +2287,9 @@ input:checked + .toggle-bg {
 .pe-4 {
   padding-inline-end: 1rem;
 }
+.pl-11 {
+  padding-left: 2.75rem;
+}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -2322,6 +2325,9 @@ input:checked + .toggle-bg {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pt-20 {
+  padding-top: 5rem;
 }
 .text-left {
   text-align: left;
@@ -2738,12 +2744,14 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
-#dashboard-sidebar li.active a {
+#dashboard-sidebar div > ul > li.active > a {
   background-color: var(--primary);
   font-weight: 700;
   color: var(--primary-text);
 }
-
+#dashboard-sidebar li.active > ul li.active a {
+  color: var(--primary);
+}
 input.input-control {
   display: block;
   height: 50px;
@@ -2761,12 +2769,10 @@ input.input-control {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
-
 input.input-control:focus {
   border-color: var(--primary);
   --tw-ring-color: var(--primary);
 }
-
 input.input-control:is(.dark *) {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
   --tw-border-opacity: 0.1;
@@ -3607,6 +3613,10 @@ input.input-control:is(.dark *) {
     margin-inline-start: 1.5rem;
   }
 
+  .sm\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -3772,10 +3782,6 @@ input.input-control:is(.dark *) {
     grid-column: span 2 / span 2;
   }
 
-  .lg\:block {
-    display: block;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -3935,6 +3941,10 @@ input.input-control:is(.dark *) {
     padding-left: 0.75rem;
   }
 
+  .lg\:pt-16 {
+    padding-top: 4rem;
+  }
+
   .lg\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -3961,12 +3971,6 @@ input.input-control:is(.dark *) {
 }
 .ltr\:origin-top-right:where([dir="ltr"], [dir="ltr"] *) {
   transform-origin: top right;
-}
-.ltr\:border-r:where([dir="ltr"], [dir="ltr"] *) {
-  border-right-width: 1px;
-}
-.ltr\:pr-4:where([dir="ltr"], [dir="ltr"] *) {
-  padding-right: 1rem;
 }
 .ltr\:text-left:where([dir="ltr"], [dir="ltr"] *) {
   text-align: left;
@@ -4027,9 +4031,6 @@ input.input-control:is(.dark *) {
 }
 .rtl\:space-x-reverse:where([dir="rtl"], [dir="rtl"] *) > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 1;
-}
-.rtl\:border-l:where([dir="rtl"], [dir="rtl"] *) {
-  border-left-width: 1px;
 }
 .rtl\:text-right:where([dir="rtl"], [dir="rtl"] *) {
   text-align: right;

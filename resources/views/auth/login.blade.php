@@ -22,11 +22,15 @@
                     </div>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
-                
                 <div class="mt-4 flex items-center justify-center">
                     <button type="submit" class="bg-primary hover:bg-primaryHover mx-auto font-semibold py-2.5 px-12 rounded-full text-primaryText text-base">
                         Se connecter
                     </button>
+                </div>
+                <div class="flex items-center justify-center mt-4">
+                    <a class="underline text-sm text-primary font-medium dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                        Créer un compte
+                    </a>
                 </div>
                 @if (Route::has('password.request'))
                 <hr class="mt-6 mb-4">
