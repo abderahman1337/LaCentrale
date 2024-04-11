@@ -147,4 +147,8 @@ class HomeController extends Controller
         }
         return back()->with('success', 'Votre offre a été enregistrée avec succès');
     }
+
+    public function contact(){
+        return view('contact');
+    }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuctionController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\Admin\EnergyController;
 use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\InsightController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\VehiculeController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\PageController as ControllersPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +37,8 @@ Route::middleware('RateLimit')->group(function (){
     Route::get('/ad/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
     Route::post('/ad/{id}/auction', [HomeController::class, 'auction'])->name('vehicule.auction');
     Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
+    Route::get('/page/{slug}', [ControllersPageController::class, 'show'])->name('page');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 });
 
@@ -68,6 +72,8 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::get('/api/insights/top-devices', [InsightController::class, 'top_devices'])->name('insights.top_devices');
     Route::get('/api/insights/highest-access-countries', [InsightController::class, 'highest_access_countries'])->name('insights.highest_access_countries');
     Route::get('/api/insights/traffic', [InsightController::class, 'traffic'])->name('insights.traffic');
+
+    Route::post('/editor/image/upload', [EditorController::class, 'upload'])->name('upload_editor_image');
 
     Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function (){
         Route::get('/', 'general')->name('general');
