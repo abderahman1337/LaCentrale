@@ -3976,8 +3976,16 @@ input.input-control:is(.dark *) {
     margin-left: 1.5rem;
   }
 
+  .sm\:ltr\:border-r:where([dir="ltr"], [dir="ltr"] *) {
+    border-right-width: 1px;
+  }
+
   .sm\:ltr\:pl-8:where([dir="ltr"], [dir="ltr"] *) {
     padding-left: 2rem;
+  }
+
+  .sm\:ltr\:pr-4:where([dir="ltr"], [dir="ltr"] *) {
+    padding-right: 1rem;
   }
 
   .sm\:ltr\:text-left:where([dir="ltr"], [dir="ltr"] *) {
@@ -4044,6 +4052,10 @@ input.input-control:is(.dark *) {
 
   .sm\:rtl\:mr-6:where([dir="rtl"], [dir="rtl"] *) {
     margin-right: 1.5rem;
+  }
+
+  .sm\:rtl\:border-l:where([dir="rtl"], [dir="rtl"] *) {
+    border-left-width: 1px;
   }
 
   .sm\:rtl\:pr-8:where([dir="rtl"], [dir="rtl"] *) {
