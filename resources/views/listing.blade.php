@@ -342,7 +342,58 @@
         </div>
     </div>
     <div class="w-full">
-        <h2 class="font-semibold text-base">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->count(), 0 , ' ', ' ')}}</span> annonces </h2>
+        <div class="flex items-center gap-3 justify-between">
+            <h2 class="font-semibold text-base">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->count(), 0 , ' ', ' ')}}</span> annonces </h2>
+            <div class="relative">
+                <button id="orderByDropdownButton" data-dropdown-toggle="orderByDropdown" data-dropdown-trigger="hover" class="inline-flex items-center" type="button">
+                    <span class="font-semibold">Trier par : </span>
+                    <span class="ml-3 text-gray-700 font-noramal">
+                        @if (request('sort_by') == '')
+                            Le choix {{$websiteName}}
+                        @elseif(request('sort_by') == 'price' && request('sort_type') == 'asc')
+                        Prix croissant
+                        @elseif(request('sort_by') == 'price' && request('sort_type') == 'desc')
+                        Prix décroissant
+                        @elseif(request('sort_by') == 'year' && request('sort_type') == 'asc')
+                        Annonces les moins récentes
+                        @elseif(request('sort_by') == 'year' && request('sort_type') == 'desc')
+                        Annonces les plus récentes
+                        @elseif(request('sort_by') == 'date')
+                        Véhicules les plus récents
+                        @else
+                        Le choix {{$websiteName}}
+                        @endif
+                    </span>
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+                </button>
+            
+                <!-- Dropdown menu -->
+                <div id="orderByDropdown" class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="orderByDropdownButton">
+                        <li>
+                            <a href="{{URL::full().'&sort_by='}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Le choix {{$websiteName}}</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::full().'&sort_by=price&sort_type=asc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Prix croissant</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::full().'&sort_by=price&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Prix décroissant</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::full().'&sort_by=year&sort_type=asc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Annonces les moins récentes</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::full().'&sort_by=year&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Annonces les plus récentes</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::full().'&sort_by=created_at&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Véhicules les plus récents</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="mt-4">
             <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">
                 @foreach ($vehicules as $vehicule)

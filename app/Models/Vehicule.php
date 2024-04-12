@@ -83,6 +83,9 @@ class Vehicule extends Model
     public function favorites(){
         return $this->hasMany(Favorite::class);
     }
+    public function visits(){
+        return $this->hasMany(VehiculeVisit::class);
+    }
     public function getName(){
         return $this->serie ? (($this->serie->brand?$this->serie->brand->name:'') . ' ' . $this->serie->name) : '';
     }

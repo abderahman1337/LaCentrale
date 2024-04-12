@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_visits', function (Blueprint $table) {
+        Schema::create('vehicule_visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('vehicule_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->ipAddress('ip_address')->nullable();
             $table->unsignedInteger('refresh_count')->default(0);
             $table->string('user_agent')->nullable();
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_visits');
+        Schema::dropIfExists('vehicule_visits');
     }
 };

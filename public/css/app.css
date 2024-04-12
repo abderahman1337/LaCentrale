@@ -1525,6 +1525,12 @@ input:checked + .toggle-bg {
 .h-screen {
   height: 100vh;
 }
+.h-2 {
+  height: 0.5rem;
+}
+.h-2\.5 {
+  height: 0.625rem;
+}
 .max-h-48 {
   max-height: 12rem;
 }
@@ -1612,6 +1618,15 @@ input:checked + .toggle-bg {
 .w-max {
   width: -moz-max-content;
   width: max-content;
+}
+.w-2 {
+  width: 0.5rem;
+}
+.w-2\.5 {
+  width: 0.625rem;
+}
+.w-44 {
+  width: 11rem;
 }
 .max-w-6xl {
   max-width: 72rem;

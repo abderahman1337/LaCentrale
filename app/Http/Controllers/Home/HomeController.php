@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Helpers\UserSystemInfoHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
@@ -11,7 +12,10 @@ use App\Models\Option;
 use App\Models\Serie;
 use App\Models\Type;
 use App\Models\Vehicule;
+use App\Models\VehiculeVisit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -34,7 +38,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function vehicule($id){
+    public function vehicule(Request $request,$id){
         $vehicule = Vehicule::with(['options' => function ($q){
             $q->select('option_id', 'vehicule_id')->with(['option' => function ($q){
                 $q->with('equipment:id,name');
@@ -49,6 +53,38 @@ class HomeController extends Controller
         }, function ($q) use($vehicule){
             $q->where('serie_id', $vehicule->serie_id);
         })->latest()->limit(5)->get();
+
+        $agent = new \Jenssegers\Agent\Agent;
+
+        if(filter_var($request->getClientIp(), FILTER_VALIDATE_IP) && !$agent->isRobot()){
+            $visitor_source = url()->previous();
+            if(filter_var($visitor_source, FILTER_VALIDATE_URL)){
+                $parsex= parse_url($visitor_source);
+                try{
+                    $visitor_source=$parsex['host']? $parsex['host']:$visitor_source;
+                }catch(\Exception $e){}
+            }else{
+                $visitor_source = null;
+            }
+            $explode_source = explode(".", $visitor_source);
+            $custom_source = (array_key_exists(count($explode_source) - 2, $explode_source) ? $explode_source[count($explode_source) - 2] : "").".".$explode_source[count($explode_source) - 1];
+            $vehiculeVisit = VehiculeVisit::where('vehicule_id', $vehicule->id)->where('ip_address', $request->getClientIp())->where(DB::raw('DATE(created_at)', Carbon::now()->format('Y-m-d')))->first();
+            if($vehiculeVisit){
+                $vehiculeVisit->increment('refresh_count', 1);
+            }else{
+                $vehicule->visits()->create([
+                    'ip_address' => $request->getClientIp(),
+                    'refresh_count' => 1,
+                    'user_agent' => $request->userAgent(),
+                    'user_source' => $custom_source,
+                    'user_os' => UserSystemInfoHelper::get_os(),
+                    'user_browser' => UserSystemInfoHelper::get_browsers(),
+                    'user_device' => UserSystemInfoHelper::get_device(),
+                    'user_id' => auth()->check() ? auth()->user()->id : null
+                ]);
+            }
+        }
+
         return view('vehicule', [
             'vehicule' => $vehicule,
             'similarVehicules' => $similarVehicules
@@ -122,7 +158,13 @@ class HomeController extends Controller
                 $q->where('gearbox', $request->gearbox);
             }
         })
-        ->latest()->with(['serie' => function ($q){
+        ->when($request->sort_by, function ($q) use($request){
+            if(in_array($request->sort_by, ['price', 'year', 'created_at']) && in_array($request->sort_type, ['desc','asc'])){
+                $q->orderBy($request->sort_by, $request->sort_type);
+            }
+        }, function ($q){
+            $q->orderBy('id', 'desc');
+        })->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
         }, 'color:id,name', 'energy:id,name'])
         ->get();

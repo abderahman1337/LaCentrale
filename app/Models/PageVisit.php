@@ -9,7 +9,7 @@ class PageVisit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'page_id', 'ip_address', 'refresh_count', 'user_agent', 'user_browser', 'user_device', 'user_os', 'user_source'];
+    protected $fillable = ['page_id', 'ip_address', 'refresh_count', 'user_agent', 'user_browser', 'user_device', 'user_os', 'user_source'];
 
     protected $casts = [
         'refresh_count' => 'integer',
@@ -21,9 +21,6 @@ class PageVisit extends Model
         return $this->belongsTo(Page::class);
     }
 
-    public function customer(){
-        return $this->belongsTo(Customer::class);
-    }
 
     public function getUserSource(){
         $visitor_source = $this->user_source;
