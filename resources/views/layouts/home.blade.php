@@ -16,12 +16,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-
         <!-- Scripts -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <script src="{{asset('js/app.js')}}" defer></script>
+        @yield('head')
     </head>
     <body class="font-Roboto antialiased">
         <x-home.header></x-home.header>
@@ -29,6 +28,7 @@
             @yield('content')
         </div>
         <x-home.footer></x-home.footer>
+        @yield('top-scripts')
         <script src="{{asset('js/scripts.js')}}"></script>
         @yield('scripts')
     </body>

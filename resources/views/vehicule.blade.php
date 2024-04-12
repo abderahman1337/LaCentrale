@@ -1,5 +1,8 @@
 @extends('layouts.home')
 @section('title', $vehicule->getName())
+@section('head')
+    @livewireStyles
+@endsection
 @section('content')
 <div class="mb-10 flex flex-col-reverse lg:flex-row items-start gap-10">
     <div class="lg:w-[65%] w-full">
@@ -451,6 +454,20 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="mt-6 mb-6">
+            <h2 class="text-xl font-semibold">Localisation</h2>
+            <div class="mt-6">
+{{--                 <iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBrEx2udK-ygCQ0ME1hIGILAwJVnThJkek&center=46.6101279,0.3671224&zoom=14" allowfullscreen>
+</iframe> --}}
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2740.838340719001!2d0.36411777665595546!3d46.610197656250655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fdbc3829722f67%3A0xb518042a2b26ac56!2sSam%20Automobile!5e0!3m2!1sen!2sdz!4v1712930816487!5m2!1sen!2sdz"  class="w-full" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
     </div>
     <div class="lg:w-[35%] w-full">
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
@@ -496,11 +513,6 @@
                     <span>Publiée {{Carbon\Carbon::parse($vehicule->created_at)->diffForHumans()}}</span>
                 </div>
                 <div class="flex justify-center flex-wrap gap-2 mt-4">
-                    @if ($vehicule->status == 'available')
-                    <button type="button" x-data="" x-on:click.prevent="$dispatch('open-modal', 'make-offer-modal')" class="bg-green-500 hover:bg-green-400 w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
-                        <span>Place un offre</span>
-                    </button>
-                    @endif
                     <a class="hidden sm:block w-full" href="tel:{{$vehicule->user->phone}}">
                         <button class="bg-primary flex hover:bg-primaryHover w-full items-center justify-center gap-3 font-semibold py-2.5 px-10 rounded-full text-primaryText text-base">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M22.25 17c-1.24-1.09-3.38-2.96-4.16-3.38a1.9 1.9 0 0 0-1.69-.07q-.5.23-.85.66a7 7 0 0 1-1.82 1.69c-.42.22-1.98-.68-3.3-1.9l-.41-.41c-1.24-1.32-2.13-2.9-1.9-3.3A8 8 0 0 1 9.8 8.45q.42-.33.65-.82c.25-.55.22-1.17-.07-1.7C9.97 5.15 8.08 3 7 1.78a2.4 2.4 0 0 0-1.02-.68 1.5 1.5 0 0 0-1.18.05C4.23 1.45 2.33 3.4 1.76 4c-.16.16-1.21 1.36-.53 4.28.7 3.07 2.66 6.57 5.04 9.07l.06.07a20.7 20.7 0 0 0 9.42 5.36q.88.2 1.79.22c1.65 0 2.35-.64 2.47-.77.6-.57 2.54-2.47 2.84-3.05.18-.36.2-.8.05-1.18a2.4 2.4 0 0 0-.65-1m-.38 1.64q-1.23 1.47-2.63 2.77c-.08.06-.96.76-3.21.24a20 20 0 0 1-8.58-4.76 20 20 0 0 1-5.1-8.86c-.51-2.25.18-3.14.24-3.21Q3.9 3.4 5.35 2.18q.15-.03.3.03.3.1.51.35A41 41 0 0 1 9.39 6.5q.16.34 0 .7a1 1 0 0 1-.32.4 9 9 0 0 0-1.96 2.17c-.78 1.4 1.38 3.9 2.06 4.63.2.23.45.46.46.47.74.67 3.25 2.83 4.64 2.06a9 9 0 0 0 2.16-1.97q.16-.21.4-.32.36-.15.7.02c.58.3 2.42 1.87 3.95 3.22q.24.21.35.52.06.12.04.26z"></path></svg>
@@ -523,50 +535,28 @@
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
             <div class="bg-white p-6 text-center px-4">
                 <h3 class="font-semibold text-xl">Les enchères</h3>
-                <div class="mt-4 flex flex-col gap-3">
-                    @foreach ($vehicule->auctions as $auction)
-                        <div class="flex items-center justify-between bg-gray-50 rounded-lg py-2 px-4 border">
-                            <div class="flex items-center gap-2">
-                                <div>
-                                    <div class="text-sm text-left">
-                                        @php
-                                        $name = $auction->user->name;
-                                        $length = strlen($name);
-                                        if ($length <= 2) {
-                                            echo $name;
-                                        }else{
-                                            $firstChar = substr($name, 0, 1); // Get the first character
-                                            $lastChar = substr($name, -1);    // Get the last character
-                                            $maskedName = $firstChar;          // Start with the first character
-                                            
-                                            // Replace middle characters with stars
-                                            for ($i = 1; $i < 10; $i++) {
-                                                $maskedName .= '*';
-                                            }
-                                            
-                                            $maskedName .= $lastChar;  // Append the last character
-                                            echo $maskedName;
-                                        }
-                                        @endphp
-                                    </div>
-                                    <div class="text-left"><span class="whitespace-nowrap font-semibold">{{number_format($auction->price, 0 , ' ', ' ')}} €</span></div>
-                                </div>
-                            </div>
-                            <div class="text-sm">{{Carbon\Carbon::parse($auction->created_at)->diffForHumans(['short' => true])}}</div>
-                        </div>
-                    @endforeach
-                </div>
+                @if ($vehicule->status == 'available')
+                    <button type="button" x-data="" x-on:click.prevent="$dispatch('open-modal', 'make-offer-modal')" class="bg-green-500 hover:bg-green-400 w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 mt-4 rounded-full text-primaryText text-base">
+                        <span>Place un offre</span>
+                    </button>
+                @endif
+                <livewire:auctions :vehicule="$vehicule"></livewire:auctions>
             </div>
         </div>
         <x-modal name="make-offer-modal" focusable>
             @auth
-            <form method="post" action="{{ route('vehicule.auction', $vehicule->id) }}" class="p-6">
+            <form id="make-offer-form" method="post" action="{{ route('vehicule.auction', $vehicule->id) }}" class="p-6">
                 @csrf
     
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                     Ajoutez le prix de votre offre
                 </h2>
-    
+                @if ($vehicule->auctions->isNotEmpty())
+                <p>Le dernier prix d'enchère est <span class="font-bold">{{number_format($vehicule->auctions->max('price'), 0 , ' ', ' ')}}</span> € Votre prix doit être supérieur à ce prix</p>
+                @else
+                <p>Ajouter le premier prix d'enchère pour ce véhicule</p>
+                @endif
+                
                 <div class="mt-6">
                     <x-input-label for="price" value="Le prix de votre offre" class="sr-only" />
 
@@ -576,6 +566,7 @@
                         type="number"
                         class="mt-1 block w-full"
                         placeholder="Le prix de votre offre"
+                        min="{{$vehicule->auctions->isNotEmpty()?$vehicule->auctions->max('price'):''}}"
                     />
     
                 </div>
@@ -634,4 +625,14 @@
         </a>
     </div>
 </div>
+@endsection
+@section('top-scripts')
+    @livewireScripts
+    <script>
+        /* document.addEventListener('livewire:init', () => {
+            document.getElementById('make-offer-form').addEventListener('submit', function (){
+                Livewire.emit('auctions');
+            });
+        }); */
+    </script>
 @endsection

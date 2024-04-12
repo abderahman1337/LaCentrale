@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Auction;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Setting;
+use App\Observers\AuctionObserver;
+use App\Observers\MenuItemObserver;
 use App\Observers\SettingObserver;
-use Database\Seeders\MenuItemSeeder;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,8 +29,9 @@ class EventServiceProvider extends ServiceProvider
 
     protected $observers = [
         Setting::class => [SettingObserver::class],
-        MenuItem::class => [MenuItemSeeder::class],
-        Menu::class => [MenuItemSeeder::class],
+        MenuItem::class => [MenuItemObserver::class],
+        Menu::class => [MenuItemObserver::class],
+        Auction::class => [AuctionObserver::class]
     ];
 
     /**

@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Livewire\LivewireServiceProvider::class,
         /*
          * Package Service Providers...
          */
