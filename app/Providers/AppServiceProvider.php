@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->share('websiteName', Settings::website_name());
+        view()->share('websiteLogo', Settings::website_logo());
+        view()->share('websiteFavicon', Settings::website_favicon());
         view()->share('websiteAddress', Settings::website_address());
         view()->share('websitePhone', Settings::website_phone());
         view()->share('websiteEmail', Settings::website_email());

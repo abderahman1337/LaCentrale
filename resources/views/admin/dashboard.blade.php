@@ -467,7 +467,7 @@
         let ctx = chartContainer.querySelector('#top-visited-pages-chart');
         var chart = new ApexCharts(ctx, {
           series: [{
-          name: 'Visits',
+          name: 'Visites',
           data: response['data']['visits']
         },{
           name: 'Vues',

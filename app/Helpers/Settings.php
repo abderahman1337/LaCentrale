@@ -22,6 +22,22 @@ class Settings{
         }
     }
 
+    static function website_logo(){
+        if(Settings::get('website_logo') != null){
+           return asset('images/website/'.Settings::get('website_logo'));
+        }else{
+            return asset('images/website/logo.jpeg');
+        }
+    }
+
+    static function website_favicon(){
+        if(Settings::get('website_favicon') != null){
+           return asset('images/website/favicons/'.Settings::get('website_favicon'));
+        }else{
+            return asset('images/website/favicons/favicon-32x32.png');
+        }
+    }
+
     static function website_address(){
         if(Settings::get('website_address') != null){
            return Settings::get('website_address');

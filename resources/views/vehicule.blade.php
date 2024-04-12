@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', $vehicule->getName())
 @section('head')
-    @livewireStyles
+    
 @endsection
 @section('content')
 <div class="mb-10 flex flex-col-reverse lg:flex-row items-start gap-10">
@@ -529,7 +529,7 @@
             <div class="bg-white p-6 text-center px-4">
                 <h3 class="font-semibold text-xl">Les enchères</h3>
                 @if ($vehicule->status == 'available')
-                    <button type="button" x-data="" x-on:click.prevent="$dispatch('open-modal', 'make-offer-modal')" class="bg-green-500 hover:bg-green-400 w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 mt-4 rounded-full text-primaryText text-base">
+                    <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'make-offer-modal')" class="bg-green-500 hover:bg-green-400 w-full flex items-center justify-center gap-3 font-semibold py-2.5 px-10 mt-4 rounded-full text-primaryText text-base">
                         <span>Place un offre</span>
                     </button>
                 @endif
@@ -559,6 +559,7 @@
                         type="number"
                         class="mt-1 block w-full"
                         placeholder="Le prix de votre offre"
+                        required="required"
                         min="{{$vehicule->auctions->isNotEmpty()?$vehicule->auctions->max('price'):''}}"
                     />
     
@@ -620,12 +621,5 @@
 </div>
 @endsection
 @section('top-scripts')
-    @livewireScripts
-    <script>
-        /* document.addEventListener('livewire:init', () => {
-            document.getElementById('make-offer-form').addEventListener('submit', function (){
-                Livewire.emit('auctions');
-            });
-        }); */
-    </script>
+   
 @endsection

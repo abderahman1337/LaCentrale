@@ -196,8 +196,9 @@
                     </div>
                     <div class="mt-4 flex flex-col gap-3 dropdown">
                         <div class="mt-2">
+                            <input type="hidden" id="selected-exterior-colors-list" name="exterior_colors">
                             <h2 class="mb-3 font-semibold">Couleurs extérieur</h2>
-                            <div class="">
+                            <div id="exterior-colors-list">
                                 @foreach ($colors->filter(function($q){return $q->exterior == true;}) as $color)
                                 <div>
                                     <div class="flex items-center rounded hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -209,8 +210,9 @@
                             </div>
                         </div>
                         <div class="mt-4">
+                            <input type="hidden" id="selected-interior-colors-list" name="interior_colors">
                             <h2 class="mb-3 font-semibold">Couleurs intérieur</h2>
-                            <div class="">
+                            <div id="interior-colors-list">
                                 @foreach ($colors->filter(function($q){return $q->interior == true;}) as $color)
                                 <div>
                                     <div class="flex items-center rounded hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -411,6 +413,8 @@
     let modelList = document.getElementById('models-list'); 
     let energyList = document.getElementById('energies-list'); 
     let optionsList = document.getElementById('options-list'); 
+    let exteriorColorsList = document.getElementById('exterior-colors-list'); 
+    let interiorColorsList = document.getElementById('interior-colors-list'); 
     let maxPrice = document.getElementById('max-price');
     let minPrice = document.getElementById('min-price');
     let priceRange = document.getElementById('price-range');
@@ -508,11 +512,39 @@
             let checkedOptions = optionsList.querySelectorAll('li input[type="checkbox"]:checked');
             var names = [];
             var ids = [];
-            checkedOptions.forEach(checkedEnergy => {
-                names.push(checkedEnergy.dataset.name);
-                ids.push(checkedEnergy.value);
+            checkedOptions.forEach(checkedOption => {
+                names.push(checkedOption.dataset.name);
+                ids.push(checkedOption.value);
             });
             document.querySelector('#selected-options-list').value = ids.join(',');
+        });
+    });
+
+    exteriorColorsList.querySelectorAll('div').forEach(item => {
+        let input = item.querySelector('input[type="checkbox"]');
+        input.addEventListener('change', function (){
+            let checkedColors = exteriorColorsList.querySelectorAll('div input[type="checkbox"]:checked');
+            var names = [];
+            var ids = [];
+            checkedColors.forEach(checkedColor => {
+                names.push(checkedColor.dataset.name);
+                ids.push(checkedColor.value);
+            });
+            document.querySelector('#selected-exterior-colors-list').value = ids.join(',');
+        });
+    });
+
+    interiorColorsList.querySelectorAll('div').forEach(item => {
+        let input = item.querySelector('input[type="checkbox"]');
+        input.addEventListener('change', function (){
+            let checkedColors = interiorColorsList.querySelectorAll('div input[type="checkbox"]:checked');
+            var names = [];
+            var ids = [];
+            checkedColors.forEach(checkedColor => {
+                names.push(checkedColor.dataset.name);
+                ids.push(checkedColor.value);
+            });
+            document.querySelector('#selected-interior-colors-list').value = ids.join(',');
         });
     });
 </script>

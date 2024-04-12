@@ -109,8 +109,11 @@ class HomeController extends Controller
         ->when($request->energies, function ($q) use($request){
             $q->whereIn('energy_id', explode(',', $request->energies));
         })
-        ->when($request->colors, function ($q) use($request){
-            $q->whereIn('color_id', explode(',', $request->colors));
+        ->when($request->exterior_colors, function ($q) use($request){
+            $q->whereIn('color_id', explode(',', $request->exterior_colors));
+        })
+        ->when($request->interior_colors, function ($q) use($request){
+            $q->whereIn('interior_color_id', explode(',', $request->interior_colors));
         })
         ->when($request->categories, function ($q) use($request){
             $q->whereIn('category_id', explode(',', $request->categories));
