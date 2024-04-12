@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Generation;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -25,7 +26,7 @@ class SerieController extends Controller
             $q->where('brand_id', $request->brand);
         })->when($request->q, function ($q) use($request){
             $q->where('name', 'LIKE', "%{$request->q}%");
-        })->withCount('vehicules')->paginate(20);
+        })->withCount('vehicules', 'generations')->paginate(20);
         $brands = Brand::latest()->get();
         return view('admin.models.index', [
             'models' => $models,
@@ -84,5 +85,13 @@ class SerieController extends Controller
         $model = Serie::findOrFail($id);
         $model->delete();
         return back()->with('success', 'La modèle a été supprimée avec succès');
+    }
+
+    public function generations($id){
+        $generations = Generation::select('id', 'name')->where('serie_id', $id)->get();
+        return response()->json([
+            'success' => true,
+            'data' => $generations
+        ]);
     }
 }

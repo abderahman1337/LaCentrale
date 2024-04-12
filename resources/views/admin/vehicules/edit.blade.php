@@ -22,6 +22,7 @@
                             <div class="error-msg">{{$message}}</div>
                         @enderror
                     </div>
+                    
                     <div class="w-full relative mt-4">
                         <button id="model-search-dropdown" data-dropdown-toggle="models-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
                             <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="{{$vehicule->serie ? $vehicule->serie->name : ''}}" placeholder="Modèles">
@@ -53,6 +54,14 @@
                                 @endforeach
                             </ul>
                         </div>
+                    </div>
+                    <div class="w-full relative mt-4">
+                        <select name="generation" id="vehicule-generation" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="">Générations</option>
+                            @foreach ($vehicule->serie->generations as $generation)
+                            <option value="{{$generation->id}}" @selected($generation->id == $vehicule->generation_id)>{{$generation->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="w-full relative mt-4">
                         <button id="category-search-dropdown" data-dropdown-toggle="categories-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
@@ -467,6 +476,7 @@
 @endsection
 @section('scripts')
     <script>
+    let generationSelectInput = document.getElementById('vehicule-generation');
     let modelList = document.getElementById('models-list'); 
     listFilterByName(document.getElementById('model-search'), modelList);
     let modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
@@ -476,6 +486,23 @@
             let selected = this;
             modelSearchDropdownBtn.querySelector('input').value = selected.dataset.name;
             modelSearchDropdownBtn.querySelector('#selected-model').value = selected.value;
+            generationSelectInput.innerHTML = '<option value="">Générations</option>';
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', route('admin.serie.generations', {id : selected.value}), true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRF-TOKEN', CSRF_TOKEN);
+            xhr.onreadystatechange = function (){
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = JSON.parse(this.response);
+                    if(response.success && response.data.length > 0){
+                        generationSelectInput.parentNode.classList.remove('hidden');
+                        for(let generation in response.data){
+                            generationSelectInput.innerHTML += `<option value="${response.data[generation].id}">${response.data[generation].name}</option>`;
+                        }
+                    }
+                }
+            }
+            xhr.send();
         });
     });
 

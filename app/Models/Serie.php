@@ -19,4 +19,8 @@ class Serie extends Model
     public function getImage(){
         return asset('images/models/'.$this->image);
     }
+
+    public function generations(){
+        return $this->hasMany(Generation::class);
+    }
 }

@@ -78,6 +78,7 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::create([
             'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
+            'generation_id' => $request->generation,
             'category_id' => $request->category,
             'color_id' => $request->exterior_color,
             'interior_color_id' => $request->interior_color,
@@ -154,7 +155,9 @@ class VehiculeController extends Controller
      */
     public function edit(string $id)
     {
-        $vehicule = Vehicule::with(['images', 'options'])->findOrFail($id);
+        $vehicule = Vehicule::with(['images', 'options', 'serie' => function ($q){
+            $q->with('generations');
+        }])->findOrFail($id);
         $models = Serie::with('brand')->latest()->get();
         $energies = Energy::latest()->get();
         $exteriorColors = Color::where('exterior', 1)->latest()->get();
@@ -180,6 +183,7 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::with(['images', 'options'])->findOrFail($id);
         $vehicule->update([
             'serie_id' => $request->model,
+            'generation_id' => $request->generation,
             'category_id' => $request->category,
             'color_id' => $request->exterior_color,
             'interior_color_id' => $request->interior_color,

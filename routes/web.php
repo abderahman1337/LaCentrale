@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\Admin\EnergyController;
 use App\Http\Controllers\Admin\EquipmentController;
+use App\Http\Controllers\Admin\GenerationController;
 use App\Http\Controllers\Admin\InsightController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OptionController;
@@ -54,10 +55,12 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('brands', BrandController::class)->except(['create', 'show', 'edit']);
+    Route::post('/series/{id}/generations', [SerieController::class, 'generations'])->name('serie.generations');
     Route::resource('series', SerieController::class)->except(['create', 'show', 'edit']);
     Route::resource('equipments', EquipmentController::class)->except(['create', 'show', 'edit']);
     Route::resource('options', OptionController::class)->except(['create', 'show', 'edit']);
     Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
+    Route::resource('generations', GenerationController::class)->except(['create', 'show', 'edit']);
     Route::resource('vehicules', VehiculeController::class);
     Route::post('/menu/items/order/update', [MenuController::class, 'updateOrder'])->name('menu.items.order.update');
     Route::resource('/menus', MenuController::class);

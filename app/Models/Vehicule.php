@@ -11,6 +11,7 @@ class Vehicule extends Model
 
     protected $fillable = [
         'serie_id',
+        'generation_id',
         'color_id',
         'energy_id',
         'category_id',
@@ -71,6 +72,9 @@ class Vehicule extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function generation(){
+        return $this->belongsTo(Generation::class);
+    }
     public function options(){
         return $this->hasMany(VehiculeOption::class, 'vehicule_id');
     }
@@ -87,6 +91,6 @@ class Vehicule extends Model
         return $this->hasMany(VehiculeVisit::class);
     }
     public function getName(){
-        return $this->serie ? (($this->serie->brand?$this->serie->brand->name:'') . ' ' . $this->serie->name) : '';
+        return ($this->serie ? (($this->serie->brand?$this->serie->brand->name:'') . ' ' . $this->serie->name . ' ') : '') . ($this->generation ? $this->generation->name : '');
     }
 }
