@@ -148,6 +148,9 @@ class HomeController extends Controller
         ->when($request->max_power, function ($q) use($request){
             $q->where('power', '<=', $request->max_power);
         })
+        ->when($request->min_trunk_volume, function ($q) use($request){
+            $q->where('trunk_volume', '>=', $request->min_trunk_volume);
+        })
         ->when($request->options, function ($q) use($request){
             $q->whereHas('options', function ($q) use($request){
                 $q->whereIn('option_id', explode(',', $request->options));

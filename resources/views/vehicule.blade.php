@@ -248,6 +248,16 @@
                                     @endif
                                 </span>
                             </div>
+                            <div>
+                                <span class="font-medium">Volume de coffre :</span> 
+                                <span class="text-gray-700">
+                                    @if ($vehicule->trunk_volume)
+                                    {{$vehicule->trunk_volume}} L
+                                    @else
+                                    donnés non disponsable
+                                    @endif
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div>
