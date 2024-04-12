@@ -342,7 +342,7 @@
         </div>
     </div>
     <div class="w-full">
-        <div class="flex items-center gap-3 justify-between">
+        <div class="flex flex-col lg:flex-row items-center gap-3 justify-between">
             <h2 class="font-semibold text-base">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->count(), 0 , ' ', ' ')}}</span> annonces </h2>
             <div class="relative">
                 <button id="orderByDropdownButton" data-dropdown-toggle="orderByDropdown" data-dropdown-trigger="hover" class="inline-flex items-center" type="button">
@@ -373,22 +373,22 @@
                 <div id="orderByDropdown" class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="orderByDropdownButton">
                         <li>
-                            <a href="{{URL::full().'&sort_by='}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Le choix {{$websiteName}}</a>
+                            <a href="{{URL::full().(request()->query()?"&":"?").'sort_by='}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Le choix {{$websiteName}}</a>
                         </li>
                         <li>
-                            <a href="{{URL::full().'&sort_by=price&sort_type=asc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Prix croissant</a>
+                            <a href="{{URL::full().(request()->query()?"&":"?").'sort_by=price&sort_type=asc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Prix croissant</a>
                         </li>
                         <li>
-                            <a href="{{URL::full().'&sort_by=price&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Prix décroissant</a>
+                            <a href="{{URL::full().(request()->query()?"&":"?").'sort_by=price&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Prix décroissant</a>
                         </li>
                         <li>
-                            <a href="{{URL::full().'&sort_by=year&sort_type=asc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Annonces les moins récentes</a>
+                            <a href="{{URL::full().(request()->query()?"&":"?").'sort_by=year&sort_type=asc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Annonces les moins récentes</a>
                         </li>
                         <li>
-                            <a href="{{URL::full().'&sort_by=year&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Annonces les plus récentes</a>
+                            <a href="{{URL::full().(request()->query()?"&":"?").'sort_by=year&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Annonces les plus récentes</a>
                         </li>
                         <li>
-                            <a href="{{URL::full().'&sort_by=created_at&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Véhicules les plus récents</a>
+                            <a href="{{URL::full().(request()->query()?"&":"?").'sort_by=created_at&sort_type=desc'}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Véhicules les plus récents</a>
                         </li>
                     </ul>
                 </div>

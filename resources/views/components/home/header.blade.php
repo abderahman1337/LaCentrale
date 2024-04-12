@@ -4,7 +4,7 @@
     });
 @endphp
 <header id="home-header">
-    <div class="container lg:px-4 px-2 mx-auto flex items-center gap-4 justify-between h-full">
+    <div class="container lg:px-0 px-4 mx-auto flex items-center gap-4 justify-between h-full">
         <div class="flex items-center gap-1">
             <button onclick="this.querySelector('.bars').classList.toggle('hidden');this.querySelector('.close').classList.toggle('hidden')" class="lg:hidden">
                 <svg data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example" class="w-6 h-6 text-gray-800 dark:text-white bars" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
