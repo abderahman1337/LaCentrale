@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Color;
 use App\Models\Energy;
 use App\Models\Option;
@@ -18,6 +19,7 @@ class HomeController extends Controller
         $brands = Brand::latest()->get();
         $models = Serie::whereNotNull('image')->latest()->with('brand:id,name')->limit(5)->get();
         $energies = Energy::latest()->get();
+        $categories = Category::latest()->get();
         $vehicules = Vehicule::latest()->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
         }, 'color:id,name', 'energy:id,name'])->limit(5)->get();
@@ -27,7 +29,8 @@ class HomeController extends Controller
             'models' => $models,
             'energies' => $energies,
             'vehicules' => $vehicules,
-            'vehiculesCount' => $vehiculesCount
+            'vehiculesCount' => $vehiculesCount,
+            'categories' => $categories
         ]);
     }
 
@@ -72,6 +75,9 @@ class HomeController extends Controller
         })
         ->when($request->colors, function ($q) use($request){
             $q->whereIn('color_id', explode(',', $request->colors));
+        })
+        ->when($request->categories, function ($q) use($request){
+            $q->whereIn('category_id', explode(',', $request->categories));
         })
         ->when($request->min_year, function ($q) use($request){
             $q->where('year', '>=', $request->min_year);
