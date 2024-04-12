@@ -255,7 +255,7 @@ class InsightController extends Controller
             foreach($top_pages as $top_page){
                 $url = $top_page->url;
                 $parse = parse_url($url);
-                array_push($response['labels'], isset($parse['path'])?$parse['path']:'/');
+                array_push($response['labels'], isset($parse['path'])?$parse['path']:$url);
                 array_push($response['data']['visits'], (int) $top_page->visits_count);
                 array_push($response['data']['views'], (int) $top_page->views_count);
             }
