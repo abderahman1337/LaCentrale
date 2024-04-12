@@ -124,7 +124,18 @@
         </div>
     </div>
 
-    
+    <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full">
+        <div class="shadow py-3 px-3 rounded-t-md">
+            <h2 class="text-center text-xl font-medium">Pages les plus visitées</h2>
+        </div>
+        <div class="py-4">
+            <div class="overflow-hidden" id="top-visited-pages-chart-container">
+                <x-loading-box></x-loading-box>
+                <div class="chart mx-auto flex justify-center h-full w-auto" dir="ltr" id="top-visited-pages-chart"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="flex lg:flex-row flex-col justify-between gap-4 mt-6 mb-6">
         <div class="bg-white dark:bg-darkSecondary dark:text-gray-200 text-[#171246] dark:border border-gray-200 dark:border-opacity-10 rounded-md shadow-sm transition ease-linear w-full lg:w-3/6">
             <div class="shadow py-3 px-3 rounded-t-md">
@@ -440,6 +451,64 @@
         }]
         });
         topVisitedCities.render();
+    });
+
+
+    async function fetchTopVisitedPages() {
+        let response = await fetch('/admin/api/insights/top-visited-pages'+window.location.search);
+        let json = await response.json();
+        return json;
+    }
+    fetchTopVisitedPages()
+    .then(y => {
+        let response = y;
+        let chartContainer = document.getElementById('top-visited-pages-chart-container');
+        chartContainer.querySelector('.loading-box').remove();
+        let ctx = chartContainer.querySelector('#top-visited-pages-chart');
+        var chart = new ApexCharts(ctx, {
+          series: [{
+          name: 'Visits',
+          data: response['data']['visits']
+        },{
+          name: 'Vues',
+          data: response['data']['views']
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        noData: {
+            text: "Il n'y a pas de données",
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: response['labels'],
+        },
+        fill: {
+          opacity: 1
+        }
+        
+        });
+        chart.render();
+
     });
     </script>
 @endsection

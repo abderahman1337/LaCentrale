@@ -36,6 +36,9 @@ class SettingController extends Controller
     }
 
     public function updateSocial(Request $request){
+        $request->validate([
+            'website_social_links' => 'array'
+        ]);
         Setting::updateOrCreate([
             'key' => 'website_social_links'
         ],[

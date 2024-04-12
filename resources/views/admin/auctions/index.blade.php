@@ -51,6 +51,9 @@
                                 <div class="flex items-center">Vehicule</div>
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Image
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Utilisateur
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -87,6 +90,9 @@
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{$auction->vehicule->serie->brand->name}} {{$auction->vehicule->serie->name}}
                             </th>
+                            <td class="px-6 py-4">
+                                <img class="h-[24px] max-h-auto max-w-[44px]" src="{{$auction->vehicule->getImage()}}" alt="">
+                            </td>
                             <td class="px-6 py-4">
                                 @if ($auction->user)
                                     {{$auction->user->name}}

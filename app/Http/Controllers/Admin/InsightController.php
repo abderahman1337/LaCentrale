@@ -226,6 +226,43 @@ class InsightController extends Controller
         }
         return $storeVisitsInsights;
     }
+
+    public function top_visited_pages(){
+        $period = new \DatePeriod(
+            new \DateTime($this->fromDate),
+            new \DateInterval('P1D'),
+            new \DateTime($this->toDate),
+        );
+
+        $datesList = [];
+        foreach ($period as $key => $value) {
+            array_push($datesList, $value->format('Y-m-d'));
+        }
+        $response = ['labels' => [],'data' => ['visits' => [], 'views' => []]];
+        $top_pages = RateLimitDetail::select(DB::raw('COUNT(url) as visits_count, refresh_count as views_count'), 'url')->when($this->fromDate, function ($q){
+            $q->where(DB::raw('DATE(created_at)'), '>=', $this->fromDate);
+        })
+        ->when($this->toDate, function ($q){
+            $q->where(DB::raw('DATE(created_at)'), '<=', $this->toDate);
+        })
+        ->orderBy('visits_count','desc')
+        ->groupBy('url')
+        ->limit(10)
+        ->get();
+        
+
+        if($top_pages->isNotEmpty()){
+            foreach($top_pages as $top_page){
+                $url = $top_page->url;
+                $parse = parse_url($url);
+                array_push($response['labels'], isset($parse['path'])?$parse['path']:'/');
+                array_push($response['data']['visits'], (int) $top_page->visits_count);
+                array_push($response['data']['views'], (int) $top_page->views_count);
+            }
+        }
+
+        return $response;
+    }
    
 
     public function highest_access_countries(){

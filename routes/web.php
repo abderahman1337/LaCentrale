@@ -70,6 +70,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::resource('/energies', EnergyController::class)->except(['create', 'show', 'edit']);
 
     Route::get('/api/insights/top-wilayas', [InsightController::class, 'top_wilayas'])->name('insights.top_wilayas');
+    Route::get('/api/insights/top-visited-pages', [InsightController::class, 'top_visited_pages'])->name('insights.top_visited_pages');
     Route::get('/api/insights/top-visited-states', [InsightController::class, 'top_visited_states'])->name('insights.top_visited_states');
     Route::get('/api/insights/top-visited-cities', [InsightController::class, 'top_visited_cities'])->name('insights.top_visited_cities');
     Route::get('/api/insights/traffic-source', [InsightController::class, 'traffic_source'])->name('insights.traffic_source');
