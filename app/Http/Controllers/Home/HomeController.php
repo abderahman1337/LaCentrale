@@ -68,7 +68,7 @@ class HomeController extends Controller
             }
             $explode_source = explode(".", $visitor_source);
             $custom_source = (array_key_exists(count($explode_source) - 2, $explode_source) ? $explode_source[count($explode_source) - 2] : "").".".$explode_source[count($explode_source) - 1];
-            $vehiculeVisit = VehiculeVisit::where('vehicule_id', $vehicule->id)->where('ip_address', $request->getClientIp())->where(DB::raw('DATE(created_at)', Carbon::now()->format('Y-m-d')))->first();
+            $vehiculeVisit = VehiculeVisit::where('vehicule_id', $vehicule->id)->where('ip_address', $request->getClientIp())->where(DB::raw('DATE(created_at)'), '=', Carbon::now()->format('Y-m-d'))->first();
             if($vehiculeVisit){
                 $vehiculeVisit->increment('refresh_count', 1);
             }else{
