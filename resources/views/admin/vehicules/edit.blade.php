@@ -54,6 +54,38 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="w-full relative mt-4">
+                        <button id="category-search-dropdown" data-dropdown-toggle="categories-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                            <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="{{$vehicule->category?$vehicule->category->name:''}}" placeholder="Catégories">
+                            <input type="hidden" id="selected-category" name="category" value="{{old('category', $vehicule->category_id)}}">
+                            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="categories-dropdown" class="z-20 hidden bg-white rounded-lg shadow w-full dark:bg-gray-700">
+                            <div class="p-3">
+                                <label for="category-search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                    </svg>
+                                    </div>
+                                    <input type="text" id="category-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Rechercher une category">
+                                </div>
+                            </div>
+                            <ul id="categories-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="category-search-dropdown">
+                                @foreach ($categories as $category)
+                                <li data-name="{{$category->name}}">
+                                    <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <input name="category" id="category-{{$category->id}}" @checked(old('category', $vehicule->category_id)==$category->id) type="radio" data-name="{{$category->name}}" value="{{$category->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500 rounded-full">
+                                    <label for="category-{{$category->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$category->name}}</label>
+                                    </div>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                     <div class="mt-4">
                         <div class="relative">
                             <input type="number" name="price" id="vehicule-price" value="{{old('price', $vehicule->price)}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
@@ -452,7 +484,18 @@
         let optionsList = equipment.querySelector('.options-list');
         let optionsSearch = equipment.querySelector('.options-search');
         listFilterByName(optionsSearch, optionsList);
+    });
 
+    let categoriesList = document.getElementById('categories-list'); 
+    listFilterByName(document.getElementById('category-search'), categoriesList);
+    let categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
+    categoriesList.querySelectorAll('li').forEach(item => {
+        let input = item.querySelector('input[type="radio"]');
+        input.addEventListener('change', function (){
+            let selected = this;
+            categorySearchDropdownBtn.querySelector('input').value = selected.dataset.name;
+            categorySearchDropdownBtn.querySelector('#selected-category').value = selected.value;
+        });
     });
     </script>
 @endsection

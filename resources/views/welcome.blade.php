@@ -229,25 +229,25 @@
             <div class="mt-4">
                 <ul class="flex flex-col gap-3 font-medium">
                     <li class="flex items-center gap-3">
-                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-primaryLight text-primary flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 13.54-2.59-3.02a.7.7 0 0 0-1.12.08l-4.03 6.46a.7.7 0 1 0 1.17.74l3.54-5.68 2.6 3.04a.7.7 0 0 0 1.12-.09l3.6-5.84.74 1.12a7 7 0 0 1 1.44-.35l-1.64-2.44a.7.7 0 0 0-1.16.02zM18.58 10.4l4.31-6.8a.7.7 0 1 0-1.17-.74l-4.54 7.17a6 6 0 0 1 1.4.36"></path><path fill="currentColor" fill-rule="evenodd" d="M20.48 15.37q-.02 1.33-.71 2.4l2.53 2.53a.68.68 0 0 1-.96.96l-2.5-2.49a4.36 4.36 0 1 1 1.64-3.4m-7.35 0a3 3 0 1 0 5.99 0 3 3 0 0 0-5.99 0" clip-rule="evenodd"></path></svg>
                         </div>
                         <span>Une analyse objective des prix</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-primaryLight text-primary flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M9.72 2.6a.73.73 0 1 0 0 1.45.73.73 0 0 0 0-1.46"></path><path fill="currentColor" fill-rule="evenodd" d="M11.88 2.5a2.4 2.4 0 0 0-1.27-1.3 2.2 2.2 0 0 0-1.82 0q-.86.4-1.27 1.31h-.36a1.6 1.6 0 0 0-1.54 1.24H2.69c-.32 0-.65.14-.85.38-.24.2-.37.52-.37.85v16.75c0 .33.13.66.38.86q.33.36.84.37h9.68c.3 0 .52-.23.52-.52a.5.5 0 0 0-.18-.36.6.6 0 0 0-.34-.12H2.7a.22.22 0 0 1-.22-.23V4.98q.02-.21.22-.23h2.87v.47q.01.38.25.6c.15.16.4.26.6.26H13q.38-.01.6-.25c.16-.16.25-.4.25-.6v-.48h2.88q.2.02.22.23v6.12c0 .29.23.52.52.52s.52-.23.52-.52V4.98c0-.33-.13-.66-.38-.86a1.2 1.2 0 0 0-.84-.37h-2.89q-.14-.52-.53-.87a1.6 1.6 0 0 0-1-.37h-.44zm-2.75-.33c.37-.19.82-.18 1.14 0q.59.3.71.93l.06.41h1.17q.27 0 .42.19.17.22.17.45v.97H6.56V4.1q0-.24.17-.44.16-.16.43-.16h1.2l.06-.41q.14-.63.7-.93" clip-rule="evenodd"></path><path fill="currentColor" d="M14.22 8.72H4.2v.91h10.02zM19.27 16.07q.17 0 .3.15.11.14.14.3a.4.4 0 0 1-.11.35l-2.61 2.73a.5.5 0 0 1-.36.14.5.5 0 0 1-.35-.14l-1.05-1.09-.01-.02c-.1-.2-.12-.48.07-.67l.02-.01.02-.01v-.01q.13-.08.31-.1.19.02.3.1h.02l.02.02.7.73 2.26-2.38.01-.01q.14-.1.32-.08"></path><path fill="currentColor" fill-rule="evenodd" d="M17.46 12.86a5.06 5.06 0 1 0-.02 10.16 5.06 5.06 0 0 0 .02-10.16M14.6 15c.76-.76 1.8-1.2 2.87-1.2a4.08 4.08 0 0 1 0 8.15A4.08 4.08 0 0 1 14.6 15" clip-rule="evenodd"></path><path fill="currentColor" d="M11.73 13.31H4.2v.92h7.53zM10.5 17.86H4.2v.92h6.3z"></path></svg>
                         </div>
                         <span>Une visibilité complète sur l'historique du véhicule</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-primaryLight text-primary flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M18.95 1c1.22 0 2.22.94 2.3 2.14l.01.18v17.36c0 1.23-.94 2.23-2.14 2.31l-.17.01H5.05a2.3 2.3 0 0 1-2.3-2.14l-.01-.18V3.32c0-1.23.94-2.23 2.14-2.31L5.05 1zm0 2.32H5.05v17.36h13.9zM9.1 16.05a1.74 1.74 0 1 1 0 3.48 1.74 1.74 0 0 1 0-3.48m5.78 0a1.74 1.74 0 1 1 0 3.48 1.74 1.74 0 0 1 0-3.48m-5.78-4.63a1.74 1.74 0 1 1 0 3.47 1.74 1.74 0 0 1 0-3.47m5.78 0a1.74 1.74 0 1 1 0 3.47 1.74 1.74 0 0 1 0-3.47m1.16-6.95c.9 0 1.65.7 1.73 1.57v2.49c0 .9-.68 1.64-1.56 1.73H7.95c-.9 0-1.65-.69-1.73-1.57l-.01-.16V6.2c0-.9.69-1.64 1.57-1.73h8.27m-.58 2.32H8.53v1.16h6.94z" clip-rule="evenodd"></path></svg>
                         </div>
                         <span>Votre budget maîtrisé avec notre simulateur de financement</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                        <div class="h-[42px] w-[42px] flex items-center justify-center rounded-full bg-primaryLight text-primary flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="m20.69 15.93-.7-.62c-.03-.04-.07-.12-.05-.16.16-.38.3-.78.52-1.12s.6-.48 1.03-.51c.4-.03.55-.18.55-.6v-1.8c0-.42-.14-.56-.55-.6a1.5 1.5 0 0 1-1.34-1.01q-.27-.7-.6-1.41a1.5 1.5 0 0 1 .22-1.7c.28-.33.27-.52-.04-.83l-1.25-1.24c-.33-.32-.5-.33-.86-.05a1.5 1.5 0 0 1-1.66.21l-1.4-.59a1.5 1.5 0 0 1-1.04-1.36c-.03-.38-.18-.53-.58-.53H11.1c-.4 0-.55.15-.58.56a1.5 1.5 0 0 1-.96 1.3l-1.5.62a1.5 1.5 0 0 1-1.64-.22c-.35-.29-.53-.28-.86.04L4.3 5.55c-.3.32-.32.5-.05.83q.63.77.21 1.7-.3.68-.58 1.38-.35.96-1.38 1.04c-.37.03-.52.19-.52.56v1.87c0 .39.15.53.55.57q.98.09 1.34 1.01.27.7.6 1.41a1.5 1.5 0 0 1-.22 1.7c-.28.33-.27.51.04.82l1.27 1.26c.3.3.5.31.8.04q.82-.66 1.75-.2.67.32 1.35.56.94.36 1.03 1.36c.03.38.19.53.58.53h1.84c.4 0 .54-.15.58-.56q.09-.95.97-1.3c.73-.29.73-.28 1.24.3l.18.22q-.5.2-.95.36c-.29.1-.43.27-.45.6A1.45 1.45 0 0 1 13.04 23h-2.06a1.45 1.45 0 0 1-1.47-1.4c-.02-.32-.16-.48-.44-.58l-1.38-.57q-.37-.17-.7.08c-.7.57-1.48.53-2.13-.1l-1.32-1.34c-.6-.62-.65-1.42-.09-2.07q.28-.34.1-.7-.3-.69-.58-1.39-.13-.41-.57-.43A1.46 1.46 0 0 1 1 13.02v-2.03c0-.81.58-1.43 1.4-1.48.31-.02.47-.17.58-.46q.26-.69.56-1.36c.12-.27.11-.48-.09-.72-.56-.66-.53-1.45.08-2.07l1.35-1.35c.64-.62 1.44-.65 2.12-.09q.31.26.69.1.7-.32 1.4-.59.4-.13.42-.55C9.56 1.6 10.17 1.01 11 1h2.03c.8.01 1.41.59 1.46 1.38q.02.46.44.6.7.26 1.38.57.37.18.7-.08c.67-.56 1.47-.52 2.1.1q.68.65 1.36 1.34c.6.62.64 1.41.08 2.08q-.28.33-.1.72.3.67.57 1.36c.1.29.27.44.59.46.8.05 1.38.67 1.39 1.48v2.03a1.45 1.45 0 0 1-1.4 1.47q-.45.02-.57.43l-.37.98z"></path><path fill="currentColor" d="m10.14 11.56 1.42-1.43-1.01-1.01c-.44-.44-.35-.83.24-1.01a4 4 0 0 1 5.08 4.5c-.05.25 0 .4.2.57l4.25 3.77q1.09.99.72 2.41-.38 1.38-1.78 1.7a2.3 2.3 0 0 1-2.34-.79q-1.87-2.1-3.75-4.23c-.16-.19-.3-.22-.53-.18a4 4 0 0 1-4.5-5.13c.17-.51.56-.61.94-.24zm-1.11.28-.08.04c.02.2 0 .43.05.63a3 3 0 0 0 3.81 2.29q.47-.16.77.22.28.34.58.66l3.5 3.95c.62.7 1.64.66 2.18-.05.45-.59.35-1.39-.26-1.93q-2.25-2-4.52-4c-.29-.25-.38-.5-.26-.87a2.96 2.96 0 0 0-2.01-3.7c-.3-.1-.61-.1-.94-.15l.01.1.7.7c.3.32.3.56 0 .87l-1.97 1.97c-.3.3-.55.3-.86 0l-.71-.72z"></path><path fill="currentColor" d="M19.08 14.51q-.4-.31-.7-.62c-.07-.08-.06-.26-.03-.4q.63-2.83-1-5.22a6.5 6.5 0 0 0-11.81 2.89 6.52 6.52 0 0 0 6.85 7.36c.41-.02.82-.13 1.23-.18q.17-.01.27.05.3.33.6.68a7.4 7.4 0 0 1-8.4-2.39A7.54 7.54 0 0 1 16.13 5.71a7.5 7.5 0 0 1 2.94 8.8M19.16 18.64a.5.5 0 0 0-.5-.49.5.5 0 1 0 .5.5"></path><path fill="currentColor" d="M19.16 18.65a.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.48.5.5 0 0 1 .5-.52.5.5 0 0 1 .48.5z"></path></svg>
                         </div>
                         <span>Une projection claire sur les futurs entretiens de votre voiture</span>
@@ -278,14 +278,9 @@
                 <h2 class="font-semibold">Marques de véhicules d'occasion</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        <li><a class="underline" href="#">Tesla</a></li>
-                        <li><a class="underline" href="#">Toyota</a></li>
-                        <li><a class="underline" href="#">Porshe</a></li>
-                        <li><a class="underline" href="#">Dacia</a></li>
-                        <li><a class="underline" href="#">Ford</a></li>
-                        <li><a class="underline" href="#">Kia</a></li>
-                        <li><a class="underline" href="#">Hyundai</a></li>
-                        <li><a class="underline" href="#">Skoda</a></li>
+                        @foreach (App\Models\Brand::latest()->limit(8)->get() as $brand)
+                        <li><a class="underline" href="{{route('vehicules.listing', ['brands' => $brand->id])}}">{{$brand->name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -293,14 +288,9 @@
                 <h2 class="font-semibold">Modèles de véhicules d'occasion</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        <li><a class="underline" href="#">Fiat500</a></li>
-                        <li><a class="underline" href="#">Citreon c3</a></li>
-                        <li><a class="underline" href="#">Renault captur</a></li>
-                        <li><a class="underline" href="#">Dacia spring</a></li>
-                        <li><a class="underline" href="#">Peugeot 2008</a></li>
-                        <li><a class="underline" href="#">Toyota Yaris</a></li>
-                        <li><a class="underline" href="#">Dacia Duster</a></li>
-                        <li><a class="underline" href="#">Renault Clio</a></li>
+                        @foreach (App\Models\Serie::latest()->with('brand')->limit(8)->get() as $serie)
+                        <li><a class="underline" href="{{route('vehicules.listing', ['models' => $serie->id])}}">{{$serie->brand->name}} {{$serie->name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -308,21 +298,19 @@
                 <h2 class="font-semibold">Catégories de véhicules</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        <li><a class="underline" href="#">4x4, SUV & Crossover</a></li>
-                        <li><a class="underline" href="#">Citadin</a></li>
-                        <li><a class="underline" href="#">Break</a></li>
-                        <li><a class="underline" href="#">Monospace</a></li>
-                        <li><a class="underline" href="#">Berline</a></li>
+                        @foreach (App\Models\Category::latest()->limit(8)->get() as $category)
+                        <li><a class="underline" href="{{route('vehicules.listing', ['categories' => $category->id])}}">{{$category->name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
             <div>
-                <h2 class="font-semibold">Petits prix</h2>
+                <h2 class="font-semibold">Énergie des véhicules</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        <li><a class="underline" href="#">Voiture occasion petit prix</a></li>
-                        <li><a class="underline" href="#">Voiture occasion à moins de 5 000 euros</a></li>
-                        <li><a class="underline" href="#">Voiture occasion à moins de 10 000 euros</a></li>
+                        @foreach (App\Models\Energy::latest()->limit(8)->get() as $energy)
+                        <li><a class="underline" href="{{route('vehicules.listing', ['energies' => $energy->id])}}">{{$energy->name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

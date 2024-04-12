@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Color;
 use App\Models\Energy;
 use App\Models\Serie;
@@ -53,12 +54,14 @@ class VehiculeController extends Controller
         $exteriorColors = Color::where('exterior', 1)->latest()->get();
         $interiorColors = Color::where('interior', 1)->latest()->get();
         $equipments = Equipment::with('options')->get();
+        $categories = Category::latest()->get();
         return view('admin.vehicules.create', [
             'models' => $models,
             'energies' => $energies,
             'exteriorColors' => $exteriorColors,
             'interiorColors' => $interiorColors,
-            'equipments' => $equipments
+            'equipments' => $equipments,
+            'categories' => $categories
         ]);
     }
 
@@ -75,6 +78,7 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::create([
             'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
+            'category_id' => $request->category,
             'color_id' => $request->exterior_color,
             'interior_color_id' => $request->interior_color,
             'energy_id' => $request->energy,
@@ -156,13 +160,15 @@ class VehiculeController extends Controller
         $exteriorColors = Color::where('exterior', 1)->latest()->get();
         $interiorColors = Color::where('interior', 1)->latest()->get();
         $equipments = Equipment::with('options')->get();
+        $categories = Category::latest()->get();
         return view('admin.vehicules.edit', [
             'models' => $models,
             'energies' => $energies,
             'exteriorColors' => $exteriorColors,
             'interiorColors' => $interiorColors,
             'equipments' => $equipments,
-            'vehicule' => $vehicule
+            'vehicule' => $vehicule,
+            'categories' => $categories
         ]);
     }
 
@@ -174,6 +180,7 @@ class VehiculeController extends Controller
         $vehicule = Vehicule::with(['images', 'options'])->findOrFail($id);
         $vehicule->update([
             'serie_id' => $request->model,
+            'category_id' => $request->category,
             'color_id' => $request->exterior_color,
             'interior_color_id' => $request->interior_color,
             'energy_id' => $request->energy,

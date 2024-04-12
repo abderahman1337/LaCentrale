@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuctionController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditorController;
@@ -56,6 +57,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::resource('series', SerieController::class)->except(['create', 'show', 'edit']);
     Route::resource('equipments', EquipmentController::class)->except(['create', 'show', 'edit']);
     Route::resource('options', OptionController::class)->except(['create', 'show', 'edit']);
+    Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
     Route::resource('vehicules', VehiculeController::class);
     Route::post('/menu/items/order/update', [MenuController::class, 'updateOrder'])->name('menu.items.order.update');
     Route::resource('/menus', MenuController::class);
