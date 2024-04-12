@@ -21,35 +21,38 @@
                     </div>
                     <div class="mt-4 dropdown active">
                         <div class="flex flex-col gap-3">
-                            {{-- <div class="w-full">
-                                <button id="type-recherche-dropdown" data-dropdown-toggle="types-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-blue-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">Type de vehicule <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                                </svg>
-
+                            <div class="w-full relative">
+                                <button id="category-search-dropdown" data-dropdown-toggle="categories-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full relative rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
+                                    <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Type de véhicule">
+                                    <input type="hidden" id="selected-categories-list" name="categories" value="">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+                                    </svg>
                                 </button>
-                                <!-- Dropdown menu -->
-                                <div id="types-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+                                <div id="categories-dropdown" class="z-10 hidden bg-white rounded-lg shadow w-full dark:bg-gray-700">
                                     <div class="p-3">
-                                    <label for="type-recherche" class="sr-only">Search</label>
-                                    <div class="relative">
-                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                        </svg>
+                                        <label for="category-search" class="sr-only">Search</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-3 h-3 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                                </svg>
+                                            </div>
+                                            <input type="text" id="category-search" class="block w-full placeholder:text-xs p-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-md bg-white focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500" placeholder="Type de véhicule">
                                         </div>
-                                        <input type="text" id="type-recherche" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rechercher une marque">
                                     </div>
-                                    </div>
-                                    <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="marque-recherche-dropdown">
-                                        <li>
+                                    <ul id="categories-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="category-search-dropdown">
+                                        @foreach ($categories as $category)
+                                        <li data-name="{{$category->name}}">
                                             <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                            <input id="checkbox-item-11" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="checkbox-item-11" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Audi</label>
+                                            <input id="category-{{$category->id}}"  @checked(request('categories') != '' && in_array($category->id, explode(',', request('categories')))) type="checkbox" data-name="{{$category->name}}" value="{{$category->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
+                                            <label for="category-{{$category->id}}" class="w-full py-2 ms-2 text-xs font-medium text-gray-900 rounded dark:text-gray-300">{{$category->name}}</label>
                                             </div>
                                         </li>
+                                        @endforeach
                                     </ul>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="w-full relative">
                                 <button id="brand-search-dropdown" data-dropdown-toggle="brands-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full relative rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
                                     <input type="text" class="border-none outline-none px-0 text-sm focus:ring-0 cursor-pointer w-full h-4 text-gray-900" readonly value="" placeholder="Marque">
@@ -310,8 +313,8 @@
                         </div>
                         <div class="mt-2">
                             <div class="relative w-full">
-                                <input type="text" id="max-weight" name="max_wight" value="{{request('max_wight')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label for="max-weight" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">I max</label>
+                                <input type="text" id="max-width" name="max_width" value="{{request('max_width')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <label for="max-width" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">I max</label>
                             </div>
                         </div>
                         <div class="mt-2">
@@ -352,6 +355,7 @@
 @endsection
 @section('scripts')
 <script>
+    let categoryList = document.getElementById('categories-list'); 
     let brandList = document.getElementById('brands-list'); 
     let modelList = document.getElementById('models-list'); 
     let energyList = document.getElementById('energies-list'); 
@@ -360,24 +364,51 @@
     let minPrice = document.getElementById('min-price');
     let priceRange = document.getElementById('price-range');
     listFilterByName(document.getElementById('brand-search'), brandList);
+    listFilterByName(document.getElementById('category-search'), categoryList);
     listFilterByName(document.getElementById('model-search'), modelList);
     listFilterByName(document.getElementById('option-search'), optionsList);
 
  
+    let categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
+    categoryList.querySelectorAll('li').forEach(item => {
+        let input = item.querySelector('input[type="checkbox"]');
+        let checkedCategories = categoryList.querySelectorAll('li input[type="checkbox"]:checked');
+        categorySearchDropdownBtn.querySelector('input').value = '';
+        var names = [];
+        var ids = [];
+        checkedCategories.forEach(checkedBrand => {
+            names.push(checkedBrand.dataset.name);
+            ids.push(checkedBrand.value);
+        });
+        categorySearchDropdownBtn.querySelector('input').value = names.join(', ');
+        categorySearchDropdownBtn.querySelector('#selected-categories-list').value = ids.join(',');
+        input.addEventListener('change', function (){
+            let checkedCategories = categoryList.querySelectorAll('li input[type="checkbox"]:checked');
+            categorySearchDropdownBtn.querySelector('input').value = '';
+            var names = [];
+            var ids = [];
+            checkedCategories.forEach(checkedBrand => {
+                names.push(checkedBrand.dataset.name);
+                ids.push(checkedBrand.value);
+            });
+            categorySearchDropdownBtn.querySelector('input').value = names.join(', ');
+            categorySearchDropdownBtn.querySelector('#selected-categories-list').value = ids.join(',');
+        });
+    });
 
     let brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
     brandList.querySelectorAll('li').forEach(item => {
         let input = item.querySelector('input[type="checkbox"]');
         let checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
-            brandSearchDropdownBtn.querySelector('input').value = '';
-            var names = [];
-            var ids = [];
-            checkedBrands.forEach(checkedBrand => {
-                names.push(checkedBrand.dataset.name);
-                ids.push(checkedBrand.value);
-            });
-            brandSearchDropdownBtn.querySelector('input').value = names.join(', ');
-            brandSearchDropdownBtn.querySelector('#selected-brands-list').value = ids.join(',');
+        brandSearchDropdownBtn.querySelector('input').value = '';
+        var names = [];
+        var ids = [];
+        checkedBrands.forEach(checkedBrand => {
+            names.push(checkedBrand.dataset.name);
+            ids.push(checkedBrand.value);
+        });
+        brandSearchDropdownBtn.querySelector('input').value = names.join(', ');
+        brandSearchDropdownBtn.querySelector('#selected-brands-list').value = ids.join(',');
         input.addEventListener('change', function (){
             let checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
             brandSearchDropdownBtn.querySelector('input').value = '';
@@ -397,15 +428,15 @@
     modelList.querySelectorAll('li').forEach(item => {
         let input = item.querySelector('input[type="checkbox"]');
         let checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
-            modelSearchDropdownBtn.querySelector('input').value = '';
-            var names = [];
-            var ids = [];
-            checkedModels.forEach(checkedModel => {
-                names.push(checkedModel.dataset.name);
-                ids.push(checkedModel.value);
-            });
-            modelSearchDropdownBtn.querySelector('input').value = names.join(', ');
-            modelSearchDropdownBtn.querySelector('#selected-models-list').value = ids.join(',');
+        modelSearchDropdownBtn.querySelector('input').value = '';
+        var names = [];
+        var ids = [];
+        checkedModels.forEach(checkedModel => {
+            names.push(checkedModel.dataset.name);
+            ids.push(checkedModel.value);
+        });
+        modelSearchDropdownBtn.querySelector('input').value = names.join(', ');
+        modelSearchDropdownBtn.querySelector('#selected-models-list').value = ids.join(',');
         input.addEventListener('change', function (){
             let checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
             modelSearchDropdownBtn.querySelector('input').value = '';

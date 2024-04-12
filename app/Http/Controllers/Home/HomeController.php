@@ -97,6 +97,15 @@ class HomeController extends Controller
         ->when($request->max_fiscal_horse_power, function ($q) use($request){
             $q->where('fiscal_horsepower', '<=', $request->max_fiscal_horse_power);
         })
+        ->when($request->max_height, function ($q) use($request){
+            $q->where('height', '<=', $request->max_height);
+        })
+        ->when($request->max_width, function ($q) use($request){
+            $q->where('width', '<=', $request->max_width);
+        })
+        ->when($request->nax_length, function ($q) use($request){
+            $q->where('length', '<=', $request->nax_length);
+        })
         ->when($request->min_power, function ($q) use($request){
             $q->where('power', '>=', $request->min_power);
         })
@@ -125,13 +134,15 @@ class HomeController extends Controller
         $energies = Energy::latest()->get();
         $colors = Color::latest()->get();
         $options = Option::latest()->get();
+        $categories = Category::latest()->get();
         return view('listing', [
             'vehicules' => $vehicules,
             'brands' => $brands,
             'models' => $models,
             'energies' => $energies,
             'colors' => $colors,
-            'options' => $options
+            'options' => $options,
+            'categories' => $categories
         ]);
         return $vehicules;
     }
