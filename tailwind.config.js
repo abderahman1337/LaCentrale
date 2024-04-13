@@ -13,7 +13,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
                 Roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
                 Rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
                 Montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
