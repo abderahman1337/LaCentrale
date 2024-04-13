@@ -129,4 +129,21 @@ class SettingController extends Controller
         Environment::set('MAIL_PASSWORD', $request->mail_password);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));
     }
+
+    public function updateBackup(Request $request){
+        $request->validate([
+            'remote_host' => 'required',
+            'remote_username' => 'required',
+            'save_path' => 'required',
+        ]);
+        $settings = [
+            'host' => $request->remote_host,
+            'username' => $request->remote_username,
+            'save_path' => $request->save_path
+        ];
+        $configFilePath = config_path('backup_database.php');
+        $phpCode = '<?php return ' . var_export($settings, true) . ';';
+        file_put_contents($configFilePath, $phpCode);
+        return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));
+    }
 }
