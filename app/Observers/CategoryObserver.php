@@ -24,6 +24,7 @@ class CategoryObserver
         if($category->vehicules->isNotEmpty()){
             foreach($category->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -37,6 +38,7 @@ class CategoryObserver
         if($category->vehicules->isNotEmpty()){
             foreach($category->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -50,6 +52,7 @@ class CategoryObserver
         if($category->vehicules->isNotEmpty()){
             foreach($category->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -63,6 +66,7 @@ class CategoryObserver
         if($category->vehicules->isNotEmpty()){
             foreach($category->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }

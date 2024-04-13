@@ -21,9 +21,11 @@ class SerieObserver
     public function updated(Serie $serie): void
     {
         Cache::forget('latest-series');
+        Cache::forget('home-latest-vehicules');
         if($serie->vehicules->isNotEmpty()){
             foreach($serie->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -34,9 +36,11 @@ class SerieObserver
     public function deleted(Serie $serie): void
     {
         Cache::forget('latest-series');
+        Cache::forget('home-latest-vehicules');
         if($serie->vehicules->isNotEmpty()){
             foreach($serie->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -47,9 +51,11 @@ class SerieObserver
     public function restored(Serie $serie): void
     {
         Cache::forget('latest-series');
+        Cache::forget('home-latest-vehicules');
         if($serie->vehicules->isNotEmpty()){
             foreach($serie->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -60,9 +66,11 @@ class SerieObserver
     public function forceDeleted(Serie $serie): void
     {
         Cache::forget('latest-series');
+        Cache::forget('home-latest-vehicules');
         if($serie->vehicules->isNotEmpty()){
             foreach($serie->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }

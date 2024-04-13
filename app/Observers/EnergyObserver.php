@@ -21,9 +21,11 @@ class EnergyObserver
     public function updated(Energy $energy): void
     {
         Cache::forget('latest-energies');
+        Cache::forget('home-latest-vehicules');
         if($energy->vehicules->isNotEmpty()){
             foreach($energy->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -34,9 +36,11 @@ class EnergyObserver
     public function deleted(Energy $energy): void
     {
         Cache::forget('latest-energies');
+        Cache::forget('home-latest-vehicules');
         if($energy->vehicules->isNotEmpty()){
             foreach($energy->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -47,9 +51,11 @@ class EnergyObserver
     public function restored(Energy $energy): void
     {
         Cache::forget('latest-energies');
+        Cache::forget('home-latest-vehicules');
         if($energy->vehicules->isNotEmpty()){
             foreach($energy->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }
@@ -60,9 +66,11 @@ class EnergyObserver
     public function forceDeleted(Energy $energy): void
     {
         Cache::forget('latest-energies');
+        Cache::forget('home-latest-vehicules');
         if($energy->vehicules->isNotEmpty()){
             foreach($energy->vehicules as $vehicule){
                 Cache::forget('vehicule-'.$vehicule->id);
+                Cache::forget('similar-vehicules-'.$vehicule->id);
             }
         }
     }

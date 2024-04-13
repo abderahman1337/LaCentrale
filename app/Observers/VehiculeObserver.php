@@ -14,6 +14,7 @@ class VehiculeObserver
     {
         Cache::forget('vehicule-'.$vehicule->id);
         Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
         Cache::forget('similar-vehicules-'.$vehicule->id);
     }
 
@@ -24,6 +25,7 @@ class VehiculeObserver
     {
         Cache::forget('vehicule-'.$vehicule->id);
         Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
         Cache::forget('similar-vehicules-'.$vehicule->id);
     }
 
@@ -34,6 +36,7 @@ class VehiculeObserver
     {
         Cache::forget('vehicule-'.$vehicule->id);
         Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
         Cache::forget('similar-vehicules-'.$vehicule->id);
     }
 
@@ -44,6 +47,7 @@ class VehiculeObserver
     {
         Cache::forget('vehicule-'.$vehicule->id);
         Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
         Cache::forget('similar-vehicules-'.$vehicule->id);
     }
 
@@ -54,5 +58,6 @@ class VehiculeObserver
     {
         Cache::forget('vehicule-'.$vehicule->id);
         Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
         Cache::forget('similar-vehicules-'.$vehicule->id);
     }}

@@ -38,9 +38,11 @@ class HomeController extends Controller
         $categories = Cache::remember('latest-categories', $this->cacheRememerTime, function (){
             return Category::withCount('vehicules')->latest()->get();
         });
-        $vehicules = Vehicule::latest()->with(['serie' => function ($q){
-            $q->select('id', 'name', 'brand_id')->with('brand:id,name');
-        }, 'color:id,name', 'energy:id,name'])->limit(10)->get();
+        $vehicules = Cache::remember('home-latest-vehicules', $this->cacheRememerTime, function (){
+            return Vehicule::latest()->with(['serie' => function ($q){
+                $q->select('id', 'name', 'brand_id')->with('brand:id,name');
+            }, 'color:id,name', 'energy:id,name'])->limit(10)->get();
+        });
         $vehiculesCount = Cache::remember('vehicules-count', $this->cacheRememerTime, function (){
             return Vehicule::count();
         });
