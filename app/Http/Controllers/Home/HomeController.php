@@ -199,7 +199,7 @@ class HomeController extends Controller
         })->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
         }, 'color:id,name', 'energy:id,name', 'generation:id,name'])
-        ->paginate(21);
+        ->paginate(21)->withQueryString();
 
         
 

@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Energy;
 use App\Models\Serie;
 use App\Models\Vehicule;
 use App\Models\Equipment;
+use App\Models\Generation;
+use App\Models\Option;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 
@@ -17,7 +21,10 @@ class VehiculeController extends Controller
 {
 
     public $vehiculesSavePath;
+    public $cacheRememerTime;
+
     public function __construct(){
+        $this->cacheRememerTime = config('app.cache_remember');
         $this->vehiculesSavePath = public_path('images/vehicules/');
         if(!File::isDirectory($this->vehiculesSavePath)){
             File::makeDirectory($this->vehiculesSavePath, 0777, true, true);
@@ -31,6 +38,9 @@ class VehiculeController extends Controller
         }, function ($q){
             $q->latest();
         })
+        ->when($request->id, function ($q) use($request){
+            $q->where('id', $request->id);
+        })
         ->when($request->color, function ($q) use($request){
             $q->where('color_id', $request->color);
         })
@@ -40,10 +50,118 @@ class VehiculeController extends Controller
         ->when($request->serie, function ($q) use($request){
             $q->where('serie_id', $request->serie);
         })
+        ->when($request->brands, function ($q) use($request){
+            $q->whereHas('serie', function ($q) use($request){
+                $q->whereIn('brand_id', explode(',', $request->brands));
+            });
+        })
+        ->when($request->models, function ($q) use($request){
+            $q->whereIn('serie_id', explode(',', $request->models));
+        })
+        ->when($request->min_price, function ($q) use($request){
+            $q->where('price', '>=', $request->min_price);
+        })
+        ->when($request->max_price, function ($q) use($request){
+            $q->where('price', '<=', $request->max_price);
+        })
+        ->when($request->energies, function ($q) use($request){
+            $q->whereIn('energy_id', explode(',', $request->energies));
+        })
+        ->when($request->exterior_colors, function ($q) use($request){
+            $q->whereIn('color_id', explode(',', $request->exterior_colors));
+        })
+        ->when($request->interior_colors, function ($q) use($request){
+            $q->whereIn('interior_color_id', explode(',', $request->interior_colors));
+        })
+        ->when($request->categories, function ($q) use($request){
+            $q->whereIn('category_id', explode(',', $request->categories));
+        })
+        ->when($request->categories, function ($q) use($request){
+            $q->whereIn('category_id', explode(',', $request->categories));
+        })
+        ->when($request->min_year, function ($q) use($request){
+            $q->where('year', '>=', $request->min_year);
+        })
+        ->when($request->max_year, function ($q) use($request){
+            $q->where('year', '<=', $request->max_year);
+        })
+        ->when($request->min_mileage, function ($q) use($request){
+            $q->where('mileage', '>=', $request->min_mileage);
+        })
+        ->when($request->max_mileage, function ($q) use($request){
+            $q->where('mileage', '<=', $request->max_mileage);
+        })
+        ->when($request->min_fiscal_horse_power, function ($q) use($request){
+            $q->where('fiscal_horsepower', '>=', $request->min_fiscal_horse_power);
+        })
+        ->when($request->max_fiscal_horse_power, function ($q) use($request){
+            $q->where('fiscal_horsepower', '<=', $request->max_fiscal_horse_power);
+        })
+        ->when($request->max_height, function ($q) use($request){
+            $q->where('height', '<=', $request->max_height);
+        })
+        ->when($request->max_width, function ($q) use($request){
+            $q->where('width', '<=', $request->max_width);
+        })
+        ->when($request->nax_length, function ($q) use($request){
+            $q->where('length', '<=', $request->nax_length);
+        })
+        ->when($request->min_power, function ($q) use($request){
+            $q->where('power', '>=', $request->min_power);
+        })
+        ->when($request->max_power, function ($q) use($request){
+            $q->where('power', '<=', $request->max_power);
+        })
+        ->when($request->min_trunk_volume, function ($q) use($request){
+            $q->where('trunk_volume', '>=', $request->min_trunk_volume);
+        })
+        ->when($request->options, function ($q) use($request){
+            $q->whereHas('options', function ($q) use($request){
+                $q->whereIn('option_id', explode(',', $request->options));
+            });
+        })
+        ->when($request->gearbox, function ($q) use($request){
+            if(in_array($request->gearbox, ['automatic', 'manual'])){
+                $q->where('gearbox', $request->gearbox);
+            }
+        })
+        ->when($request->sort_by, function ($q) use($request){
+            if(in_array($request->sort_by, ['price', 'year', 'created_at']) && in_array($request->sort_type, ['desc','asc'])){
+                $q->orderBy($request->sort_by, $request->sort_type);
+            }
+        }, function ($q){
+            $q->orderBy('id', 'desc');
+        })
         ->withCount('auctions')
         ->paginate();
+
+
+        $brands = Cache::remember('latest-brands', $this->cacheRememerTime, function (){
+            return Brand::latest()->get();
+        });
+        $models = Cache::remember('latest-series', $this->cacheRememerTime, function (){
+            return Serie::latest()->with('brand:id,name')->get();
+        });
+        $energies = Cache::remember('latest-energies', $this->cacheRememerTime, function (){
+            return Energy::latest()->get();
+        });
+        $colors = Cache::remember('latest-colors', $this->cacheRememerTime, function (){
+            return Color::latest()->get();
+        });
+        $options = Cache::remember('latest-options', $this->cacheRememerTime, function (){
+            return Option::latest()->get();
+        });
+        $categories = Cache::remember('latest-categories', $this->cacheRememerTime, function (){
+            return Category::latest()->get();
+        });
         return view('admin.vehicules.index', [
-            'vehicules' => $vehicules
+            'vehicules' => $vehicules,
+            'brands' => $brands,
+            'models' => $models,
+            'energies' => $energies,
+            'colors' => $colors,
+            'options' => $options,
+            'categories' => $categories
         ]);
     }
 
