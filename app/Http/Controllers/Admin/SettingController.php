@@ -6,6 +6,7 @@ use App\Helpers\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class SettingController extends Controller
 {
@@ -46,5 +47,72 @@ class SettingController extends Controller
             'value' => json_encode($request->website_social_links),
         ]);
         return back()->with('success', 'Les paramètres ont été mis à jour avec succès');
+    }
+
+    public function updateBrandImages(Request $request){
+        
+        $savePath = public_path('images/website/');
+        if(!File::isDirectory($savePath)){
+            File::makeDirectory($savePath, 0777, true, true);
+        }
+
+        if($request->hasFile('website_logo')){
+            $oldLogo = Setting::where('key', 'website_logo')->first();
+            $oldLogoName = $oldLogo?$oldLogo->value:null;
+            $logo = $request->file('website_logo');
+            $extension = $logo->getClientOriginalExtension();
+            $logoName = rand(100000,999999). '.' .$extension;
+            $logo->move($savePath, $logoName);
+            Setting::updateOrCreate([
+                'key' => 'website_logo'
+            ],[
+                'key' => 'website_logo',
+                'value' => $logoName
+            ]);
+            if($oldLogoName != null){
+                if(file_exists(public_path('images/website/'.$oldLogoName))){
+                    unlink(public_path('images/website/'.$oldLogoName));
+                }
+            }
+        }
+        if($request->hasFile('website_favicon')){
+            $oldFavicon = Setting::where('key', 'website_favicon')->first();
+            $oldFaviconName = $oldFavicon?$oldFavicon->value:null;
+            $favicon = $request->file('website_favicon');
+            $extension = $favicon->getClientOriginalExtension();
+            $faviconName = rand(100000,999999). '.' .$extension;
+            $favicon->move($savePath, $faviconName);
+            Setting::updateOrCreate([
+                'key' => 'website_favicon'
+            ],[
+                'key' => 'website_favicon',
+                'value' => $faviconName
+            ]);
+            if($oldFaviconName != null){
+                if(file_exists(public_path('images/website/'.$oldFaviconName))){
+                    unlink(public_path('images/website/'.$oldFaviconName));
+                }
+            }
+        }
+        if($request->hasFile('website_watermark')){
+            $oldWatermark = Setting::where('key', 'website_watermark')->first();
+            $oldWatermarkName = $oldWatermark?$oldWatermark->value:null;
+            $watermark = $request->file('website_watermark');
+            $extension = $watermark->getClientOriginalExtension();
+            $watermarkName = rand(100000,999999). '.' .$extension;
+            $watermark->move($savePath, $watermarkName);
+            Setting::updateOrCreate([
+                'key' => 'website_watermark'
+            ],[
+                'key' => 'website_watermark',
+                'value' => $watermarkName
+            ]);
+            if($oldWatermarkName != null){
+                if(file_exists(public_path('images/website/'.$oldWatermarkName))){
+                    unlink(public_path('images/website/'.$oldWatermarkName));
+                }
+            }
+        }
+        return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));
     }
 }

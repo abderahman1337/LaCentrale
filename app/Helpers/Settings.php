@@ -32,9 +32,17 @@ class Settings{
 
     static function website_favicon(){
         if(Settings::get('website_favicon') != null){
-           return asset('images/website/favicons/'.Settings::get('website_favicon'));
+           return asset('images/website/'.Settings::get('website_favicon'));
         }else{
             return asset('images/website/favicons/favicon-32x32.png');
+        }
+    }
+
+    static function website_watermark(){
+        if(Settings::get('website_watermark') != null){
+           return asset('images/website/'.Settings::get('website_watermark'));
+        }else{
+            return asset('images/website/static/watermark.png');
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
@@ -240,7 +241,7 @@ class VehiculeController extends Controller
                     ]);
                     $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
                     $imageEdit->place(
-                        public_path('images/static/watermark.png'),
+                        Settings::website_watermark(),
                         'center', 
                         10, 
                         10,
@@ -340,7 +341,7 @@ class VehiculeController extends Controller
                 ]);
                 $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
                 $imageEdit->place(
-                    public_path('images/static/watermark.png'),
+                    Settings::website_watermark(),
                     'center', 
                     10, 
                     10,

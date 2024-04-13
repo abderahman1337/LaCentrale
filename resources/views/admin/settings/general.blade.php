@@ -84,35 +84,56 @@
             </div>
         </div>
         <div class="mt-4">
-            <div class="bg-white flex justify-center flex-col rounded-md shadow-md overflow-hidden group p-6 max-w-xl">
+            <div class="bg-white flex justify-center flex-col rounded-md shadow-md overflow-hidden p-6 max-w-xl">
                 <h2 class="mb-6 font-semibold text-xl">Logo & Favicon</h2>
-                <form action="{{route('admin.settings.social.update')}}" method="post">
+                <form action="{{route('admin.settings.brand.images.update')}}" enctype="multipart/form-data" method="post">
                     @csrf
-                    <div>
-                        <div class="border dark:border-gray-300 dark:border-opacity-10 rounded-lg px-2 py-1 relative group transition-all ease-linear">
-                           <div class="opacity-0 transition-opacity group-hover:opacity-100 flex absolute inset-0 items-center justify-center group-hover:bg-[#ffffffd2]" style="z-index: 10">
-                              <button id="change-website-logo" onclick="document.getElementById('website-logo-input').click()" style="z-index: 11" type="button" class="delete-uploded-image h-[36px] w-[36px] flex items-center justify-center bg-white rounded-full text-[#697586] border border-[#e3e8ef] shadow-sm">
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                                 </svg>                                        </button>
-                           </div>
-                           <img id="website-logo-preview" class="mx-auto" src="{{$websiteLogo}}" alt="">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <h2 class="mb-2 text-sm font-semibold">Logo</h2>
+                            <div class="border dark:border-gray-300 dark:border-opacity-10 rounded-lg px-2 py-1 relative group transition-all ease-linear">
+                                <div class="opacity-0 transition-opacity group-hover:opacity-100 flex absolute inset-0 items-center justify-center group-hover:bg-[#ffffffd2]" style="z-index: 10">
+                                    <button id="change-website-logo" onclick="document.getElementById('website-logo-input').click()" style="z-index: 11" type="button" class="delete-uploded-image h-[36px] w-[36px] flex items-center justify-center bg-white rounded-full text-[#697586] border border-[#e3e8ef] shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                        </svg>                                        
+                                    </button>
+                               </div>
+                               <img id="website-logo-preview" class="mx-auto" src="{{$websiteLogo}}" alt="">
+                            </div>
+                            <input class="hidden" type="file" name="website_logo" id="website-logo-input"/>
                         </div>
-                        <input class="hidden" type="file" name="store_logo" id="website-logo-input">
-                     </div>
-                     <div>
-                        <div class="border dark:border-gray-300 dark:border-opacity-10 rounded-lg px-2 py-1 relative group transition-all ease-linear">
-                           <div class="opacity-0 transition-opacity group-hover:opacity-100 flex absolute inset-0 items-center justify-center group-hover:bg-[#ffffffd2]" style="z-index: 10">
-                              <button id="change-website-favicon" onclick="document.getElementById('website-favicon-input').click()" style="z-index: 11" type="button" class="delete-uploded-image h-[36px] w-[36px] flex items-center justify-center bg-white rounded-full text-[#697586] border border-[#e3e8ef] shadow-sm">
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                                 </svg>                                        
-                              </button>
-                           </div>
-                           <img id="website-favicon-preview" class="mx-auto" src="{{$websiteFavicon}}" alt="">
+                        <div>
+                            <div>
+                                <h2 class="mb-2 text-sm font-semibold">Icône de favori du navigateur</h2>
+                                <div class="border dark:border-gray-300 dark:border-opacity-10 rounded-lg px-2 py-1 relative group transition-all ease-linear">
+                                    <div class="opacity-0 transition-opacity group-hover:opacity-100 flex absolute inset-0 items-center justify-center group-hover:bg-[#ffffffd2]" style="z-index: 10">
+                                        <button id="change-website-favicon" onclick="document.getElementById('website-favicon-input').click()" style="z-index: 11" type="button" class="delete-uploded-image h-[36px] w-[36px] flex items-center justify-center bg-white rounded-full text-[#697586] border border-[#e3e8ef] shadow-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                            </svg>                                        
+                                        </button>
+                                    </div>
+                                   <img id="website-favicon-preview" class="mx-auto" src="{{$websiteFavicon}}" alt=""/>
+                                </div>
+                                <input class="hidden" type="file" name="website_favicon" id="website-favicon-input">
+                            </div>
+                            <div class="mt-4">
+                                <h2 class="mb-2 text-sm font-semibold">Filigrane d’image de véhicule</h2>
+                                <div class="border dark:border-gray-300 dark:border-opacity-10 rounded-lg px-2 py-1 relative group transition-all ease-linear bg-gray-400">
+                                    <div class="opacity-0 transition-opacity group-hover:opacity-100 flex absolute inset-0 items-center justify-center group-hover:bg-[#ffffffd2]" style="z-index: 10">
+                                        <button id="change-website-favicon" onclick="document.getElementById('website-watermark-input').click()" style="z-index: 11" type="button" class="delete-uploded-image h-[36px] w-[36px] flex items-center justify-center bg-white rounded-full text-[#697586] border border-[#e3e8ef] shadow-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                            </svg>                                        
+                                        </button>
+                                    </div>
+                                   <img id="website-watermark-preview" class="mx-auto" src="{{Settings::website_watermark()}}" alt=""/>
+                                </div>
+                                <input class="hidden" type="file" name="website_watermark" id="website-watermark-input">
+                            </div>
                         </div>
-                        <input class="hidden" type="file" name="store_favicon" id="website-favicon-input">
-                     </div>
+                    </div>
                     <button type="submit" class="text-white inline-flex w-max mt-4 items-center bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-primaryLight font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Sauvgarder
                     </button>
@@ -120,4 +141,29 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+   <script>
+      
+
+      var websiteLogoInput = document.getElementById('website-logo-input');
+      var websiteLogoPreview = document.getElementById('website-logo-preview');
+      websiteLogoInput.addEventListener('change', function (){
+         websiteLogoPreview.src = URL.createObjectURL(websiteLogoInput.files[0]);
+      });
+
+
+      var websiteFaviconInput = document.getElementById('website-favicon-input');
+      var websiteFaviconPreview = document.getElementById('website-favicon-preview');
+      websiteFaviconInput.addEventListener('change', function (){
+         websiteFaviconPreview.src = URL.createObjectURL(websiteFaviconInput.files[0]);
+      });
+
+      var websiteWatermarkInput = document.getElementById('website-watermark-input');
+      var websiteWatermarkPreview = document.getElementById('website-watermark-preview');
+      websiteWatermarkInput.addEventListener('change', function (){
+         websiteWatermarkPreview.src = URL.createObjectURL(websiteWatermarkInput.files[0]);
+      });
+   </script>
 @endsection
