@@ -6,7 +6,7 @@
             </svg>
         </button>
         <a class="block w-full" href="{{route('vehicule', $vehicule->id)}}">
-            <img class="w-full h-full object-cover" src="{{$vehicule->getImage()}}" alt="">
+            <img class="w-full h-full object-cover" data-src="{{$vehicule->getImage()}}" alt="{{$vehicule->getName()}}">
         </a>
     </div>
     <div class="bg-white pb-4 pt-2 px-4">

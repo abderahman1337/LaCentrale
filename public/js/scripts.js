@@ -42,3 +42,44 @@ favoriteBtns.forEach(function (btn){
         xhr.send('vehicule='+vehicule);
     });
 });
+
+
+function hasScroll() {
+    const bodyHasScroll = document.body.scrollHeight > window.innerHeight;
+    const documentElementHasScroll = document.documentElement.scrollHeight > window.innerHeight;
+    return bodyHasScroll || documentElementHasScroll;
+ }
+let isScrolled = false;
+let lazyLoadingsImages = document.querySelectorAll('img[data-src]');
+if(hasScroll()){
+   document.addEventListener("DOMContentLoaded", function() {
+    window.addEventListener('scroll', function (){
+        let images = lazyLoadingsImages;
+        if(images.length > 0){
+           images.forEach(img => {
+              if(img.dataset.src){
+                  if (img.getBoundingClientRect().top < window.innerHeight && img.getBoundingClientRect().bottom >= 0) {
+                     img.src = img.dataset.src;
+                     img.removeAttribute('data-src');
+                  }
+              }
+           });
+           isScrolled = true;
+        }
+     });
+   });
+
+}else{
+    window.addEventListener('DOMContentLoaded', function (){
+        if(lazyLoadingsImages.length > 0){
+            lazyLoadingsImages.forEach(img => {
+               if(img.dataset.src){
+                  if(!isScrolled){
+                     img.src = img.dataset.src;
+                     img.removeAttribute('data-src');
+                  }
+               }
+            });
+         }
+    });
+}

@@ -207,7 +207,7 @@
 <div class="mt-20 mb-20">
     <div class="grid sm:grid-cols-2 grid-cols-1">
         <div>
-            <img src="https://lacentrale.fr/static/fragment-landing/media/usp_index.5b88ddd5.png" alt="">
+            <img data-src="{{asset('images/sections/section-2-image.png')}}" alt="Notre expertise à votre service">
         </div>
         <div>
             <h2 class="lg:text-3xl text-xl font-bold">Notre expertise à votre service</h2>

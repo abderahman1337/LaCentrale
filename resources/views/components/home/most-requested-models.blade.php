@@ -8,7 +8,7 @@
             @foreach ($models as $vehiculeModel)
             <a href="#">
                 <div class="h-[92px]">
-                    <img class="mx-auto max-h-[92px] max-w-[170px]" src="{{$vehiculeModel->getImage()}}" alt="">
+                    <img class="mx-auto max-h-[92px] max-w-[170px]" data-src="{{$vehiculeModel->getImage()}}" alt="{{$vehiculeModel->brand->name}} {{$vehiculeModel->name}}">
                 </div>
                 <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group -mt-6">
                     <div class="py-6">
