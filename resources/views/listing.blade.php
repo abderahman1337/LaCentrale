@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                     <ul id="brands-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="brand-search-dropdown">
-                                        @foreach (App\Models\Brand::latest()->get() as $brand)
+                                        @foreach ($brands as $brand)
                                         <li data-name="{{$brand->name}}">
                                             <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                             <input id="brand-{{$brand->id}}"  @checked(request('brands') != '' && in_array($brand->id, explode(',', request('brands')))) type="checkbox" data-name="{{$brand->name}}" value="{{$brand->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
                                     <ul id="models-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="model-search-dropdown">
-                                        @foreach (App\Models\Serie::latest()->get() as $type)
+                                        @foreach ($models as $type)
                                         <li data-name="{{$type->name}}">
                                             <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                             <input id="model-{{$type->id}}" @checked(request('models') != '' && in_array($type->id, explode(',', request('models')))) type="checkbox" data-name="{{$type->name}}" value="{{$type->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
@@ -345,7 +345,7 @@
     </div>
     <div class="w-full">
         <div class="flex flex-col lg:flex-row items-center gap-3 justify-between">
-            <h2 class="font-semibold text-base">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->count(), 0 , ' ', ' ')}}</span> annonces </h2>
+            <h2 class="font-semibold text-base">Voiture occasion - <span class="text-indigo-500">{{number_format($vehicules->total(), 0 , ' ', ' ')}}</span> annonces </h2>
             <div class="relative">
                 <button id="orderByDropdownButton" data-dropdown-toggle="orderByDropdown" data-dropdown-trigger="hover" class="inline-flex items-center" type="button">
                     <span class="font-semibold">Trier par : </span>
@@ -402,6 +402,11 @@
                     <x-home.vehicule-show-box :vehicule="$vehicule"></x-home.vehicule-show-box>
                 @endforeach
             </div>
+            @if ($vehicules->hasPages())
+                <div class="mt-4">
+                    {{$vehicules->links()}}
+                </div>
+            @endif
         </div>
     </div>
 </div>

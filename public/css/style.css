@@ -4,3 +4,7 @@
     --primary-light : #eba83556;
     --primary-text : #fff;
 }
+
+.slick-prev:before, .slick-next:before {
+    color: black !important;
+}

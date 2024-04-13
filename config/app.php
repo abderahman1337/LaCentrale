@@ -154,6 +154,8 @@ return [
     |
     */
 
+    'cache_remember' => 86400,
+
     'providers' => [
 
         /*
@@ -183,6 +185,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Livewire\LivewireServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -212,7 +215,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
-        'Settings' => App\Helpers\Settings::class
+        'Settings' => App\Helpers\Settings::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ])->toArray(),
 
 ];

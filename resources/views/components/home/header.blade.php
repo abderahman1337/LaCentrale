@@ -1,5 +1,5 @@
 @php
-    $headerMenu = Cache::remember('header-menu-items', 60*60*24, function () {
+    $headerMenu = Cache::remember('header-menu', config('app.cache_remember'), function () {
         return App\Models\MenuItem::whereHas('menu', function($q){$q->where('location', 'header');})->orderBy('order')->get();
     });
 @endphp

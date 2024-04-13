@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Vehicule extends Model
 {
@@ -75,8 +76,8 @@ class Vehicule extends Model
     public function generation(){
         return $this->belongsTo(Generation::class);
     }
-    public function options(){
-        return $this->hasMany(VehiculeOption::class, 'vehicule_id');
+    public function options() : BelongsToMany{
+        return $this->belongsToMany(Option::class, 'vehicule_options', 'vehicule_id', 'option_id');
     }
     public function images(){
         return $this->hasMany(VehiculeImage::class);

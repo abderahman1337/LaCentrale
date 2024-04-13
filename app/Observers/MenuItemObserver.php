@@ -12,7 +12,8 @@ class MenuItemObserver
      */
     public function created(MenuItem $menuItem): void
     {
-        Cache::forget('header-menu-items');
+        Cache::forget('header-menu');
+        Cache::forget('footer-menus');
     }
 
     /**
@@ -20,7 +21,8 @@ class MenuItemObserver
      */
     public function updated(MenuItem $menuItem): void
     {
-        Cache::forget('header-menu-items');
+        Cache::forget('header-menu');
+        Cache::forget('footer-menus');
     }
 
     /**
@@ -28,7 +30,8 @@ class MenuItemObserver
      */
     public function deleted(MenuItem $menuItem): void
     {
-        Cache::forget('header-menu-items');
+        Cache::forget('header-menu');
+        Cache::forget('footer-menus');
     }
 
     /**
@@ -36,7 +39,8 @@ class MenuItemObserver
      */
     public function restored(MenuItem $menuItem): void
     {
-        //
+        Cache::forget('header-menu');
+        Cache::forget('footer-menus');
     }
 
     /**
@@ -44,6 +48,7 @@ class MenuItemObserver
      */
     public function forceDeleted(MenuItem $menuItem): void
     {
-        //
+        Cache::forget('header-menu');
+        Cache::forget('footer-menus');
     }
 }

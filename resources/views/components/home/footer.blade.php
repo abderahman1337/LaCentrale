@@ -1,10 +1,13 @@
 @php
     $website_social_links = Settings::website_social_links();
+    $footerMenus = Cache::remember('footer-menus', config('app.cache_remember'), function () {
+        return App\Models\Menu::where('location', 'footer')->with('items')->get();
+    });
 @endphp
 <div>
     <footer class="bg-primary py-10 px-10">
         <div class="container mx-auto text-white flex lg:flex-row flex-col items-start justify-between gap-4">
-            @foreach (App\Models\Menu::where('location', 'footer')->with('items')->get() as $menu)
+            @foreach ($footerMenus as $menu)
             <div>
                 <h2 class="mb-3 font-bold">{{$menu->name}}</h2>
                 <ul class="text-sm flex flex-col gap-3 font-normal">

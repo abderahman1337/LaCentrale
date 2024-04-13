@@ -51,8 +51,7 @@ class BrandController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name' => 'required',
-            'logo' => 'required',
+            'name' => 'required'
         ]);
         $brand = Brand::findOrFail($id);
         $brand->update([

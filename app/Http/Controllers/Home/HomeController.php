@@ -10,24 +10,40 @@ use App\Models\Color;
 use App\Models\Energy;
 use App\Models\Option;
 use App\Models\Serie;
-use App\Models\Type;
 use App\Models\Vehicule;
 use App\Models\VehiculeVisit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public $cacheRememerTime;
+    public function __construct()
+    {
+        $this->cacheRememerTime = config('app.cache_remember');
+    }
     public function welcome(){
-        $brands = Brand::latest()->get();
-        $models = Serie::whereNotNull('image')->latest()->with('brand:id,name')->limit(5)->get();
-        $energies = Energy::latest()->get();
-        $categories = Category::latest()->get();
+        $brands = Cache::remember('latest-brands', $this->cacheRememerTime, function (){
+            return Brand::latest()->get();
+        });
+        $models = Cache::remember('latest-series', $this->cacheRememerTime, function (){
+            return Serie::latest()->with('brand:id,name')->get();
+        });
+        
+        $energies = Cache::remember('latest-energies', $this->cacheRememerTime, function (){
+            return Energy::latest()->get();
+        });
+        $categories = Cache::remember('latest-categories', $this->cacheRememerTime, function (){
+            return Category::withCount('vehicules')->latest()->get();
+        });
         $vehicules = Vehicule::latest()->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
-        }, 'color:id,name', 'energy:id,name'])->limit(5)->get();
-        $vehiculesCount = Vehicule::count();
+        }, 'color:id,name', 'energy:id,name'])->limit(10)->get();
+        $vehiculesCount = Cache::remember('vehicules-count', $this->cacheRememerTime, function (){
+            return Vehicule::count();
+        });
         return view('welcome', [
             'brands' => $brands,
             'models' => $models,
@@ -39,21 +55,26 @@ class HomeController extends Controller
     }
 
     public function vehicule(Request $request,$id){
-        $vehicule = Vehicule::with(['options' => function ($q){
-            $q->select('option_id', 'vehicule_id')->with(['option' => function ($q){
+        $vehicule = Cache::remember('vehicule-'.$id, $this->cacheRememerTime, function () use($id){
+            return Vehicule::with(['options' => function ($q){
                 $q->with('equipment:id,name');
-            }]);
-        }, 'auctions' => function ($q){
-            $q->with('user:id,name')->orderBy('price', 'desc');
-        }])->findOrFail($id);
-        $similarVehicules = Vehicule::where('id', '!=', $id)->when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){
-            $q->whereHas('serie', function ($q) use($vehicule){
-                $q->where('brand_id', $vehicule->serie->brand_id);
-            });
-        }, function ($q) use($vehicule){
-            $q->where('serie_id', $vehicule->serie_id);
-        })->latest()->limit(5)->get();
-
+            }, 'auctions' => function ($q){
+                $q->with('user:id,name')->orderBy('price', 'desc');
+            }, 'images', 'serie' => function ($q){
+                $q->select('id', 'name', 'brand_id')->with('brand:id,name');
+            }, 'generation:id,name', 'energy:id,name', 'color:id,name','user:id,name,phone'])->findOrFail($id);
+        });
+        $similarVehicules = Cache::remember('similar-vehicules-'.$id, $this->cacheRememerTime, function () use($id, $vehicule){
+            return Vehicule::where('id', '!=', $id)->when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){
+                $q->whereHas('serie', function ($q) use($vehicule){
+                    $q->where('brand_id', $vehicule->serie->brand_id);
+                });
+            }, function ($q) use($vehicule){
+                $q->where('serie_id', $vehicule->serie_id);
+            })->with(['serie' => function ($q){
+                $q->select('id', 'name', 'brand_id')->with('brand:id,name');
+            },'generation:id,name', 'energy:id,name', 'color:id,name', 'user:id,name'])->latest()->limit(5)->get();
+        });
         $agent = new \Jenssegers\Agent\Agent;
 
         if(filter_var($request->getClientIp(), FILTER_VALIDATE_IP) && !$agent->isRobot()){
@@ -175,17 +196,29 @@ class HomeController extends Controller
             $q->orderBy('id', 'desc');
         })->with(['serie' => function ($q){
             $q->select('id', 'name', 'brand_id')->with('brand:id,name');
-        }, 'color:id,name', 'energy:id,name'])
-        ->get();
+        }, 'color:id,name', 'energy:id,name', 'generation:id,name'])
+        ->paginate(21);
 
         
 
-        $brands = Brand::latest()->get();
-        $models = Serie::latest()->with('brand:id,name')->get();
-        $energies = Energy::latest()->get();
-        $colors = Color::latest()->get();
-        $options = Option::latest()->get();
-        $categories = Category::latest()->get();
+        $brands = Cache::remember('latest-brands', $this->cacheRememerTime, function (){
+            return Brand::latest()->get();
+        });
+        $models = Cache::remember('latest-series', $this->cacheRememerTime, function (){
+            return Serie::latest()->with('brand:id,name')->get();
+        });
+        $energies = Cache::remember('latest-energies', $this->cacheRememerTime, function (){
+            return Energy::latest()->get();
+        });
+        $colors = Cache::remember('latest-colors', $this->cacheRememerTime, function (){
+            return Color::latest()->get();
+        });
+        $options = Cache::remember('latest-options', $this->cacheRememerTime, function (){
+            return Option::latest()->get();
+        });
+        $categories = Cache::remember('latest-categories', $this->cacheRememerTime, function (){
+            return Category::latest()->get();
+        });
         return view('listing', [
             'vehicules' => $vehicules,
             'brands' => $brands,

@@ -110,11 +110,7 @@ class VehiculeController extends Controller
         ]);
         if($vehicule){
             if($request->options){
-                foreach($request->options as $option){
-                    $vehicule->options()->create([
-                        'option_id' => $option
-                    ]);
-                }
+                $vehicule->options()->attach($request->options);
             }
             if($request->hasFile('images')){
                 foreach($request->file('images') as $key => $image){
@@ -214,14 +210,8 @@ class VehiculeController extends Controller
             'gearbox' => $request->gearbox,
             'status' => $request->status,
         ]);
-        $vehicule->options()->delete();
-        if($request->options){
-            foreach($request->options as $option){
-                $vehicule->options()->create([
-                    'option_id' => $option
-                ]);
-            }
-        }
+        $vehicule->options()->sync($request->options);
+        
         if($request->hasFile('images')){
             foreach($request->file('images') as $key => $image){
                 $extension = $image->getClientOriginalExtension();

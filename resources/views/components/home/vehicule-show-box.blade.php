@@ -17,15 +17,15 @@
         </a>
         <span class="text-sm text-gray-600">{{$vehicule->description}}</span>
         <div class="mt-2">
-            <ul class="text-xs flex items-center text-ellipsis divide-x">
+            <ul class="text-xs flex items-center divide-x">
                 @if ($vehicule->year)
-                <li class="whitespace-nowrap pr-2">{{$vehicule->year}}</li>
+                <li class="pr-2 whitespace-nowrap">{{$vehicule->year}}</li>
                 @endif
                 @if ($vehicule->mileage)
-                <li class="whitespace-nowrap px-2">{{number_format($vehicule->mileage, 0, ' ', ' ')}} km</li>
+                <li class="px-2 whitespace-nowrap">{{number_format($vehicule->mileage, 0, ' ', ' ')}} km</li>
                 @endif
                 @if ($vehicule->gearbox)
-                <li class="whitespace-nowrap px-2">
+                <li class="px-2 whitespace-nowrap">
                     @if ($vehicule->gearbox == 'automatic')
                     Automatique
                     @elseif($vehicule->gearbox == 'manual')
@@ -34,7 +34,7 @@
                 </li>
                 @endif
                 @if ($vehicule->energy)
-                <li class="whitespace-nowrap px-2">{{$vehicule->energy->name}}</li>
+                <li class="px-2 whitespace-nowrap text-ellipsis overflow-hidden">{{$vehicule->energy->name}}</li>
                 @endif
             </ul>
         </div>

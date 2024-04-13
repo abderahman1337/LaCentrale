@@ -1,5 +1,10 @@
 @extends('layouts.home')
 @section('title', 'Voiture occasion - Annonce auto')
+@section('head')
+<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('css/slick.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('css/slick-theme.css')}}"/>
+@endsection
 @section('content')
 <div class="bg-[#f6f6f9] rounded-[32px] lg:ltr:pr-0 lg:p-8 p-4 lg:rtl:pl-0 min-h-[480px]" id="home-search-box">
     <div class="grid sm:grid-cols-3 gap-10">
@@ -31,7 +36,7 @@
                                         </div>
                                     </div>
                                     <ul id="brands-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="brand-search-dropdown">
-                                        @foreach (App\Models\Brand::latest()->get() as $brand)
+                                        @foreach ($brands as $brand)
                                         <li data-name="{{$brand->name}}">
                                             <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                             <input id="brand-{{$brand->id}}" type="checkbox" data-name="{{$brand->name}}" value="{{$brand->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
@@ -64,7 +69,7 @@
                                         </div>
                                     </div>
                                     <ul id="models-list" class="max-h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="model-search-dropdown">
-                                        @foreach (App\Models\Serie::latest()->get() as $type)
+                                        @foreach ($models as $type)
                                         <li data-name="{{$type->name}}">
                                             <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                             <input id="model-{{$type->id}}" type="checkbox" data-name="{{$type->name}}" value="{{$type->id}}" class="w-4 h-4 text-indigo-600 bg-white border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
@@ -182,15 +187,15 @@
 <div class="mt-20 mb-20">
     <h2 class="lg:text-3xl text-xl font-bold">Trouvez votre voiture d'occasion idéale</h2>
     <div class="mt-6">
-        <div class="grid lg:grid-cols-5 grid-cols-2 overflow-x-auto relative gap-4">
-            @foreach (App\Models\Category::withCount('vehicules')->latest()->limit(5)->orderBy('vehicules_count', 'desc')->get() as $category)
-            <a href="{{route('vehicules.listing', ['categories' => $category->id])}}">
+        <div class="category-items-slider" dir="ltr">
+            @foreach ($categories as $category)
+            <a class="block mx-2" href="{{route('vehicules.listing', ['categories' => $category->id])}}">
                 <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2 group">
                     {{-- <div class="py-6">
                         <img src="https://lacentrale.fr/static/fragment-landing/media/reco_petits_prix.5a9b23a2.png" alt="">
                     </div> --}}
                     <div class="bg-[#f6f6f9] py-4 px-4">
-                        <h3 class="font-semibold group-hover:underline">{{$category->name}}</h3>
+                        <h3 class="font-semibold group-hover:underline whitespace-nowrap text-ellipsis overflow-hidden">{{$category->name}}</h3>
                         <span class="text-sm font-medium text-gray-600">{{number_format($category->vehicules_count, 0, ' ', ' ')}} véhicules</span>
                     </div>
                 </div>
@@ -237,10 +242,13 @@
         </div>
     </div>
 </div>
-<div class="mb-20"><x-home.most-popular-brands :brands="$brands"></x-home.most-popular-brands></div>
-<div class="mb-20"><x-home.most-requested-models :models="$models"></x-home.most-requested-models></div>
+<div class="mb-20"><x-home.most-popular-brands :brands="$brands->take(6)"></x-home.most-popular-brands></div>
+<div class="mb-20"><x-home.most-requested-models :models="$models->take(5)"></x-home.most-requested-models></div>
 <div class="mt-20 mb-20">
-    <h2 class="lg:text-3xl text-xl font-bold">Notre sélection de véhicules d’occasion</h2>
+    <div class="flex items-center justify-between">
+        <h2 class="lg:text-3xl text-xl font-bold">Notre sélection de véhicules d’occasion</h2>
+        <a class="text-blue-500 underline font-semibold whitespace-nowrap" href="{{route('vehicules.listing')}}">Voir tout</a>
+    </div>
     <div class="mt-6">
         <div class="grid lg:grid-cols-4 grid-cols-1 overflow-x-auto relative gap-4">
             @foreach ($vehicules as $vehicule)
@@ -258,7 +266,7 @@
                 <h2 class="font-semibold">Marques de véhicules d'occasion</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        @foreach (App\Models\Brand::latest()->limit(8)->get() as $brand)
+                        @foreach ($brands->take(8) as $brand)
                         <li><a class="underline" href="{{route('vehicules.listing', ['brands' => $brand->id])}}">{{$brand->name}}</a></li>
                         @endforeach
                     </ul>
@@ -268,7 +276,7 @@
                 <h2 class="font-semibold">Modèles de véhicules d'occasion</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        @foreach (App\Models\Serie::latest()->with('brand')->limit(8)->get() as $serie)
+                        @foreach ($models->take(8) as $serie)
                         <li><a class="underline" href="{{route('vehicules.listing', ['models' => $serie->id])}}">{{$serie->brand->name}} {{$serie->name}}</a></li>
                         @endforeach
                     </ul>
@@ -278,7 +286,7 @@
                 <h2 class="font-semibold">Catégories de véhicules</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        @foreach (App\Models\Category::latest()->limit(8)->get() as $category)
+                        @foreach ($categories->take(8) as $category)
                         <li><a class="underline" href="{{route('vehicules.listing', ['categories' => $category->id])}}">{{$category->name}}</a></li>
                         @endforeach
                     </ul>
@@ -288,7 +296,7 @@
                 <h2 class="font-semibold">Énergie des véhicules</h2>
                 <div class="mt-3">
                     <ul class="text-sm font-semibold">
-                        @foreach (App\Models\Energy::latest()->limit(8)->get() as $energy)
+                        @foreach ($energies->take(8) as $energy)
                         <li><a class="underline" href="{{route('vehicules.listing', ['energies' => $energy->id])}}">{{$energy->name}}</a></li>
                         @endforeach
                     </ul>
@@ -299,6 +307,7 @@
 </div>
 @endsection
 @section('scripts')
+<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
 <script>
     let brandList = document.getElementById('brands-list'); 
     let modelList = document.getElementById('models-list'); 
@@ -370,6 +379,46 @@
             energiesSearchDropdownBtn.querySelector('input').value = names.join(', ');
             energiesSearchDropdownBtn.querySelector('#selected-energies-list').value = ids.join(',');
         });
+    });
+
+
+    $('.category-items-slider').slick({
+        infinite: true,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        centerMode: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+            },
+            {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+            },
+            {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay : false
+            }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
     });
 </script>
 @endsection

@@ -393,64 +393,18 @@
             <div class="mt-6">
                 <div class="flex flex-col gap-4">
                     @php
-                        $groupedByEquipments = $vehicule->options->groupBy('option.equipment.name');
+                        $groupedByEquipments = $vehicule->options->groupBy('equipment.name');
                     @endphp
                     @foreach ($groupedByEquipments->sortByDesc->count() as $equipemnt => $options)
                     <div class="">
                         <h2 class="text-base font-semibold">{{$equipemnt}}</h2>
                         <div class="mt-4 flex flex-col gap-2">
                             @foreach ($options as $option)
-                            <li><span class="text-gray-700">{{$option->option->name}}</span></li>
+                            <li><span class="text-gray-700">{{$option->name}}</span></li>
                             @endforeach
                         </div>
                     </div>
                     @endforeach
-                    {{-- <div>
-                        <div>
-                            <h2 class="text-xl font-semibold">Extérieur et Chassis</h2>
-                            <div class="mt-4 flex flex-col gap-2">
-                                <div><span class="text-gray-700">Roue de secours</span></div>
-                                <div><span class="text-gray-700">Capucine</span></div>
-                                <div><span class="text-gray-700">Porte latérale</span></div>
-                                <div><span class="text-gray-700">Rétroviseurs électriques et dégivrants</span></div>
-
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <h2 class="text-xl font-semibold">Intérieur</h2>
-                            <div class="mt-4 flex flex-col gap-2">
-                                <div><span class="text-gray-700">Ordinateur de bord</span></div>
-                                <div><span class="text-gray-700">Bluetooth</span></div>
-                                <div><span class="text-gray-700">Régulateur de vitesse</span></div>
-                                <div><span class="text-gray-700">Climatisation</span></div>
-                                <div><span class="text-gray-700">Fermeture électrique</span></div>
-                                <div><span class="text-gray-700">Prise 12V</span></div>
-                                <div><span class="text-gray-700">Prise audio USB</span></div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <h2 class="text-xl font-semibold">Sécurité</h2>
-                            <div class="mt-4 flex flex-col gap-2">
-                                <div><span class="text-gray-700">AFU</span></div>
-                                <div><span class="text-gray-700">Airbag frontal</span></div>
-                                <div><span class="text-gray-700">ASR</span></div>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <h2 class="text-xl font-semibold">Autre</h2>
-                            <div class="mt-4 flex flex-col gap-2">
-                                <div><span class="text-gray-700">3 places</span></div>
-                                <div><span class="text-gray-700">Banquette 2 places</span></div>
-                                <div><span class="text-gray-700">Banquette passager AV 2 places</span></div>
-                                <div><span class="text-gray-700">Cloison de séparation tôlée</span></div>
-                                <div><span class="text-gray-700">Cloison pleine tôlée</span></div>
-                                <div><span class="text-gray-700">Eclairage automatique de la cabine par push</span></div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
