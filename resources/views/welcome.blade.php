@@ -180,7 +180,7 @@
         </div>
         <div class="justify-end w-full lg:col-span-2 lg:ltr:pl-20 lg:rtl:pr-20">
             <h2 class="sm:text-4xl text-xl mb-6 font-bold">Nous sélectionnons les meilleures voitures d'occasion pour vous.</h2>
-            <img class="ltr:ml-auto rtl:mr-auto" src="https://www.lacentrale.fr/fragments/recherche-fragment-front/media/claims_landing_search_desktop.a7bae0d0.png" alt="">
+            <img class="ltr:ml-auto rtl:mr-auto" src="{{asset('images/sections/header-image.png')}}" alt="">
         </div>
     </div>
 </div>
