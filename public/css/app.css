@@ -1451,6 +1451,9 @@ input:checked + .toggle-bg {
 .hidden {
   display: none;
 }
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
 .h-10 {
   height: 2.5rem;
 }
@@ -3274,11 +3277,17 @@ input.input-control:is(.dark *) {
 .disabled\:opacity-25:disabled {
   opacity: 0.25;
 }
+.group:hover .group-hover\:flex {
+  display: flex;
+}
 .group:hover .group-hover\:bg-\[\#ffffffd2\] {
   background-color: #ffffffd2;
 }
 .group:hover .group-hover\:bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
+}
+.group:hover .group-hover\:bg-\[\#00000024\] {
+  background-color: #00000024;
 }
 .group:hover .group-hover\:underline {
   text-decoration-line: underline;

@@ -332,6 +332,23 @@
                 </div>
             </div>
             <div class="lg:w-[35%] w-full flex flex-col gap-4">
+                <div class="bg-white rounded-md shadow-md w-full p-6">
+                    <h2 class="mb-6 font-semibold text-xl">Image principale</h2>
+                    <div class="">
+                        <div class="w-full bg-gray-100 overflow-hidden rounded-lg border border-[#e5e5e5] aspect-square relative group transition-all" >
+                           <div id="blank-image-container" class="hidden group-hover:flex absolute inset-0 items-center justify-center group-hover:bg-[#00000024]" style="z-index: 10">
+                              <button onclick="document.getElementById('upload-vehicule-image-input').click()" id="upload-vehicule-image" type="button" class="bg-primary text-primaryText py-2.5 px-5 rounded-lg text-sm font-medium opacity-100" style="z-index: 99">{{__("Upload Image")}}</button>
+                           </div>
+                           <img id="thumbnail-preview" class="w-full h-full object-cover" src="https://toppng.com/uploads/preview/car-11549451816vveciq8qbi.png" alt="" srcset="">
+                        </div>
+                        <input class="hidden" id="upload-vehicule-image-input" type="file" name="thumbnail">
+                        @error('thumbnail')
+                           <div class="mt-2">
+                              <p class="error-msg">{{$message}}</p>
+                           </div>
+                        @enderror
+                     </div>
+                </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Images</h2>
                     <div>
@@ -490,6 +507,13 @@
             categorySearchDropdownBtn.querySelector('input').value = selected.dataset.name;
             categorySearchDropdownBtn.querySelector('#selected-category').value = selected.value;
         });
+    });
+
+
+    var vehiculeThumbnailInput = document.getElementById('upload-vehicule-image-input');
+    var vehiculeThumbnailPreview = document.getElementById('thumbnail-preview');
+    vehiculeThumbnailInput.addEventListener('change', function (){
+        vehiculeThumbnailPreview.src = URL.createObjectURL(vehiculeThumbnailInput.files[0]);
     });
     </script>
 @endsection

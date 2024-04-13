@@ -231,6 +231,22 @@ class VehiculeController extends Controller
             if($request->options){
                 $vehicule->options()->attach($request->options);
             }
+            if($request->hasFile('thumbnail')){
+                $image = $request->file('thumbnail');
+                $extension = $image->getClientOriginalExtension();
+                $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
+                $image->move($this->vehiculesSavePath, $imageName);
+                $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
+                $imageEdit->place(
+                    Settings::website_watermark(),
+                    'center', 
+                    10, 
+                    10,
+                    25
+                );
+                $imageEdit->save();
+                $vehicule->update(['image' => $imageName]);
+            }
             if($request->hasFile('images')){
                 foreach($request->file('images') as $key => $image){
                     $extension = $image->getClientOriginalExtension();
@@ -248,9 +264,7 @@ class VehiculeController extends Controller
                         25
                     );
                     $imageEdit->save();
-                    if($vehicule->image == null){
-                        $vehicule->update(['image' => $imageName]);
-                    }
+                    
                 }
             }
         }
@@ -330,7 +344,28 @@ class VehiculeController extends Controller
             'status' => $request->status,
         ]);
         $vehicule->options()->sync($request->options);
-        
+        if($request->hasFile('thumbnail')){
+            $oldImage = $vehicule->image;
+            $image = $request->file('thumbnail');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
+            $image->move($this->vehiculesSavePath, $imageName);
+            $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
+            $imageEdit->place(
+                'images/static/watermark.png',
+                'center', 
+                10, 
+                10,
+                25
+            );
+            $imageEdit->save();
+            $vehicule->update(['image' => $imageName]);
+            if($oldImage != null){
+                if(file_exists(public_path('images/vehicules/'.$oldImage))){
+                    unlink(public_path('images/vehicules/'.$oldImage));
+                }
+            }
+        }
         if($request->hasFile('images')){
             foreach($request->file('images') as $key => $image){
                 $extension = $image->getClientOriginalExtension();
@@ -341,16 +376,14 @@ class VehiculeController extends Controller
                 ]);
                 $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
                 $imageEdit->place(
-                    Settings::website_watermark(),
+                    'images/static/watermark.png',
                     'center', 
                     10, 
                     10,
                     25
                 );
                 $imageEdit->save();
-                if($vehicule->image == null){
-                    $vehicule->update(['image' => $imageName]);
-                }
+                
             }
         }
         if(!$vehicule->user){

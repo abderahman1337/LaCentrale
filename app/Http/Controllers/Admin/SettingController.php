@@ -100,7 +100,7 @@ class SettingController extends Controller
             $oldWatermarkName = $oldWatermark?$oldWatermark->value:null;
             $watermark = $request->file('website_watermark');
             $extension = $watermark->getClientOriginalExtension();
-            $watermarkName = rand(100000,999999). '.' .$extension;
+            $watermarkName = 'watermark.png';
             $watermark->move($savePath, $watermarkName);
             Setting::updateOrCreate([
                 'key' => 'website_watermark'
