@@ -238,7 +238,7 @@ class VehiculeController extends Controller
                 $image->move($this->vehiculesSavePath, $imageName);
                 $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
                 $imageEdit->place(
-                    Settings::website_watermark(),
+                    'images/static/watermark.png',
                     'center', 
                     10, 
                     10,
@@ -257,7 +257,7 @@ class VehiculeController extends Controller
                     ]);
                     $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
                     $imageEdit->place(
-                        Settings::website_watermark(),
+                        'images/static/watermark.png',
                         'center', 
                         10, 
                         10,
