@@ -202,7 +202,7 @@
                                 @foreach ($colors->filter(function($q){return $q->exterior == true;}) as $color)
                                 <div>
                                     <div class="flex items-center rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input id="color-{{$color->id}}" @checked(in_array($color->id, explode(',', request('colors')))) type="checkbox" value="{{$color->id}}" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
+                                    <input id="color-{{$color->id}}" @checked(in_array($color->id, explode(',', request('exterior_colors')))) type="checkbox" value="{{$color->id}}" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="color-{{$color->id}}" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{$color->name}}</label>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
                                 @foreach ($colors->filter(function($q){return $q->interior == true;}) as $color)
                                 <div>
                                     <div class="flex items-center rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input id="color-{{$color->id}}" @checked(in_array($color->id, explode(',', request('colors')))) type="checkbox" value="{{$color->id}}" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
+                                    <input id="color-{{$color->id}}" @checked(in_array($color->id, explode(',', request('interior_colors')))) type="checkbox" value="{{$color->id}}" class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-0 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="color-{{$color->id}}" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{$color->name}}</label>
                                     </div>
                                 </div>

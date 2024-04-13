@@ -183,61 +183,19 @@
     <h2 class="lg:text-3xl text-xl font-bold">Trouvez votre voiture d'occasion idéale</h2>
     <div class="mt-6">
         <div class="grid lg:grid-cols-5 grid-cols-2 overflow-x-auto relative gap-4">
-            <a href="http://">
-                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
-                    <div class="py-6">
+            @foreach (App\Models\Category::withCount('vehicules')->latest()->limit(5)->orderBy('vehicules_count', 'desc')->get() as $category)
+            <a href="{{route('vehicules.listing', ['categories' => $category->id])}}">
+                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2 group">
+                    {{-- <div class="py-6">
                         <img src="https://lacentrale.fr/static/fragment-landing/media/reco_petits_prix.5a9b23a2.png" alt="">
-                    </div>
+                    </div> --}}
                     <div class="bg-[#f6f6f9] py-4 px-4">
-                        <h3 class="font-semibold">Petites prix</h3>
-                        <span class="text-sm font-medium text-gray-600">32 946 véhicules</span>
+                        <h3 class="font-semibold group-hover:underline">{{$category->name}}</h3>
+                        <span class="text-sm font-medium text-gray-600">{{number_format($category->vehicules_count, 0, ' ', ' ')}} véhicules</span>
                     </div>
                 </div>
             </a>
-            <a href="http://">
-                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
-                    <div class="py-6">
-                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_familiales.f1ab8b21.png" alt="">
-                    </div>
-                    <div class="bg-[#f6f6f9] py-4 px-4">
-                        <h3 class="font-semibold">Familiales</h3>
-                        <span class="text-sm font-medium text-gray-600">35 794 véhicules</span>
-                    </div>
-                </div>
-            </a>
-            <a href="http://">
-                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
-                    <div class="py-6">
-                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_electriques.968e39af.png" alt="">
-                    </div>
-                    <div class="bg-[#f6f6f9] py-4 px-4">
-                        <h3 class="font-semibold">Électriques</h3>
-                        <span class="text-sm font-medium text-gray-600">26 219 véhicules</span>
-                    </div>
-                </div>
-            </a>
-            <a href="http://">
-                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
-                    <div class="py-6">
-                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_hybrides.d570f580.png" alt="">
-                    </div>
-                    <div class="bg-[#f6f6f9] py-4 px-4">
-                        <h3 class="font-semibold">Hybrides</h3>
-                        <span class="text-sm font-medium text-gray-600">42 542 véhicules</span>
-                    </div>
-                </div>
-            </a>
-            <a href="http://">
-                <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-2">
-                    <div class="py-6">
-                        <img src="https://lacentrale.fr/static/fragment-landing/media/reco_automatiques.581d042f.png" alt="">
-                    </div>
-                    <div class="bg-[#f6f6f9] py-4 px-4">
-                        <h3 class="font-semibold">Automatiques</h3>
-                        <span class="text-sm font-medium text-gray-600">190 644 véhicules</span>
-                    </div>
-                </div>
-            </a>
+            @endforeach
         </div>
     </div>
 </div>

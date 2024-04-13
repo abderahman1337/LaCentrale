@@ -118,6 +118,9 @@ class HomeController extends Controller
         ->when($request->categories, function ($q) use($request){
             $q->whereIn('category_id', explode(',', $request->categories));
         })
+        ->when($request->categories, function ($q) use($request){
+            $q->whereIn('category_id', explode(',', $request->categories));
+        })
         ->when($request->min_year, function ($q) use($request){
             $q->where('year', '>=', $request->min_year);
         })
