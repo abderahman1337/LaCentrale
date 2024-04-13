@@ -83,8 +83,8 @@
                 </form>
             </div>
         </div>
-        <div class="mt-4">
-            <div class="bg-white flex justify-center flex-col rounded-md shadow-md overflow-hidden p-6 max-w-xl">
+        <div class="mt-4 grid sm:grid-cols-2 grid-cols-1 gap-5">
+            <div class="bg-white flex flex-col rounded-md shadow-md overflow-hidden p-6">
                 <h2 class="mb-6 font-semibold text-xl">Logo & Favicon</h2>
                 <form action="{{route('admin.settings.brand.images.update')}}" enctype="multipart/form-data" method="post">
                     @csrf
@@ -128,10 +128,41 @@
                                             </svg>                                        
                                         </button>
                                     </div>
-                                   <img id="website-watermark-preview" class="mx-auto" src="{{Settings::website_watermark()}}" alt=""/>
+                                   <img id="website-watermark-preview" class="mx-auto" src="{{asset(Settings::website_watermark())}}" alt=""/>
                                 </div>
                                 <input class="hidden" type="file" name="website_watermark" id="website-watermark-input">
                             </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="text-white inline-flex w-max mt-4 items-center bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-primaryLight font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Sauvgarder
+                    </button>
+                </form>
+            </div>
+            <div class="bg-white flex flex-col rounded-md shadow-md overflow-hidden p-6">
+                <h2 class="mb-6 font-semibold text-xl">SMTP</h2>
+                <form action="{{route('admin.settings.smtp.update')}}" method="post">
+                    @csrf
+                    <div class="flex flex-col gap-4">
+                        <div class="relative">
+                            <input type="text" name="mail_encryption" id="smtp-mail-encryption" value="{{config('mail.mailers.smtp.encryption')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <label for="smtp-mail-encryption" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Encryption</label>
+                        </div>
+                        <div class="relative">
+                            <input type="text" name="mail_host" id="smtp-mail-host" value="{{config('mail.mailers.smtp.host')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <label for="smtp-mail-host" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Host</label>
+                        </div>
+                        <div class="relative">
+                            <input type="number" name="mail_port" id="smtp-mail-port" value="{{config('mail.mailers.smtp.port')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <label for="smtp-mail-port" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Port</label>
+                        </div>
+                        <div class="relative">
+                            <input type="text" name="mail_username" id="smtp-mail-username" value="{{config('mail.mailers.smtp.username')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <label for="smtp-mail-username" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Username</label>
+                        </div>
+                        <div class="relative">
+                            <input type="password" name="mail_password" id="smtp-mail-password" value="{{config('mail.mailers.smtp.password')}}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <label for="smtp-mail-password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
                         </div>
                     </div>
                     <button type="submit" class="text-white inline-flex w-max mt-4 items-center bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-primaryLight font-medium rounded-lg text-sm px-5 py-2.5 text-center">

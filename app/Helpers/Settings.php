@@ -42,7 +42,7 @@ class Settings{
         if(Settings::get('website_watermark') != null){
            return asset('images/website/'.Settings::get('website_watermark'));
         }else{
-            return asset('images/website/static/watermark.png');
+            return asset('images/static/watermark.png');
         }
     }
 

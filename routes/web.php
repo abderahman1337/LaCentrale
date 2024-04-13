@@ -85,6 +85,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
         Route::get('/', 'general')->name('general');
         Route::post('/general', 'updateGeneral')->name('general.update');
         Route::post('/social', 'updateSocial')->name('social.update');
+        Route::post('/smtp', 'updateSmtp')->name('smtp.update');
         Route::post('/brand/images', 'updateBrandImages')->name('brand.images.update');
     });
 });

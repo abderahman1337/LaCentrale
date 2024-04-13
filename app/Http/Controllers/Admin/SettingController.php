@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Environment;
 use App\Helpers\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
@@ -113,6 +114,19 @@ class SettingController extends Controller
                 }
             }
         }
+        return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));
+    }
+
+    public function updateSmtp(Request $request){
+        $request->validate([
+            'mail_port' => 'required|integer',
+            'mail_encryption' => 'required|in:tls,ssl'
+        ]);
+        Environment::set('MAIL_ENCRYPTION', $request->mail_encryption);
+        Environment::set('MAIL_HOST', $request->mail_host);
+        Environment::set('MAIL_PORT', $request->mail_port);
+        Environment::set('MAIL_USERNAME', $request->mail_username);
+        Environment::set('MAIL_PASSWORD', $request->mail_password);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));
     }
 }
