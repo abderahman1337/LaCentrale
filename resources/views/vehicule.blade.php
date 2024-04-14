@@ -408,13 +408,19 @@
                 </div>
             </div>
         </div>
+        @if ($vehicule->user && $vehicule->user->location != null)
         <hr>
         <div class="mt-6 mb-6">
             <h2 class="text-xl font-semibold">Localisation</h2>
             <div class="mt-6">
-                <iframe title="Localisation" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2740.838340719001!2d0.36411777665595546!3d46.610197656250655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fdbc3829722f67%3A0xb518042a2b26ac56!2sSam%20Automobile!5e0!3m2!1sen!2sdz!4v1712930816487!5m2!1sen!2sdz"  class="w-full" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                {{-- <iframe title="Localisation" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2740.838340719001!2d0.36411777665595546!3d46.610197656250655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fdbc3829722f67%3A0xb518042a2b26ac56!2sSam%20Automobile!5e0!3m2!1sen!2sdz!4v1712930816487!5m2!1sen!2sdz"  class="w-full" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
+                <iframe  title="Localisation"
+                class="w-full" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q={{$vehicule->user->location}}&hl=fr&z=14&amp;output=embed">
+                </iframe>
             </div>
         </div>
+        @endif
+        
     </div>
     <div class="lg:w-[35%] w-full">
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">

@@ -64,7 +64,7 @@ class HomeController extends Controller
                 $q->with('user:id,name')->orderBy('price', 'desc');
             }, 'images', 'serie' => function ($q){
                 $q->select('id', 'name', 'brand_id')->with('brand:id,name');
-            }, 'generation:id,name', 'energy:id,name', 'color:id,name','user:id,name,phone'])->findOrFail($id);
+            }, 'generation:id,name', 'energy:id,name', 'color:id,name','user:id,name,phone,location'])->findOrFail($id);
         });
         $similarVehicules = Cache::remember('similar-vehicules-'.$id, $this->cacheRememerTime, function () use($id, $vehicule){
             return Vehicule::where('id', '!=', $id)->when($vehicule->serie && $vehicule->serie->brand, function ($q) use($vehicule){

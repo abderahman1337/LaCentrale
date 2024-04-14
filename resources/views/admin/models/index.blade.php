@@ -149,14 +149,14 @@
                             </td>
                             <td class="px-6 py-4">
                                 @if ($model->vehicules_count > 0)
-                                {{number_format($model->vehicules_count)}}
+                                <a href="{{route('admin.vehicules.index', ['serie' => $model->id])}}">{{number_format($model->vehicules_count)}}</a>
                                 @else
                                    Non 
                                 @endif
                             </td>
                             <td class="px-6 py-4">
                                 @if ($model->generations_count > 0)
-                                {{number_format($model->generations_count)}}
+                                <a href="{{route('admin.generations.index', ['serie' => $model->id])}}">{{number_format($model->generations_count)}}</a>
                                 @else
                                    Non 
                                 @endif

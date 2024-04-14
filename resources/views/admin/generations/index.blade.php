@@ -34,7 +34,7 @@
                                 <select id="serie" name="serie" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                                     <option selected="">Sélectionnez la modèle</option>
                                     @foreach ($series as $serie)
-                                    <option value="{{$serie->id}}" @selected(old('serie')==$serie->id)>{{$serie->name}}</option>
+                                    <option value="{{$serie->id}}" @selected(old('serie', request('serie'))==$serie->id)>{{$serie->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -111,7 +111,7 @@
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                        Modifier l'generation
+                                                        Modifier le génération
                                                     </h3>
                                                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="edit-generation-modal-{{$generation->id}}">
                                                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

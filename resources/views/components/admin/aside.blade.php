@@ -25,6 +25,15 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Modèles</span>
                 </a>
             </li>
+            <li class="{{request()->routeIs('admin.generations.*')?'active':''}}">
+                <a href="{{route('admin.generations.index')}}" class="group">
+                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v14M9 5v14M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+                    </svg>
+                      
+                    <span class="flex-1 ms-3 whitespace-nowrap">Générations</span>
+                </a>
+            </li>
             <li class="{{request()->routeIs('admin.categories.*')?'active':''}}">
                 <a href="{{route('admin.categories.index')}}" class="group">
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

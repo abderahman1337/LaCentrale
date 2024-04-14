@@ -11,6 +11,7 @@ use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Serie;
 use App\Models\Setting;
+use App\Models\User;
 use App\Models\Vehicule;
 use App\Observers\AuctionObserver;
 use App\Observers\CategoryObserver;
@@ -20,6 +21,7 @@ use App\Observers\GenerationObserver;
 use App\Observers\MenuItemObserver;
 use App\Observers\SerieObserver;
 use App\Observers\SettingObserver;
+use App\Observers\UserObserver;
 use App\Observers\VehiculeObserver;
 use Database\Seeders\ColorSeeder;
 use Illuminate\Auth\Events\Registered;
@@ -51,6 +53,7 @@ class EventServiceProvider extends ServiceProvider
         Color::class => [ColorObserver::class],
         Energy::class => [EnergyObserver::class],
         Category::class => [CategoryObserver::class],
+        User::class => [UserObserver::class],
     ];
 
     /**

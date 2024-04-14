@@ -146,4 +146,15 @@ class SettingController extends Controller
         file_put_contents($configFilePath, $phpCode);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));
     }
+
+    public function updateLocation(Request $request){
+        $request->validate([
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+        auth()->user()->update([
+            'location' => $request->latitude.','.$request->longitude
+        ]);
+        return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
+    }
 }
