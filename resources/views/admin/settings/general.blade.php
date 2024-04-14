@@ -30,7 +30,7 @@
             <div id="default-styled-tab-content">
                 <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <form action="{{route('admin.settings.general.update')}}" method="post">
+                        <form action="{{route('admin.settings.profile.update')}}" method="post">
                             @csrf
                             <h3 class="mb-6 text-xl font-semibold">Paramètres de profil et de compte</h3>
                             <div class="">
@@ -65,7 +65,7 @@
                                 Sauvgarder
                             </button>
                         </form>
-                        <form action="{{route('admin.settings.general.update')}}" method="post">
+                        <form action="{{route('admin.settings.password.update')}}" method="post">
                             @csrf
                             <h3 class="mb-6 text-xl font-semibold">Réinitialiser le mot de passe</h3>
                             <div class="">

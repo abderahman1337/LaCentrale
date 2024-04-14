@@ -84,6 +84,8 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function (){
         Route::get('/', 'general')->name('general');
         Route::post('/general', 'updateGeneral')->name('general.update');
+        Route::post('/profile', 'updateProfile')->name('profile.update');
+        Route::post('/password', 'updatePassword')->name('password.update');
         Route::post('/social', 'updateSocial')->name('social.update');
         Route::post('/smtp', 'updateSmtp')->name('smtp.update');
         Route::post('/backup', 'updateBackup')->name('backup.update');

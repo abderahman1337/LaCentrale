@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class SettingController extends Controller
 {
@@ -155,6 +156,34 @@ class SettingController extends Controller
         auth()->user()->update([
             'location' => $request->latitude.','.$request->longitude
         ]);
+        return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
+    }
+
+    public function updateProfile(Request $request){
+        $request->validate([
+            'username' => 'required|min:3|max:150',
+            'user_email' => 'email|required|unique:users,email,'.auth()->user()->id,
+            'user_phone' => 'required',
+        ]);
+        auth()->user()->update([
+            'name' => $request->username,
+            'email' => $request->user_email,
+            'phone' => $request->user_phone,
+            //'bio' => $request->bio
+        ]);
+        return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
+    }
+
+    public function updatePassword(Request $request){
+        $request->validate([
+            'current_password' => ['required','max:255', function ($attribute, $value, $fail) {
+                if (!Hash::check($value, auth()->user()->password)) {
+                    return $fail("Mot de passe actuel est incorrect");
+                }
+            }],
+            'new_password' => 'required|confirmed|min:8'
+        ]);
+        auth()->user()->update(['password' => Hash::make($request->new_password)]);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
     }
 }
