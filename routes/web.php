@@ -61,6 +61,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::resource('options', OptionController::class)->except(['create', 'show', 'edit']);
     Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
     Route::resource('generations', GenerationController::class)->except(['create', 'show', 'edit']);
+    Route::post('/vehicule/image/{id}/delete', [VehiculeController::class, 'imageDelete'])->name('vehicule.image.delete');
     Route::resource('vehicules', VehiculeController::class);
     Route::post('/menu/items/order/update', [MenuController::class, 'updateOrder'])->name('menu.items.order.update');
     Route::resource('/menus', MenuController::class);

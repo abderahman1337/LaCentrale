@@ -24,7 +24,7 @@ class PageController extends Controller
             $q->where("slug", $request->slug);
         })->with('author')
         ->withCount('visits')
-        ->simplePaginate();
+        ->paginate();
         return view('admin.pages.index', compact('pages'));
     }
 

@@ -20,10 +20,11 @@
 
     </head>
     <body class="font-sans bg-gray-100 antialiased">
-        <x-admin.navigation></x-admin.navigation>
         <x-admin.aside></x-admin.aside>
-        <div class="mt-14">
-            <div class="p-4 sm:ml-64">
+        <div class="">
+            <div class="sm:ml-64 relative">
+              <x-admin.navigation></x-admin.navigation>
+              <div class="p-4 mt-4">
                 @if(session()->has('success'))
                 <div id="success-alert" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">
                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -42,7 +43,8 @@
                   </div>
                 @endif
                 @yield('content')
-             </div>
+              </div>
+            </div>
         </div>
         @routes()
         @yield('top-scripts')

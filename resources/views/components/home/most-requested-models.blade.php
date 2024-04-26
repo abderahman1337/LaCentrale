@@ -7,9 +7,11 @@
         <div class="grid lg:grid-cols-5 grid-cols-2 gap-4 items-stretch">
             @foreach ($models as $vehiculeModel)
             <a href="#">
+                @if ($vehiculeModel->image != null)
                 <div class="h-[92px]">
                     <img class="mx-auto max-h-[92px] max-w-[170px]" data-src="{{$vehiculeModel->getImage()}}" alt="{{$vehiculeModel->brand->name}} {{$vehiculeModel->name}}">
                 </div>
+                @endif
                 <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group -mt-6">
                     <div class="py-6">
                         <div class="mt-2">

@@ -13,6 +13,8 @@ class AuctionController extends Controller
     {
         $auctions = Auction::when($request->vehicule, function ($q) use($request){
             $q->where('vehicule_id', $request->vehicule);
+        })->when($request->ad_id, function ($q) use($request){
+            $q->where('vehicule_id', $request->ad_id);
         })->latest()->paginate();
         return view('admin.auctions.index', [
             'auctions' => $auctions

@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="flex items-center justify-between">
-        <h2 class="lg:text-2xl text-xl font-bold">Les générations</h2>
+        <h2 class="lg:text-2xl text-xl font-bold">Les générations <span class="text-primary">({{$generations->total()}})</span></h2>
         <button data-modal-target="new-generation-modal" data-modal-toggle="new-generation-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Ajouter
         </button>
@@ -75,6 +75,9 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
+                                <div class="flex items-center">Marque</div>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">Modèle</div>
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -95,6 +98,9 @@
                     <tbody>
                         @foreach ($generations as $generation)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{$generation->serie->brand->name}}
+                            </th>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{$generation->serie->name}}
                             </th>

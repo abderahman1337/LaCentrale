@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="flex items-center justify-between">
-        <h2 class="lg:text-2xl text-xl font-bold">Les véhicules</h2>
+        <h2 class="lg:text-2xl text-xl font-bold">Les véhicules <span class="text-primary">({{$vehicules->total()}})</span></h2>
         <div class="flex items-center gap-2">
             <button type="button" x-data="" x-on:click="$dispatch('open-modal', 'filter-vehicules')" class="block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" type="button">
                 Filtre
@@ -376,6 +376,16 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
+                                    ID
+                                    <a href="{{route('admin.vehicules.index', ['order_by' => 'id', 'order_type' => request('order_type') == '' || request('order_type') == 'desc' ?'asc':'desc'])}}">
+                                        <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                <div class="flex items-center">
                                     Marque
                                     <a href="{{route('admin.vehicules.index', ['order_by' => 'name', 'order_type' => request('order_type') == '' || request('order_type') == 'desc' ?'asc':'desc'])}}">
                                         <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -451,6 +461,9 @@
                     <tbody>
                         @foreach ($vehicules as $vehicule)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4">
+                                #{{$vehicule->id}}
+                            </td>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @if ($vehicule->serie)
                                     @if ($vehicule->serie) {{$vehicule->serie->brand->name}} @endif {{$vehicule->serie->name}}

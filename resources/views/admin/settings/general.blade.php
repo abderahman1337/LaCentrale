@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div id="default-styled-tab-content">
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="p-4 rounded-lg bg-white dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <form action="{{route('admin.settings.profile.update')}}" method="post">
                             @csrf

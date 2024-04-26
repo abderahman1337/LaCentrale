@@ -2,8 +2,10 @@
 
 namespace App\Observers;
 
+use App\Mail\NewAuction;
 use App\Models\Auction;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
 
 class AuctionObserver
 {
@@ -12,7 +14,8 @@ class AuctionObserver
      */
     public function created(Auction $auction): void
     {
-        
+        Mail::to($auction->vehicule->user->email)->send(new NewAuction($auction));
+
     }
 
     /**

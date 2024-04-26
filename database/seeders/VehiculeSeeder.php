@@ -13,7 +13,7 @@ class VehiculeSeeder extends Seeder
      */
     public function run(): void
     {
-        Vehicule::insert([
+        /* Vehicule::insert([
             [
                 'image' => 'E112053353_STANDARD_0.jpg',
                 'type_id' => 2,
@@ -40,6 +40,6 @@ class VehiculeSeeder extends Seeder
                 'technical_control' => false,
                 'gearbox' => 'automatic',
             ]
-        ]);
+        ]); */
     }
 }

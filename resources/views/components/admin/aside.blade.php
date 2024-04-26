@@ -1,5 +1,10 @@
-<aside id="dashboard-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen lg:pt-16 pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+<aside id="dashboard-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-primary border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+    <div class="px-3 pt-3 mb-3">
+        <a href="{{route('admin.dashboard')}}" class="flex gap-2">
+            <span class="self-center text-xl font-extrabold sm:text-2xl whitespace-nowrap dark:text-white text-white">Tableau de bord</span>
+          </a>
+    </div>
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-primary dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li class="{{request()->routeIs('admin.dashboard')?'active':''}}">
                 <a href="{{route('admin.dashboard')}}" class="group">

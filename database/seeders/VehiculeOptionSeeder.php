@@ -13,7 +13,7 @@ class VehiculeOptionSeeder extends Seeder
      */
     public function run(): void
     {
-        VehiculeOption::insert([
+        /* VehiculeOption::insert([
             ['vehicule_id' => 1, 'option_id' => 1],
             ['vehicule_id' => 1, 'option_id' => 2],
             ['vehicule_id' => 1, 'option_id' => 3],
@@ -63,6 +63,6 @@ class VehiculeOptionSeeder extends Seeder
             ['vehicule_id' => 1, 'option_id' => 47],
             ['vehicule_id' => 1, 'option_id' => 48],
             ['vehicule_id' => 1, 'option_id' => 49],
-        ]);
+        ]); */
     }
 }

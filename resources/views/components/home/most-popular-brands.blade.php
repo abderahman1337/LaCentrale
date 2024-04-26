@@ -9,7 +9,9 @@
             <a href="#">
                 <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group">
                     <div class="py-4">
+                        @if ($vehiculeBrand->image != null)
                         <img class="mx-auto h-[44px] max-h-auto max-w-[64px]" data-src="{{$vehiculeBrand->getImage()}}" alt="{{$vehiculeBrand->name}}">
+                        @endif
                         <div class="mt-2">
                             <h3 class="font-semibold text-center group-hover:underline">{{$vehiculeBrand->name}}</h3>
                         </div>

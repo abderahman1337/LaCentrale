@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="flex items-center justify-between">
-        <h2 class="lg:text-2xl text-xl font-bold">Les modèles</h2>
+        <h2 class="lg:text-2xl text-xl font-bold">Les modèles <span class="text-primary">({{$models->total()}})</span></h2>
         <!-- New model -->
         <button data-modal-target="new-model-modal" data-modal-toggle="new-model-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Ajouter
@@ -99,7 +99,7 @@
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
                                     Modèle
-                                    <a href="{{route('admin.series.index', ['order_by' => 'models_count', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
+                                    <a href="{{route('admin.series.index', ['order_by' => 'name', 'order_type' => request('order_type') == ''?'asc':'desc'])}}">
                                         <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                                         </svg>

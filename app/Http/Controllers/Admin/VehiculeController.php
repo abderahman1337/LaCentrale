@@ -13,6 +13,7 @@ use App\Models\Vehicule;
 use App\Models\Equipment;
 use App\Models\Generation;
 use App\Models\Option;
+use App\Models\VehiculeImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
@@ -403,5 +404,20 @@ class VehiculeController extends Controller
         $vehicule->delete();
         return back()->with('success', 'Le véhicule a été supprimé avec succès');
 
+    }
+
+    public function imageDelete($id){
+        $image = VehiculeImage::find($id);
+        if($image){
+            if($image->name != null){
+                if(file_exists(public_path('images/vehicules/'.$image->name))){
+                    unlink(public_path('images/vehicules/'.$image->name));
+                }
+            }
+            $image->delete();
+        }
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
