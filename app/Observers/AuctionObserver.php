@@ -14,7 +14,7 @@ class AuctionObserver
      */
     public function created(Auction $auction): void
     {
-        Mail::to($auction->vehicule->user->email)->send(new NewAuction($auction));
+        
 
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Helpers\UserSystemInfoHelper;
 use App\Http\Controllers\Controller;
+use App\Mail\NewAuction;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
@@ -16,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -239,7 +241,7 @@ class HomeController extends Controller
             'phone' => 'required',
         ]);
         $vehicule = Vehicule::findOrFail($id);
-        $vehicule->auctions()->create([
+        $auction = $vehicule->auctions()->create([
             'user_id' => auth()->user()->id,
             'price' => $request->price
         ]);
@@ -248,6 +250,7 @@ class HomeController extends Controller
                 'phone' => $request->phone
             ]);
         }
+        Mail::to($auction->vehicule->user->email)->send(new NewAuction($auction));
         return back()->with('success', 'Votre offre a été enregistrée avec succès');
     }
 

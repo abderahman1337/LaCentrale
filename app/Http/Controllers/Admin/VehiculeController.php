@@ -187,14 +187,14 @@ class VehiculeController extends Controller
 
 
     public function store(Request $request){
-        $request->validate([
+        /* $request->validate([
             'serie' => 'required|integer|exists:series,id',
             'exterior_color' => 'required|integer|exists:colors,id',
             'energy' => 'required|integer|exists:energies,id',
             'price' => 'required|integer',
             'year' => 'nullable|integer',
             'mileage' => 'nullable|integer',
-        ]);
+        ]); */
         $vehicule = Vehicule::create([
             'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
