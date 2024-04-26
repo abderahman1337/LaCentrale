@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuctionController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EditorController;
 use App\Http\Controllers\Admin\EnergyController;
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     Route::resource('/menus', MenuController::class);
     Route::resource('/auctions', AuctionController::class);
     Route::resource('/pages', PageController::class);
+    Route::resource('/contacts', ContactController::class);
     Route::resource('/colors', ColorController::class)->except(['create', 'show', 'edit']);
     Route::resource('/energies', EnergyController::class)->except(['create', 'show', 'edit']);
 
@@ -81,7 +83,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
         Route::get('/clear-cache', 'cacheClear')->name('cache.clear');
     });
 });
-
+Route::post('/contact', [HomeController::class, 'contactStore'])->name('contact.store');
 Route::middleware('RateLimit')->group(function (){
     Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
     Route::get('/ad/{id}', [HomeController::class, 'vehicule'])->name('vehicule');

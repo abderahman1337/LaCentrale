@@ -8,6 +8,7 @@ use App\Mail\NewAuction;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\Contact;
 use App\Models\Energy;
 use App\Models\Option;
 use App\Models\Serie;
@@ -256,6 +257,27 @@ class HomeController extends Controller
 
     public function contact(){
         return view('contact');
+    }
+
+    public function contactStore(Request $request){
+        $previousContacts = Contact::where('ip_address', $request->getClientIp())->where('user_agent', $request->userAgent())->where('created_at' , '>=', Carbon::now()->subHours(1))->count();
+        if($previousContacts > 3){
+            return back()->with('info', 'Vous avez déjà envoyé des messages');
+        }
+        $request->validate([
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required'
+        ]);
+        Contact::create([
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'ip_address' => $request->getClientIp(),
+            'user_agent' => $request->userAgent(),
+            'user_id' => auth()->check()?auth()->user()->id:null
+        ]);
+        return back()->with('success', 'Votre message a été envoyée avec succès');
     }
 
     public function brands(){
