@@ -6,7 +6,7 @@
     <div class="mt-6">
         <div class="grid lg:grid-cols-5 grid-cols-2 gap-4 items-stretch">
             @foreach ($models as $vehiculeModel)
-            <a href="#">
+            <a class="block" href="#">
                 @if ($vehiculeModel->image != null)
                 <div class="h-[92px]">
                     <img class="mx-auto max-h-[92px] max-w-[170px]" data-src="{{$vehiculeModel->getImage()}}" alt="{{$vehiculeModel->brand->name}} {{$vehiculeModel->name}}">

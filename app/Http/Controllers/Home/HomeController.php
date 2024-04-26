@@ -262,4 +262,8 @@ class HomeController extends Controller
         $brands = Brand::orderBy('name')->get();
         return view('brands', compact('brands'));
     }
+    public function models(){
+        $models = Serie::with('brand')->orderBy('name')->get();
+        return view('models', compact('models'));
+    }
 }

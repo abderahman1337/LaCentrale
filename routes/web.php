@@ -42,6 +42,7 @@ Route::middleware('RateLimit')->group(function (){
     Route::get('/page/{slug}', [ControllersPageController::class, 'show'])->name('page');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/brands', [HomeController::class, 'brands'])->name('brands');
+    Route::get('/models', [HomeController::class, 'models'])->name('models');
 
 });
 

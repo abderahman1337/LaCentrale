@@ -6,7 +6,7 @@
     <div class="mt-6">
         <div class="grid lg:grid-cols-6 grid-cols-2 gap-4 items-stretch">
             @foreach ($brands as $vehiculeBrand)
-            <a href="#">
+            <a class="block" href="#">
                 <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group">
                     <div class="py-4">
                         @if ($vehiculeBrand->image != null)

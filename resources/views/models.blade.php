@@ -1,0 +1,26 @@
+@extends('layouts.home')
+@section('title', "Les Modèles")
+@section('content')
+<div class="mt-20 mb-20">
+    <div>
+        <div class="flex items-center justify-between">
+            <h2 class="lg:text-3xl text-xl font-bold">Les Modèles</h2>
+        </div>
+        <div class="mt-6">
+            <div class="grid lg:grid-cols-6 grid-cols-2 gap-4 items-stretch">
+                @foreach ($models as $model)
+                <a class="block" href="#">
+                    <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group">
+                        <div class="py-4">
+                            <div class="mt-2">
+                                <h3 class="font-semibold text-center group-hover:underline">{{$model->serie?$model->serie->name:''}} {{$model->name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
