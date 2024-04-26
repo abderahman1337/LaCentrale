@@ -6,6 +6,9 @@
                 <div class="flex items-center gap-2">
                     <div>
                         <div class="text-sm text-left">
+                            @if (auth()->check() && $auction->user_id == auth()->user()->id)
+                                {{$auction->user->name}}
+                            @else
                             @php
                             $name = $auction->user->name;
                             $length = strlen($name);
@@ -25,6 +28,7 @@
                                 echo $maskedName;
                             }
                             @endphp
+                            @endif
                         </div>
                         <div class="text-left"><span class="whitespace-nowrap font-semibold">{{number_format($auction->price, 0 , ' ', ' ')}} €</span></div>
                     </div>

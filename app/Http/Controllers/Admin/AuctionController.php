@@ -67,6 +67,15 @@ class AuctionController extends Controller
             'price' => $request->price,
             'status' => $request->status
         ]);
+        if($request->status == 'sold'){
+            $auction->vehicule->update([
+                'status' => 'sold'
+            ]);
+        }else if($request->status == 'in_progress'){
+            $auction->vehicule->update([
+                'status' => 'available'
+            ]);
+        }
         return back()->with('success', "l'enchère a été modifiée avec succès");
 
     }
