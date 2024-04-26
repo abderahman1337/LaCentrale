@@ -69,7 +69,7 @@
                 @endif
             </div>
             <div class="flex items-center justify-center w-full">
-                <p class="text-xs">Copyright ® {{ $websiteName }} - Tous droits réservés</p>
+                <p class="text-xs">Copyright ® {{ $websiteName }} 2024 - Tous droits réservés</p>
             </div>
         </div>
     </footer>

@@ -158,7 +158,7 @@
                                 @if ($model->generations_count > 0)
                                 <a href="{{route('admin.generations.index', ['serie' => $model->id])}}">{{number_format($model->generations_count)}}</a>
                                 @else
-                                   Non 
+                                <a class="text-blue-600 font-semibold" href="{{route('admin.generations.index', ['serie' => $model->id])}}">Ajouter</a> 
                                 @endif
                             </td>
                             <td class="px-6 py-4 flex gap-2 items-center justify-end">
