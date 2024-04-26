@@ -9,11 +9,11 @@
         <div class="mt-6">
             <div class="grid lg:grid-cols-6 grid-cols-2 gap-4 items-stretch">
                 @foreach ($models as $model)
-                <a class="block" href="#">
-                    <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group">
+                <a class="block bg-white rounded-[20px] shadow-md overflow-hidden group" href="{{route('vehicules.listing', ['models' => $model->id])}}">
+                    <div class="flex justify-center flex-col">
                         <div class="py-4">
                             <div class="mt-2">
-                                <h3 class="font-semibold text-center group-hover:underline">{{$model->serie?$model->serie->name:''}} {{$model->name}}</h3>
+                                <h3 class="font-semibold text-center group-hover:underline">{{$model->brand?$model->brand->name:''}} {{$model->name}}</h3>
                             </div>
                         </div>
                     </div>
