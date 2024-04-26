@@ -257,4 +257,9 @@ class HomeController extends Controller
     public function contact(){
         return view('contact');
     }
+
+    public function brands(){
+        $brands = Brand::orderBy('name')->get();
+        return view('brands', compact('brands'));
+    }
 }

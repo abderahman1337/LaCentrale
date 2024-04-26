@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-center justify-between">
         <h2 class="lg:text-3xl text-xl font-bold">Les marques les plus populaires</h2>
-        <a class="text-blue-500 underline font-semibold whitespace-nowrap" href="#">Voir tout</a>
+        <a class="text-blue-500 underline font-semibold whitespace-nowrap" href="{{route('brands')}}">Voir tout</a>
     </div>
     <div class="mt-6">
         <div class="grid lg:grid-cols-6 grid-cols-2 gap-4 items-stretch">
