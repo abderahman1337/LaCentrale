@@ -10,6 +10,11 @@
                 <x-home.vehicule-show-box :vehicule="$vehicule"></x-home.vehicule-show-box>
             @endforeach
         </div>
+        @if ($vehicules->hasPages())
+            <div class="mt-4">
+                {{$vehicules->links()}}
+            </div>
+        @endif
         @else
         <div>
             Aucune enchères disponible

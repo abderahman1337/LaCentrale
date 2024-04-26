@@ -36,26 +36,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('RateLimit')->group(function (){
-    Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-    Route::get('/ad/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
-    Route::post('/ad/{id}/auction', [HomeController::class, 'auction'])->name('vehicule.auction');
-    Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
-    Route::get('/page/{slug}', [ControllersPageController::class, 'show'])->name('page');
-    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-    Route::get('/brands', [HomeController::class, 'brands'])->name('brands');
-    Route::get('/models', [HomeController::class, 'models'])->name('models');
 
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('favorite', [FavoriteController::class, 'index'])->name('favorite.list');
-    Route::get('auctions', [ControllersAuctionController::class, 'index'])->name('auctions.list');
-    Route::post('favorite', [FavoriteController::class, 'store'])->name('favorite.store');
-});
 
 Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
@@ -101,5 +82,26 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
     });
 });
 
+Route::middleware('RateLimit')->group(function (){
+    Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+    Route::get('/ad/{id}', [HomeController::class, 'vehicule'])->name('vehicule');
+    Route::post('/ad/{id}/auction', [HomeController::class, 'auction'])->name('vehicule.auction');
+    Route::get('/listing', [HomeController::class, 'listing'])->name('vehicules.listing');
+    Route::get('/page/{slug}', [ControllersPageController::class, 'show'])->name('page');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::get('/brands', [HomeController::class, 'brands'])->name('brands');
+    Route::get('/models', [HomeController::class, 'models'])->name('models');
 
-require __DIR__.'/auth.php';
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('favorite', [FavoriteController::class, 'index'])->name('favorite.list');
+        Route::get('auctions', [ControllersAuctionController::class, 'index'])->name('auctions.list');
+        Route::post('favorite', [FavoriteController::class, 'store'])->name('favorite.store');
+    });
+    
+    require __DIR__.'/auth.php';
+});
+
+
