@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\SerieController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\VehiculeController;
+use App\Http\Controllers\AuctionController as ControllersAuctionController;
+use App\Http\Controllers\AuctionsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\PageController as ControllersPageController;
@@ -51,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('favorite', [FavoriteController::class, 'index'])->name('favorite.list');
+    Route::get('auctions', [ControllersAuctionController::class, 'index'])->name('auctions.list');
     Route::post('favorite', [FavoriteController::class, 'store'])->name('favorite.store');
 });
 

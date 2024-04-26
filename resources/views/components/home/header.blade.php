@@ -65,6 +65,9 @@
                             <x-dropdown-link :href="route('favorite.list')">
                                 Favoris
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('auctions.list')">
+                                Mes enchères
+                            </x-dropdown-link>
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

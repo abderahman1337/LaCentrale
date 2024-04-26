@@ -12,7 +12,7 @@ class GenerationController extends Controller
 
     public function index(Request $request){
         $generations = Generation::latest()->with('serie')->paginate();
-        $series = Serie::latest()->get();
+        $series = Serie::orderBy('name')->get();
         return view('admin.generations.index', [
             'generations' => $generations,
             'series' => $series
