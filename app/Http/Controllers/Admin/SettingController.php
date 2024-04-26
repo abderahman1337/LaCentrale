@@ -7,6 +7,7 @@ use App\Helpers\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -185,5 +186,10 @@ class SettingController extends Controller
         ]);
         auth()->user()->update(['password' => Hash::make($request->new_password)]);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
+    }
+
+    public function cacheClear(){
+        Artisan::call('cache:clear');
+        return back()->with('success', __("le cache a été vidé avec succès"));  
     }
 }

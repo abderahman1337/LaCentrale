@@ -42,11 +42,17 @@
                                 @endforeach
                             </ul>
                         </div>
+                        @error('model')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="w-full relative mt-4 hidden">
                         <select name="generation" id="vehicule-generation" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="">Générations</option>
                         </select>
+                        @error('generation')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="w-full relative mt-4">
                         <button id="category-search-dropdown" data-dropdown-toggle="categories-dropdown" data-dropdown-placement="bottom" class="text-gray-600 border bg-transparent focus:ring-1 focus:outline-none focus:ring-indigo-300 w-full rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center justify-between" type="button">
@@ -79,6 +85,9 @@
                                 @endforeach
                             </ul>
                         </div>
+                        @error('category')
+                            <div class="error-msg">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="mt-4">
                         <div class="relative">

@@ -189,7 +189,7 @@ class VehiculeController extends Controller
     public function store(Request $request){
         $request->validate([
             'serie' => 'required|integer|exists:series,id',
-            'color' => 'required|integer|exists:colors,id',
+            'exterior_color' => 'required|integer|exists:colors,id',
             'energy' => 'required|integer|exists:energies,id',
             'price' => 'required|integer',
             'year' => 'nullable|integer',
