@@ -17,11 +17,41 @@
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <script src="{{asset('js/app.js')}}" defer></script>
+        <link rel="stylesheet" type="text/css" href="{{asset('/libs/toastr/toastr.min.css')}}">
+        <script type="text/javascript" src="{{asset('/libs/toastr/toastr.min.js')}}"></script>
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        </script>
         @yield('head')
     </head>
     <body class="font-sans antialiased">
         <x-home.header></x-home.header>
         <div class="container lg:px-0 px-2 mx-auto">
+            @if (session()->has('success'))
+            <script>toastr.success("{{session()->get('success')}}");</script>
+            @elseif(session()->has('error'))
+            <script>toastr.error("{{session()->get('error')}}");</script>
+            @elseif(session()->has('warning'))
+            <script>toastr.warning("{{session()->get('warning')}}");</script>
+            @elseif(session()->has('info'))
+            <script>toastr.info("{{session()->get('info')}}");</script>
+            @endif
             @yield('content')
         </div>
         <x-home.footer></x-home.footer>
