@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <script src="{{asset('js/app.js')}}" defer></script>
+        <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('/libs/toastr/toastr.min.css')}}">
         <script type="text/javascript" src="{{asset('/libs/toastr/toastr.min.js')}}"></script>
         <script>
