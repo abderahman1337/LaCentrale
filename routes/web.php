@@ -92,6 +92,7 @@ Route::middleware(['auth', 'CheckRole:admin'])->name('admin.')->prefix('admin')-
         Route::post('/backup', 'updateBackup')->name('backup.update');
         Route::post('/location', 'updateLocation')->name('location.update');
         Route::post('/brand/images', 'updateBrandImages')->name('brand.images.update');
+        Route::get('/clear-cache', 'cacheClear')->name('cache.clear');
     });
 });
 

@@ -25,6 +25,9 @@
                     <li role="presentation">
                         <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="location-styled-tab" data-tabs-target="#location-tab" type="button" role="tab" aria-controls="location" aria-selected="false">Localisation</button>
                     </li>
+                    <li role="presentation">
+                        <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="tools-styled-tab" data-tabs-target="#tools-tab" type="button" role="tab" aria-controls="tools" aria-selected="false">Outils</button>
+                    </li>
                 </ul>
             </div>
             <div id="default-styled-tab-content">
@@ -394,6 +397,13 @@
                         </div>
                         <button type="submit" class="text-white inline-flex w-max mt-4 items-center bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-primaryLight font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Sauvgarder
+                        </button>
+                    </form>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="tools-tab" role="tabpanel" aria-labelledby="tools-tab">
+                    <form action="{{route('admin.settings.cache.clear')}}" method="get">
+                        <button type="submit" class="text-white inline-flex w-max items-center bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Vider le cache
                         </button>
                     </form>
                 </div>
