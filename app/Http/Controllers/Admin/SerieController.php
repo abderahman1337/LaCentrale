@@ -34,10 +34,10 @@ class SerieController extends Controller
         ]);
     }
     public function store(Request $request){
-        //dd($request->all());
         $request->validate([
             'name' => 'required',
-            'brand' => 'required|integer|exists:brands,id'
+            'brand' => 'required|integer|exists:brands,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $model = Serie::create([
             'name' => $request->name,
@@ -46,7 +46,6 @@ class SerieController extends Controller
         if($model){
             if($request->hasFile('image')){
                 $image = $request->file('image');
-                //$imageName = $image->getClientOriginalName();
                 $extension = $image->getClientOriginalExtension();
                 $imageUniqueName = $model->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
                 $image->move($this->modelsImagesSavePath, $imageUniqueName);
@@ -59,7 +58,8 @@ class SerieController extends Controller
     public function update(Request $request, string $id){
         $request->validate([
             'name' => 'required',
-            'brand' => 'required|integer|exists:brands,id'
+            'brand' => 'required|integer|exists:brands,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $model = Serie::findOrFail($id);
         $model->update([
@@ -69,7 +69,6 @@ class SerieController extends Controller
         if($request->hasFile('image')){
             $oldImage = $model->image;
             $image = $request->file('image');
-            //$imageName = $image->getClientOriginalName();
             $extension = $image->getClientOriginalExtension();
             $imageUniqueName = $model->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
             $image->move($this->modelsImagesSavePath, $imageUniqueName);
@@ -82,7 +81,10 @@ class SerieController extends Controller
     }
 
     public function destroy(string $id){
-        $model = Serie::findOrFail($id);
+        $model = Serie::withCount('vehicules')->findOrFail($id);
+        if($model->vehicules_count > 0){
+            return back()->with('error', "il y a des véhicules qui utilisent cette modèle");
+        }
         $model->delete();
         return back()->with('success', 'La modèle a été supprimée avec succès');
     }

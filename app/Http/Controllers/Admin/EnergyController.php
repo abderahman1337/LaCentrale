@@ -20,7 +20,7 @@ class EnergyController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required|max:255'
+            'name' => 'required|max:255|unique:energies,name'
         ]);
         Energy::create([
             'name' => $request->name
@@ -30,7 +30,7 @@ class EnergyController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name' => 'required|max:255'
+            'name' => 'required|max:255|unique:energies,name,id,'.$id
         ]);
         $energy = Energy::findOrFail($id);
         $energy->update([
@@ -41,7 +41,10 @@ class EnergyController extends Controller
 
 
     public function destroy(string $id){
-        $energy = Energy::findOrFail($id);
+        $energy = Energy::withCount('vehicules')->findOrFail($id);
+        if($energy->vehicules_count > 0){
+            return back()->with('error', "il y a des véhicules qui utilisent cette énergie");
+        }
         $energy->delete();
         return back()->with('success', "L'énergie a été supprimée avec succès");
     }

@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request){
         $options = Option::when($request->equipment, function ($q) use($request){
             $q->where('equipment_id', $request->equipment);
@@ -27,12 +25,10 @@ class OptionController extends Controller
         ]);
     }
 
-
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
-            'name' => 'required',
-            'equipment' => 'required|integer',
+            'name' => 'required|max:255|unique:options,name',
+            'equipment' => 'required|integer|exists:equipemnts,id',
         ]);
 
         Option::create([
@@ -42,11 +38,10 @@ class OptionController extends Controller
         return back()->with('success', "L'option a été ajoutée avec succès");
     }
 
-
     public function update(Request $request, string $id){
         $request->validate([
-            'name' => 'required',
-            'equipment' => 'required|integer',
+            'name' => 'required|max:255|unique:options,name,id,'.$id,
+            'equipment' => 'required|integer|exists:equipemnts,id',
         ]);
         $option = Option::findOrFail($id);
         $option->update([
@@ -55,10 +50,8 @@ class OptionController extends Controller
         ]);
         return back()->with('success', "L'option a été modifiée avec succès");
     }
-
  
-    public function destroy(string $id)
-    {
+    public function destroy(string $id){
         $option = Option::findOrFail($id);
         $option->delete();
         return back()->with('success', "L'option a été supprimée avec succès");

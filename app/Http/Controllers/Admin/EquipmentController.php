@@ -20,7 +20,7 @@ class EquipmentController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|max:255|unique:equipments,name'
         ]);
         Equipment::create([
             'name' => $request->name
@@ -30,7 +30,7 @@ class EquipmentController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|max:255|unique:equipments,name,id,'.$id
         ]);
         $equipment = Equipment::findOrFail($id);
         $equipment->update([

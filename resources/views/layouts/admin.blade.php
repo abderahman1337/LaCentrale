@@ -45,7 +45,7 @@
         <div class="">
             <div class="sm:ml-64 relative">
               <x-admin.navigation></x-admin.navigation>
-              <div class="p-4 mt-4">
+              <div class="p-4 mt-2">
                 @if (session()->has('success'))
                   <script>toastr.success("{{session()->get('success')}}");</script>
                 @elseif(session()->has('error'))

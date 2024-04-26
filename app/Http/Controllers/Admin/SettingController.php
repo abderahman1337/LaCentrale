@@ -170,7 +170,6 @@ class SettingController extends Controller
             'name' => $request->username,
             'email' => $request->user_email,
             'phone' => $request->user_phone,
-            //'bio' => $request->bio
         ]);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
     }
@@ -182,9 +181,9 @@ class SettingController extends Controller
                     return $fail("Mot de passe actuel est incorrect");
                 }
             }],
-            'new_password' => 'required|confirmed|min:8'
+            'password' => 'required|confirmed|min:8'
         ]);
-        auth()->user()->update(['password' => Hash::make($request->new_password)]);
+        auth()->user()->update(['password' => Hash::make($request->password)]);
         return back()->with('success', __("Les paramètres ont été mis à jour avec succès"));  
     }
 

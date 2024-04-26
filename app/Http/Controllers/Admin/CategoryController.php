@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request){
         $categories = Category::when($request->order_by, function ($q) use($request){
             $q->orderBy($request->order_by, $request->order_type);
@@ -24,7 +22,7 @@ class CategoryController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required|max:255'
+            'name' => 'required|unique:categories,name|max:255'
         ]);
         Category::create([
             'name' => $request->name
@@ -34,7 +32,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name' => 'required|max:255'
+            'name' => 'required|max:255|unique:categories,name,id'.$id
         ]);
         $category = Category::findOrFail($id);
         $category->update([
@@ -43,9 +41,6 @@ class CategoryController extends Controller
         return back()->with('success', "La catégorie a été modifiée avec succès");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id){
         $category = Category::findOrFail($id);
         $category->delete();

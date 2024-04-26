@@ -30,8 +30,8 @@ class BrandController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'name' => 'required',
-            'logo' => 'required',
+            'name' => 'required|unique:brands,name',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $brand = Brand::create([
             'name' => $request->name
@@ -39,7 +39,6 @@ class BrandController extends Controller
         if($brand){
             if($request->hasFile('logo')){
                 $logo = $request->file('logo');
-                //$logoName = $logo->getClientOriginalName();
                 $extension = $logo->getClientOriginalExtension();
                 $logoUniqueName = $brand->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
                 $logo->move($this->brandsLogosSavePath, $logoUniqueName);
@@ -51,7 +50,8 @@ class BrandController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|unique:brands,name,id,'.$id,
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $brand = Brand::findOrFail($id);
         $brand->update([
@@ -72,7 +72,10 @@ class BrandController extends Controller
     }
 
     public function destroy(string $id){
-        $brand = Brand::findOrFail($id);
+        $brand = Brand::withCount('series')->findOrFail($id);
+        if($brand->series_count > 0){
+            return back()->with('error', "La marque a des modèles, vous devez d'abord supprimer ses modèles");
+        }
         $brand->delete();
         return back()->with('success', 'La marque a été supprimée avec succès');
     }

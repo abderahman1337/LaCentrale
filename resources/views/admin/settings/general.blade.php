@@ -6,7 +6,7 @@
         <h2 class="lg:text-2xl text-xl font-bold">Paramètres</h2>
         <div class="bg-white rounded-md shadow-md mt-6">
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                <ul class="flex flex-nowrap -mb-px text-sm font-medium text-center overflow-x-auto" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+                <ul class="flex flex-nowrap -mb-px text-sm font-medium text-center overflow-x-auto" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-primary hover:text-primary dark:text-primaryHover dark:hover:text-primaryHover border-primary dark:border-primaryHover" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
                     <li class="me-2" role="presentation">
                         <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-tab" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profil</button>
                     </li>
@@ -31,7 +31,7 @@
                 </ul>
             </div>
             <div id="default-styled-tab-content">
-                <div class="p-4 rounded-lg bg-white dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <form action="{{route('admin.settings.profile.update')}}" method="post">
                             @csrf
@@ -73,7 +73,7 @@
                             <h3 class="mb-6 text-xl font-semibold">Réinitialiser le mot de passe</h3>
                             <div class="">
                                 <div class="relative">
-                                    <input type="text" name="current_password" id="current-password" value="" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="password" name="current_password" id="current-password" value="" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="current-password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Mot de passe actuel</label>
                                 </div>
                                 @error('current_password')
@@ -82,7 +82,7 @@
                             </div>
                             <div class="mt-4">
                                 <div class="relative">
-                                    <input type="text" name="password" id="new-password" value="" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="password" name="password" id="new-password" value="" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="new-password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nouveau mot de passe</label>
                                 </div>
                                 @error('password')
@@ -91,7 +91,7 @@
                             </div>
                             <div class="mt-4">
                                 <div class="relative">
-                                    <input type="text" name="password_confirmation" id="new-password-confirmation" value="" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="password" name="password_confirmation" id="new-password-confirmation" value="" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="new-password-confirmation" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Confirmez le mot de passe</label>
                                 </div>
                                 @error('password_confirmation')
@@ -106,7 +106,7 @@
                     </div>
                     
                 </div>
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="general-tab" role="tabpanel" aria-labelledby="general-tab">
+                <div class="hidden p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="general-tab" role="tabpanel" aria-labelledby="general-tab">
                     <h3 class="mb-6 text-xl font-semibold">Paramètres généraux du site Web</h3>
                     <div class="flex flex-col gap-6">
                         <form class="bg-white border p-6 rounded" action="{{route('admin.settings.general.update')}}" method="post">
@@ -223,7 +223,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="social-tab" role="tabpanel" aria-labelledby="social-tab">
+                <div class="hidden p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="social-tab" role="tabpanel" aria-labelledby="social-tab">
                     <form action="{{route('admin.settings.social.update')}}" method="post">
                         <h3 class="mb-6 text-xl font-semibold">Liens vers les réseaux sociaux</h3>
                         @csrf
@@ -277,7 +277,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="smtp-tab" role="tabpanel" aria-labelledby="smtp-tab">
+                <div class="hidden p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="smtp-tab" role="tabpanel" aria-labelledby="smtp-tab">
                     <h3 class="mb-6 text-xl font-semibold">Paramètres Smtp pour l'envoi d'e-mails</h3>
                     <form action="{{route('admin.settings.smtp.update')}}" method="post">
                         @csrf
@@ -333,7 +333,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="backup-tab" role="tabpanel" aria-labelledby="backup-tab">
+                <div class="hidden p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="backup-tab" role="tabpanel" aria-labelledby="backup-tab">
                     <h3 class="mb-6 text-xl font-semibold">Sauvegarder la base de données sur un autre serveur</h3>
                     <form action="{{route('admin.settings.backup.update')}}" method="post">
                         @csrf
@@ -371,7 +371,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="location-tab" role="tabpanel" aria-labelledby="location-tab">
+                <div class="hidden p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="location-tab" role="tabpanel" aria-labelledby="location-tab">
                     <h3 class="mb-6 text-xl font-semibold">Localisation de vos véhicules</h3>
                     <form action="{{route('admin.settings.location.update')}}" method="post">
                         @csrf
@@ -400,7 +400,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="hidden p-4 rounded-lg bg-white dark:bg-gray-800" id="tools-tab" role="tabpanel" aria-labelledby="tools-tab">
+                <div class="hidden p-4 pt-2 rounded-lg bg-white dark:bg-gray-800" id="tools-tab" role="tabpanel" aria-labelledby="tools-tab">
                     <form action="{{route('admin.settings.cache.clear')}}" method="get">
                         <button type="submit" class="text-white inline-flex w-max items-center bg-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Vider le cache
