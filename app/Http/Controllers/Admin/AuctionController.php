@@ -63,16 +63,17 @@ class AuctionController extends Controller
             'price' => 'required|integer'
         ]);
         $auction = Auction::findOrFail($id);
+        $vehicule = $auction->vehicule;
         $auction->update([
             'price' => $request->price,
             'status' => $request->status
         ]);
         if($request->status == 'sold'){
-            $auction->vehicule->update([
+            $vehicule->update([
                 'status' => 'sold'
             ]);
         }else if($request->status == 'in_progress'){
-            $auction->vehicule->update([
+            $vehicule->update([
                 'status' => 'available'
             ]);
         }

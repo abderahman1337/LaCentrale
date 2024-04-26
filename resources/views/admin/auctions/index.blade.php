@@ -169,14 +169,20 @@
                                                     <div class="flex flex-col gap-4 mb-4">
                                                         <div class="">
                                                             <label for="price-{{$auction->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prix</label>
-                                                            <input type="text" name="price" id="price-{{$auction->id}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('price', $auction->price)}}" placeholder="19000" required="required">
+                                                            <input type="number" name="price" id="price-{{$auction->id}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('price', $auction->price)}}" placeholder="19000" required="required">
+                                                            @error('price')
+                                                                <div class="error-msg">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                         <div class="">
                                                             <label for="status-{{$auction->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Statut</label>
-                                                            <select name="status" id="status-{{$auction->id}}" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                                <option value="in_progess" @selected($auction->status == 'in_progress')>En cours</option>
+                                                            <select name="status" id="status-{{$auction->id}}" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                                <option value="in_progress" @selected($auction->status == 'in_progress')>En cours</option>
                                                                 <option value="sold" @selected($auction->status == 'sold')>Vendu</option>
                                                             </select>
+                                                            @error('status')
+                                                                <div class="error-msg">{{$message}}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="text-white inline-flex items-center bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
