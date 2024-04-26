@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', "Les Modèles")
 @section('content')
-<div class="mt-20 mb-20">
+<div class="mb-10">
     <div>
         <div class="flex items-center justify-between">
             <h2 class="lg:text-3xl text-xl font-bold">Les Modèles</h2>

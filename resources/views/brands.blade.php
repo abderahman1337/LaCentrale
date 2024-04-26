@@ -1,7 +1,7 @@
 @extends('layouts.home')
 @section('title', "Les marques")
 @section('content')
-<div class="mt-20 mb-20">
+<div class="mb-10">
     <div>
         <div class="flex items-center justify-between">
             <h2 class="lg:text-3xl text-xl font-bold">Les marques</h2>
@@ -9,7 +9,7 @@
         <div class="mt-6">
             <div class="grid lg:grid-cols-6 grid-cols-2 gap-4 items-stretch">
                 @foreach ($brands as $brand)
-                <a href="#">
+                <a href="{{route('vehicules.listing', ['brands' => $brand->id])}}">
                     <div class="bg-white flex justify-center flex-col rounded-[20px] shadow-md overflow-hidden group">
                         <div class="py-4">
                             @if ($brand->image != null)
