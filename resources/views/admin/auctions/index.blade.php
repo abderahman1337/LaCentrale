@@ -71,6 +71,9 @@
                                 Image
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Statut
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Utilisateur
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -112,6 +115,15 @@
                             </th>
                             <td class="px-6 py-4">
                                 <img class="h-[24px] max-h-auto max-w-[44px]" src="{{$auction->vehicule->getImage()}}" alt="">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div>
+                                    @if ($auction->status == 'in_progress')
+                                    <div class="py-1.5 px-3 rounded-full text-xs text-gray-800 bg-gray-300">En cours</div>
+                                    @elseif($auction->status == 'sold')
+                                    <div class="py-1.5 px-3 rounded-full text-xs text-red-800 bg-red-400">Vendu</div>
+                                    @endif
+                                </div>
                             </td>
                             <td class="px-6 py-4">
                                 @if ($auction->user)

@@ -16,7 +16,7 @@ class AuctionController extends Controller
         $auctions = Auction::where('user_id', auth()->user()->id)->paginate();
         $vehicules = Vehicule::whereHas('auctions', function ($q){
             $q->where('user_id', auth()->user()->id);
-        })->paginate();
+        })->latest()->paginate();
         return view('customer.auctions', compact('vehicules'));
     }
 
