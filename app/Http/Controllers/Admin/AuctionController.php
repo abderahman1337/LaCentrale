@@ -58,9 +58,14 @@ class AuctionController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'status' => 'required|in:in_progress,sold',
+            'price' => 'required|integer'
+        ]);
         $auction = Auction::findOrFail($id);
         $auction->update([
-            'price' => $request->price
+            'price' => $request->price,
+            'status' => $request->status
         ]);
         return back()->with('success', "l'enchère a été modifiée avec succès");
 

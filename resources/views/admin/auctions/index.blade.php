@@ -4,7 +4,7 @@
 <div>
     <div class="flex items-center justify-between">
         <h2 class="lg:text-2xl text-xl font-bold">Les enchères <span class="text-primary">({{$auctions->total()}})</span></h2>
-        <button data-modal-target="new-auction-modal" data-modal-toggle="new-auction-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        {{-- <button data-modal-target="new-auction-modal" data-modal-toggle="new-auction-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Ajouter
         </button>
         <div id="new-auction-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -39,7 +39,7 @@
                     </form>
                 </div>
             </div>
-        </div> 
+        </div>  --}}
     </div>
     <div class="mt-6">
         <form method="GET" action="{{route('admin.auctions.index')}}" class="w-full mx-auto mb-4">
@@ -141,7 +141,7 @@
                                                 <!-- Modal header -->
                                                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                        Modifier la marque
+                                                        Modifier l'enchère
                                                     </h3>
                                                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="edit-auction-modal-{{$auction->id}}">
                                                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -156,8 +156,15 @@
                                                     @method('PUT')
                                                     <div class="flex flex-col gap-4 mb-4">
                                                         <div class="">
-                                                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prix</label>
-                                                            <input type="text" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('price', $auction->price)}}" placeholder="19000" required="required">
+                                                            <label for="price-{{$auction->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prix</label>
+                                                            <input type="text" name="price" id="price-{{$auction->id}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('price', $auction->price)}}" placeholder="19000" required="required">
+                                                        </div>
+                                                        <div class="">
+                                                            <label for="status-{{$auction->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Statut</label>
+                                                            <select name="status" id="status-{{$auction->id}}" class="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                <option value="in_progess" @selected($auction->status == 'in_progress')>En cours</option>
+                                                                <option value="sold" @selected($auction->status == 'sold')>Vendu</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="text-white inline-flex items-center bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
