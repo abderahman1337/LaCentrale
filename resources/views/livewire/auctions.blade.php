@@ -26,6 +26,13 @@
                             }
                             @endphp
                         </div>
+                        <div>
+                            @if ($vehicule->status == 'in_progress')
+                            <div class="py-1.5 px-3 rounded-full text-xs text-gray-800 bg-gray-400">En cours</div>
+                            @else
+                            <div class="py-1.5 px-3 rounded-full text-xs text-red-800 bg-red-400">Vendu</div>
+                            @endif
+                        </div>
                         <div class="text-left"><span class="whitespace-nowrap font-semibold">{{number_format($auction->price, 0 , ' ', ' ')}} €</span></div>
                     </div>
                 </div>

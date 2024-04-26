@@ -9,7 +9,7 @@ class Auction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['vehicule_id', 'user_id', 'price'];
+    protected $fillable = ['vehicule_id', 'user_id', 'price', 'status'];
 
     public function user(){
         return $this->belongsTo(User::class);
