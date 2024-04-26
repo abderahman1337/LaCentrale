@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Mail\NewAuction;
 use App\Models\Auction;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,7 +15,10 @@ class AuctionObserver
      */
     public function created(Auction $auction): void
     {
-        
+        Cache::forget('vehicule-'.$auction->vehicule_id);
+        Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
+        Cache::forget('similar-vehicules-'.$auction->vehicule_id);
 
     }
 
@@ -23,7 +27,10 @@ class AuctionObserver
      */
     public function updated(Auction $auction): void
     {
-        
+        Cache::forget('vehicule-'.$auction->vehicule_id);
+        Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
+        Cache::forget('similar-vehicules-'.$auction->vehicule_id);
     }
 
     /**
@@ -31,7 +38,10 @@ class AuctionObserver
      */
     public function deleted(Auction $auction): void
     {
-        
+        Cache::forget('vehicule-'.$auction->vehicule_id);
+        Cache::forget('vehicules-count');
+        Cache::forget('home-latest-vehicules');
+        Cache::forget('similar-vehicules-'.$auction->vehicule_id);
     }
 
     /**

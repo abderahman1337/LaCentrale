@@ -54,6 +54,7 @@ class EventServiceProvider extends ServiceProvider
         Energy::class => [EnergyObserver::class],
         Category::class => [CategoryObserver::class],
         User::class => [UserObserver::class],
+        Auction::class => [AuctionObserver::class]
     ];
 
     /**
