@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Helpers\Settings;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->share('websiteName', Settings::website_name());
+        view()->share('websiteURL', URL::to('/'));
         view()->share('websiteLogo', Settings::website_logo());
         view()->share('websiteFavicon', Settings::website_favicon());
         view()->share('websiteAddress', Settings::website_address());

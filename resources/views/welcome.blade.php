@@ -1,3 +1,6 @@
+@php
+    $page_title = 'Voiture occasion - Annonce auto';
+@endphp
 @extends('layouts.home')
 @section('title', 'Voiture occasion - Annonce auto')
 @section('head')

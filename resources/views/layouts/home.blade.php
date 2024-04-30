@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="description" content="{{$websiteDescription}}">
+        {{-- <meta name="description" content="{{$websiteDescription}}">
         <title>{{ $websiteName }} | @yield('title')</title>
         <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="32x32">
         <link rel="apple-touch-icon" href="{{asset('images/website/logo.jpeg')}}" sizes="180x180" />
         <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="192x192" />
-        <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="512x512" />
+        <link rel="icon" href="{{asset('images/website/logo.jpeg')}}" sizes="512x512" /> --}}
+        @include('layouts.seo')
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">

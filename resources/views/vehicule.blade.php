@@ -1,8 +1,11 @@
+@php
+    $page_title = $vehicule->getName();
+    $page_image = $vehicule->getImage();
+    $vehicule_name = $vehicule->getName();
+    $vehicule_price = $vehicule->price;
+@endphp
 @extends('layouts.home')
 @section('title', $vehicule->getName())
-@section('head')
-    
-@endsection
 @section('content')
 <div class="mb-10 flex flex-col-reverse lg:flex-row items-start gap-10">
     <div class="lg:w-[65%] w-full">

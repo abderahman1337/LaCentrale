@@ -1,3 +1,6 @@
+@php
+    $page_title = 'Favoris';
+@endphp
 @extends('layouts.home')
 @section('title', "Favoris")
 @section('content')

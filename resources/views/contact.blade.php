@@ -1,3 +1,6 @@
+@php
+    $page_title = 'Contactez-nous';
+@endphp
 @extends('layouts.home')
 @section('title', "Contactez-nous")
 @section('content')

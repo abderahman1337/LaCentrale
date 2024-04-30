@@ -1,3 +1,6 @@
+@php
+    $page_title = $page->title;
+@endphp
 @extends('layouts.home')
 @section('title', $page->title)
 @section('content')

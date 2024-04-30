@@ -1,3 +1,6 @@
+@php
+    $page_title = 'Les Modèles';
+@endphp
 @extends('layouts.home')
 @section('title', "Les Modèles")
 @section('content')
