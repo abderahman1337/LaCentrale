@@ -105,7 +105,7 @@
         <div class="mt-6 mb-6">
             <h2 class="text-xl font-semibold">Informations générales</h2>
             <p class="mt-2 text-gray-600 text-sm">{{$vehicule->getName()}}</p>
-            <p class="mt-2 text-gray-600 text-sm">{{$vehicule->description}}</p>
+            <p class="mt-2 text-gray-600 text-sm"><section>{!! $vehicule->description !!}</section></p>
             <hr class="mt-4">
             <div class="mt-6">
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-10">
@@ -429,7 +429,6 @@
         <div class="bg-white flex flex-col rounded-[20px] shadow-md overflow-hidden mb-4">
             <div class="bg-white p-6 text-center px-4">
                 <h3 class="font-semibold text-xl">{{$vehicule->getName()}}</h3>
-                <span class="text-base text-gray-600">{{$vehicule->description}}</span>
                 <div class="mt-2">
                     <ul class="text-base flex justify-center divide-x items-center flex-wrap overflow-hidden text-ellipsis">
                         @if ($vehicule->year)

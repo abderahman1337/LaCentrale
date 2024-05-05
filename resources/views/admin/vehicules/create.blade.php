@@ -101,7 +101,7 @@
                     <div class="mt-4">
                         <div class="relative">
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
+                            <textarea name="description" id="description" rows="4" class="tiny-editor block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
                         </div>
                         @error('description')
                             <div class="error-msg">{{$message}}</div>
@@ -466,6 +466,26 @@
 </div>
 @endsection
 @section('scripts')
+<script type="text/javascript" src="/libs/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="/libs/tinymce/ar.js"></script>
+<script>
+   tinymce.init({
+      selector: '.tiny-editor',
+      plugins: ' advlist image media autolink code codesample directionality table wordcount quickbars link lists' ,// numlist bullist
+      images_upload_url:"{{route('admin.upload_editor_image',['_token' => csrf_token() ])}}",
+      file_picker_types: 'file image media',
+      image_caption: true,
+      image_dimensions:true,
+      directionality : 'rtl',
+      language: "{{App()->getLocale()=='ar'?'ar':'en'}}",
+      quickbars_selection_toolbar: 'bold italic |h1 h2 h3 h4 h5 h6| formatselect | quicklink blockquote' ,// | numlist bullist
+      entity_encoding : "raw",
+      verify_html : false ,
+      object_resizing : 'img',
+      content_style: "body { font-family: Arial; }",
+      height:500
+   });   
+</script>
     <script>
     var modelList = document.getElementById('models-list'); 
     var generationSelectInput = document.getElementById('vehicule-generation');
@@ -498,11 +518,10 @@
     });
 
     var equipmentsList = document.querySelectorAll('#equipments-list .equipment');
-    equipmentsList.forEach(equipment => {
-        var optionsList = equipment.querySelector('.options-list');
-        var optionsSearch = equipment.querySelector('.options-search');
+    equipmentsList.forEach(function (equipement){
+        var optionsList = equipement.querySelector('.options-list');
+        var optionsSearch = equipement.querySelector('.options-search');
         listFilterByName(optionsSearch, optionsList);
-
     });
 
 
