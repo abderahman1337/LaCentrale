@@ -333,7 +333,7 @@
     });
 
     var brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
-    brandList.querySelectorAll('li').forEach(item => {
+    brandList.querySelectorAll('li').forEach(function (item){
         var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
             var checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
@@ -351,7 +351,7 @@
 
     
     var modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
-    modelList.querySelectorAll('li').forEach(item => {
+    modelList.querySelectorAll('li').forEach(function (item){
         var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
             var checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
@@ -368,7 +368,7 @@
     });
 
     var energiesSearchDropdownBtn = document.getElementById('energy-search-dropdown');
-    energyList.querySelectorAll('li').forEach(item => {
+    energyList.querySelectorAll('li').forEach(function (item){
         var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
             var checkedEnergies = energyList.querySelectorAll('li input[type="checkbox"]:checked');
