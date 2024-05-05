@@ -504,14 +504,14 @@
 @endsection
 @section('scripts')
     <script>
-    let generationSelectInput = document.getElementById('vehicule-generation');
-    let modelList = document.getElementById('models-list'); 
+    var generationSelectInput = document.getElementById('vehicule-generation');
+    var modelList = document.getElementById('models-list'); 
     listFilterByName(document.getElementById('model-search'), modelList);
-    let modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
+    var modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
     modelList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="radio"]');
+        var input = item.querySelector('input[type="radio"]');
         input.addEventListener('change', function (){
-            let selected = this;
+            var selected = this;
             modelSearchDropdownBtn.querySelector('input').value = selected.dataset.name;
             modelSearchDropdownBtn.querySelector('#selected-model').value = selected.value;
             generationSelectInput.innerHTML = '<option value="">Générations</option>';
@@ -521,10 +521,10 @@
             xhr.setRequestHeader('X-CSRF-TOKEN', CSRF_TOKEN);
             xhr.onreadystatechange = function (){
                 if (this.readyState == 4 && this.status == 200) {
-                    let response = JSON.parse(this.response);
+                    var response = JSON.parse(this.response);
                     if(response.success && response.data.length > 0){
                         generationSelectInput.parentNode.classList.remove('hidden');
-                        for(let generation in response.data){
+                        for(var generation in response.data){
                             generationSelectInput.innerHTML += `<option value="${response.data[generation].id}">${response.data[generation].name}</option>`;
                         }
                     }
@@ -534,20 +534,20 @@
         });
     });
 
-    let equipmentsList = document.querySelectorAll('#equipments-list .equipment');
+    var equipmentsList = document.querySelectorAll('#equipments-list .equipment');
     equipmentsList.forEach(equipment => {
-        let optionsList = equipment.querySelector('.options-list');
-        let optionsSearch = equipment.querySelector('.options-search');
+        var optionsList = equipment.querySelector('.options-list');
+        var optionsSearch = equipment.querySelector('.options-search');
         listFilterByName(optionsSearch, optionsList);
     });
 
-    let categoriesList = document.getElementById('categories-list'); 
+    var categoriesList = document.getElementById('categories-list'); 
     listFilterByName(document.getElementById('category-search'), categoriesList);
-    let categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
+    var categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
     categoriesList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="radio"]');
+        var input = item.querySelector('input[type="radio"]');
         input.addEventListener('change', function (){
-            let selected = this;
+            var selected = this;
             categorySearchDropdownBtn.querySelector('input').value = selected.dataset.name;
             categorySearchDropdownBtn.querySelector('#selected-category').value = selected.value;
         });
@@ -561,17 +561,17 @@
 
 
     function deleteProductImage(imageId){
-        let productImagesContainer = document.querySelector('.product-images');
-        let productImages =productImagesContainer.querySelectorAll('.product-image');
+        var productImagesContainer = document.querySelector('.product-images');
+        var productImages =productImagesContainer.querySelectorAll('.product-image');
         var xhr = new XMLHttpRequest();
         xhr.open('POST', route('admin.vehicule.image.delete', {id : imageId}), true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.setRequestHeader('X-CSRF-TOKEN', CSRF_TOKEN);
         xhr.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200) {
-                let response = JSON.parse(this.response);
+                var response = JSON.parse(this.response);
                 if(response.success){
-                    let imageElement = document.querySelector('.product-image[data-id="'+imageId+'"]');
+                    var imageElement = document.querySelector('.product-image[data-id="'+imageId+'"]');
                     document.getElementById('slider-next-image').click();
                     imageElement.remove();
                     if(productImages.length <= 2){

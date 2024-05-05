@@ -312,31 +312,31 @@
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
 <script>
-    let brandList = document.getElementById('brands-list'); 
-    let modelList = document.getElementById('models-list'); 
-    let energyList = document.getElementById('energies-list'); 
-    let maxPrice = document.getElementById('max-price');
-    let minPrice = document.getElementById('min-price');
-    let priceRange = document.getElementById('price-range');
+    var brandList = document.getElementById('brands-list'); 
+    var modelList = document.getElementById('models-list'); 
+    var energyList = document.getElementById('energies-list'); 
+    var maxPrice = document.getElementById('max-price');
+    var minPrice = document.getElementById('min-price');
+    var priceRange = document.getElementById('price-range');
     listFilterByName(document.getElementById('brand-search'), brandList);
     listFilterByName(document.getElementById('model-search'), modelList);
 
     minPrice.addEventListener('input', function (){
-        let value = this.value;
-        let max = maxPrice.value;
+        var value = this.value;
+        var max = maxPrice.value;
         priceRange.value = (value != '' ? value + '€'  + (max != '' ? ' - ' : '') : '') + (max != '' ?  max + '€' : '');
     });
     maxPrice.addEventListener('input', function (){
-        let value = this.value;
-        let min = minPrice.value;
+        var value = this.value;
+        var min = minPrice.value;
         priceRange.value = (min != '' ? min + '€ ' : '') + (value != '' ? (min != '' ? ' - ' : '') + value + '€' : '');
     });
 
-    let brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
+    var brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
     brandList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
+        var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
             brandSearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];
@@ -350,11 +350,11 @@
     });
 
     
-    let modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
+    var modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
     modelList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
+        var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
             modelSearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];
@@ -367,11 +367,11 @@
         });
     });
 
-    let energiesSearchDropdownBtn = document.getElementById('energy-search-dropdown');
+    var energiesSearchDropdownBtn = document.getElementById('energy-search-dropdown');
     energyList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
+        var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedEnergies = energyList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedEnergies = energyList.querySelectorAll('li input[type="checkbox"]:checked');
             energiesSearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];

@@ -14,10 +14,10 @@ function listFilterByName(searchInput, itemList){
 }
 
 
-let dropdownContainers = document.querySelectorAll('.dropdown-container');
+var dropdownContainers = document.querySelectorAll('.dropdown-container');
 dropdownContainers.forEach(container => {
-   let button = container.querySelector('.button');
-   let dropdown = container.querySelector('.dropdown');
+   var button = container.querySelector('.button');
+   var dropdown = container.querySelector('.dropdown');
    button.addEventListener('click', function (){
         dropdown.classList.toggle('active');
    });
@@ -25,11 +25,11 @@ dropdownContainers.forEach(container => {
 
 
 
-let favoriteBtns = document.querySelectorAll('.favorite-btn');
+var favoriteBtns = document.querySelectorAll('.favorite-btn');
 favoriteBtns.forEach(function (btn){
     btn.addEventListener('click', () => {
         btn.classList.toggle('active');
-        let vehicule = btn.dataset.vehicule;
+        var vehicule = btn.dataset.vehicule;
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/favorite', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -49,12 +49,12 @@ function hasScroll() {
     const documentElementHasScroll = document.documentElement.scrollHeight > window.innerHeight;
     return bodyHasScroll || documentElementHasScroll;
  }
-let isScrolled = false;
-let lazyLoadingsImages = document.querySelectorAll('img[data-src]');
+var isScrolled = false;
+var lazyLoadingsImages = document.querySelectorAll('img[data-src]');
 if(hasScroll()){
    document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('scroll', function (){
-        let images = lazyLoadingsImages;
+        var images = lazyLoadingsImages;
         if(images.length > 0){
            images.forEach(img => {
               if(img.dataset.src){

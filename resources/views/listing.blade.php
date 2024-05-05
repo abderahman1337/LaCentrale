@@ -416,26 +416,26 @@
 @endsection
 @section('scripts')
 <script>
-    let categoryList = document.getElementById('categories-list'); 
-    let brandList = document.getElementById('brands-list'); 
-    let modelList = document.getElementById('models-list'); 
-    let energyList = document.getElementById('energies-list'); 
-    let optionsList = document.getElementById('options-list'); 
-    let exteriorColorsList = document.getElementById('exterior-colors-list'); 
-    let interiorColorsList = document.getElementById('interior-colors-list'); 
-    let maxPrice = document.getElementById('max-price');
-    let minPrice = document.getElementById('min-price');
-    let priceRange = document.getElementById('price-range');
+    var categoryList = document.getElementById('categories-list'); 
+    var brandList = document.getElementById('brands-list'); 
+    var modelList = document.getElementById('models-list'); 
+    var energyList = document.getElementById('energies-list'); 
+    var optionsList = document.getElementById('options-list'); 
+    var exteriorColorsList = document.getElementById('exterior-colors-list'); 
+    var interiorColorsList = document.getElementById('interior-colors-list'); 
+    var maxPrice = document.getElementById('max-price');
+    var minPrice = document.getElementById('min-price');
+    var priceRange = document.getElementById('price-range');
     listFilterByName(document.getElementById('brand-search'), brandList);
     listFilterByName(document.getElementById('category-search'), categoryList);
     listFilterByName(document.getElementById('model-search'), modelList);
     listFilterByName(document.getElementById('option-search'), optionsList);
 
  
-    let categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
+    var categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
     categoryList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
-        let checkedCategories = categoryList.querySelectorAll('li input[type="checkbox"]:checked');
+        var input = item.querySelector('input[type="checkbox"]');
+        var checkedCategories = categoryList.querySelectorAll('li input[type="checkbox"]:checked');
         categorySearchDropdownBtn.querySelector('input').value = '';
         var names = [];
         var ids = [];
@@ -446,7 +446,7 @@
         categorySearchDropdownBtn.querySelector('input').value = names.join(', ');
         categorySearchDropdownBtn.querySelector('#selected-categories-list').value = ids.join(',');
         input.addEventListener('change', function (){
-            let checkedCategories = categoryList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedCategories = categoryList.querySelectorAll('li input[type="checkbox"]:checked');
             categorySearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];
@@ -459,10 +459,10 @@
         });
     });
 
-    let brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
+    var brandSearchDropdownBtn = document.getElementById('brand-search-dropdown');
     brandList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
-        let checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
+        var input = item.querySelector('input[type="checkbox"]');
+        var checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
         brandSearchDropdownBtn.querySelector('input').value = '';
         var names = [];
         var ids = [];
@@ -473,7 +473,7 @@
         brandSearchDropdownBtn.querySelector('input').value = names.join(', ');
         brandSearchDropdownBtn.querySelector('#selected-brands-list').value = ids.join(',');
         input.addEventListener('change', function (){
-            let checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedBrands = brandList.querySelectorAll('li input[type="checkbox"]:checked');
             brandSearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];
@@ -487,10 +487,10 @@
     });
 
     
-    let modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
+    var modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
     modelList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
-        let checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
+        var input = item.querySelector('input[type="checkbox"]');
+        var checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
         modelSearchDropdownBtn.querySelector('input').value = '';
         var names = [];
         var ids = [];
@@ -501,7 +501,7 @@
         modelSearchDropdownBtn.querySelector('input').value = names.join(', ');
         modelSearchDropdownBtn.querySelector('#selected-models-list').value = ids.join(',');
         input.addEventListener('change', function (){
-            let checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedModels = modelList.querySelectorAll('li input[type="checkbox"]:checked');
             modelSearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];
@@ -515,9 +515,9 @@
     });
 
     optionsList.querySelectorAll('li').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
+        var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedOptions = optionsList.querySelectorAll('li input[type="checkbox"]:checked');
+            var checkedOptions = optionsList.querySelectorAll('li input[type="checkbox"]:checked');
             var names = [];
             var ids = [];
             checkedOptions.forEach(checkedOption => {
@@ -529,9 +529,9 @@
     });
 
     exteriorColorsList.querySelectorAll('div').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
+        var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedColors = exteriorColorsList.querySelectorAll('div input[type="checkbox"]:checked');
+            var checkedColors = exteriorColorsList.querySelectorAll('div input[type="checkbox"]:checked');
             var names = [];
             var ids = [];
             checkedColors.forEach(checkedColor => {
@@ -543,9 +543,9 @@
     });
 
     interiorColorsList.querySelectorAll('div').forEach(item => {
-        let input = item.querySelector('input[type="checkbox"]');
+        var input = item.querySelector('input[type="checkbox"]');
         input.addEventListener('change', function (){
-            let checkedColors = interiorColorsList.querySelectorAll('div input[type="checkbox"]:checked');
+            var checkedColors = interiorColorsList.querySelectorAll('div input[type="checkbox"]:checked');
             var names = [];
             var ids = [];
             checkedColors.forEach(checkedColor => {

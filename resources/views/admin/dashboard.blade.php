@@ -167,16 +167,16 @@
     <script>
         
     async function fetchTopBrowsers() {
-        let response = await fetch('/admin/api/insights/top-browsers'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/top-browsers'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchTopBrowsers()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('top-browsers-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('top-browsers-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#top-browsers-chart');
+        var ctx = chartContainer.querySelector('#top-browsers-chart');
       
         var topBrowsersChart = new ApexCharts(document.querySelector("#top-browsers-chart"), {
             series: response['data'],
@@ -211,16 +211,16 @@
         topBrowsersChart.render();
     });  
     async function fetchTopTrafficSources() {
-        let response = await fetch('/admin/api/insights/traffic-source'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/traffic-source'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchTopTrafficSources()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('top-traffic-sources-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('top-traffic-sources-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#top-traffic-sources-chart');
+        var ctx = chartContainer.querySelector('#top-traffic-sources-chart');
         var topTrafficSources = new ApexCharts(ctx, {
             series: response['data'],
             chart: {
@@ -254,16 +254,16 @@
         topTrafficSources.render();
     });
     async function fetchTopDevices() {
-        let response = await fetch('/admin/api/insights/top-devices'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/top-devices'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchTopDevices()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('top-devices-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('top-devices-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#top-devices-chart');
+        var ctx = chartContainer.querySelector('#top-devices-chart');
         var topDevices = new ApexCharts(ctx, {
             series: response['data'],
             chart: {
@@ -297,16 +297,16 @@
         topDevices.render();
     });
     async function fetchHighestAccessCountries() {
-        let response = await fetch('/admin/api/insights/highest-access-countries'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/highest-access-countries'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchHighestAccessCountries()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('highest-access-countries-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('highest-access-countries-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#highest-access-countries-chart');
+        var ctx = chartContainer.querySelector('#highest-access-countries-chart');
         var chart = new ApexCharts(ctx, {
             series: [{
             name: "Visites",
@@ -344,16 +344,16 @@
         chart.render();
     });
     async function fetchTraffics() {
-        let response = await fetch('/admin/api/insights/traffic'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/traffic'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchTraffics()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('visits-insights-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('visits-insights-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#visits-insights-chart');
+        var ctx = chartContainer.querySelector('#visits-insights-chart');
         
         var traffics = new ApexCharts(ctx, {
             series: [{
@@ -409,16 +409,16 @@
 
 
     async function fetchTopVisitedCities() {
-        let response = await fetch('/admin/api/insights/top-visited-cities'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/top-visited-cities'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchTopVisitedCities()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('top-visited-cities-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('top-visited-cities-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#top-visited-cities-chart');
+        var ctx = chartContainer.querySelector('#top-visited-cities-chart');
         var topVisitedCities = new ApexCharts(ctx, {
             series: response['data'],
             chart: {
@@ -455,16 +455,16 @@
 
 
     async function fetchTopVisitedPages() {
-        let response = await fetch('/admin/api/insights/top-visited-pages'+window.location.search);
-        let json = await response.json();
+        var response = await fetch('/admin/api/insights/top-visited-pages'+window.location.search);
+        var json = await response.json();
         return json;
     }
     fetchTopVisitedPages()
     .then(y => {
-        let response = y;
-        let chartContainer = document.getElementById('top-visited-pages-chart-container');
+        var response = y;
+        var chartContainer = document.getElementById('top-visited-pages-chart-container');
         chartContainer.querySelector('.loading-box').remove();
-        let ctx = chartContainer.querySelector('#top-visited-pages-chart');
+        var ctx = chartContainer.querySelector('#top-visited-pages-chart');
         var chart = new ApexCharts(ctx, {
           series: [{
           name: 'Visites',
