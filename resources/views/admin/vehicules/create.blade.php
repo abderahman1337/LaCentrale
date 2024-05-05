@@ -491,7 +491,7 @@
     var generationSelectInput = document.getElementById('vehicule-generation');
     listFilterByName(document.getElementById('model-search'), modelList);
     var modelSearchDropdownBtn = document.getElementById('model-search-dropdown');
-    modelList.querySelectorAll('li').forEach(item => {
+    modelList.querySelectorAll('li').forEach(function (item){
         var input = item.querySelector('input[type="radio"]');
         input.addEventListener('change', function (){
             var selected = this;
@@ -528,7 +528,7 @@
     var categoriesList = document.getElementById('categories-list'); 
     listFilterByName(document.getElementById('category-search'), categoriesList);
     var categorySearchDropdownBtn = document.getElementById('category-search-dropdown');
-    categoriesList.querySelectorAll('li').forEach(item => {
+    categoriesList.querySelectorAll('li').forEach(function (item){
         var input = item.querySelector('input[type="radio"]');
         input.addEventListener('change', function (){
             var selected = this;
