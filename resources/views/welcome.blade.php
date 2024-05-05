@@ -340,7 +340,7 @@
             brandSearchDropdownBtn.querySelector('input').value = '';
             var names = [];
             var ids = [];
-            checkedBrands.forEach(checkedBrand => {
+            checkedBrands.forEach(function (checkedBrand){
                 names.push(checkedBrand.dataset.name);
                 ids.push(checkedBrand.value);
             });

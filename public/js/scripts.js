@@ -1,4 +1,5 @@
 const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
+
 function listFilterByName(searchInput, itemList){
     searchInput.addEventListener('input', function() {
         const searchText = searchInput.value.toLowerCase(); 
