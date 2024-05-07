@@ -17,6 +17,7 @@ use App\Models\VehiculeImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManager;
 
 class VehiculeController extends Controller
@@ -187,6 +188,19 @@ class VehiculeController extends Controller
 
 
     public function store(Request $request){
+        /* $validator = Validator::make($request->all(),[
+            'model' => 'required|integer|exists:series,id',
+            //'exterior_color' => 'required|integer|exists:colors,id',
+            'energy' => 'required|integer|exists:energies,id',
+            'price' => 'required|integer',
+            'year' => 'nullable|integer',
+            'mileage' => 'nullable|integer',
+            'doors_number' => 'required|integer',
+            'places_number' => 'required|integer',
+        ]);
+        if($validator->fails()){
+            dd($validator->errors());
+        } */
         $request->validate([
             'serie' => 'required|integer|exists:series,id',
             //'exterior_color' => 'required|integer|exists:colors,id',
