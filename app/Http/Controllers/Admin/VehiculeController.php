@@ -187,14 +187,16 @@ class VehiculeController extends Controller
 
 
     public function store(Request $request){
-        /* $request->validate([
+        $request->validate([
             'serie' => 'required|integer|exists:series,id',
-            'exterior_color' => 'required|integer|exists:colors,id',
+            //'exterior_color' => 'required|integer|exists:colors,id',
             'energy' => 'required|integer|exists:energies,id',
             'price' => 'required|integer',
             'year' => 'nullable|integer',
             'mileage' => 'nullable|integer',
-        ]); */
+            'doors_number' => 'required|integer',
+            'places_number' => 'required|integer',
+        ]);
         $vehicule = Vehicule::create([
             'user_id' => auth()->user()->id,
             'serie_id' => $request->model,
@@ -207,7 +209,7 @@ class VehiculeController extends Controller
             'year' => $request->year,
             'mileage' => $request->mileage,
             'description' => $request->description,
-            'owners_number' => 1,
+            'owners_number' => $request->first_owner,
             'doors_number' => $request->doors_number,
             'places_number' => $request->places_number,
             'length' => $request->length,
@@ -322,7 +324,7 @@ class VehiculeController extends Controller
             'year' => $request->year,
             'mileage' => $request->mileage,
             'description' => $request->description,
-            'owners_number' => 1,
+            'owners_number' => $request->first_owner,
             'doors_number' => $request->doors_number,
             'places_number' => $request->places_number,
             'length' => $request->length,
