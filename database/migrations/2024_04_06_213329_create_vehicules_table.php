@@ -21,9 +21,9 @@ return new class extends Migration
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('year')->nullable();
             $table->unsignedInteger('mileage')->nullable();
-            $table->unsignedTinyInteger('owners_number')->default(1);
-            $table->unsignedTinyInteger('doors_number')->default(4);
-            $table->unsignedTinyInteger('places_number')->default(5);
+            $table->unsignedTinyInteger('owners_number')->nullable()->default(1);
+            $table->unsignedTinyInteger('doors_number')->nullable()->default(4);
+            $table->unsignedTinyInteger('places_number')->nullable()->default(5);
             $table->unsignedDecimal('width', 8 , 2)->nullable();
             $table->unsignedDecimal('length', 8 , 2)->nullable();
             $table->unsignedDecimal('height', 8 , 2)->nullable();
