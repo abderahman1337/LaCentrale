@@ -332,7 +332,7 @@ class VehiculeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $vehicule = Vehicule::with(['images', 'options'])->findOrFail($id);
+        $vehicule = Vehicule::findOrFail($id);
         $vehicule->update([
             'serie_id' => $request->model,
             'generation_id' => $request->generation,
