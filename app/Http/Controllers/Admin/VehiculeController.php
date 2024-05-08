@@ -202,7 +202,7 @@ class VehiculeController extends Controller
             dd($validator->errors());
         } */
         $request->validate([
-            'serie' => 'required|integer|exists:series,id',
+            'model' => 'required|integer|exists:series,id',
             //'exterior_color' => 'required|integer|exists:colors,id',
             'energy' => 'required|integer|exists:energies,id',
             'price' => 'required|integer',
@@ -223,7 +223,7 @@ class VehiculeController extends Controller
             'year' => $request->year,
             'mileage' => $request->mileage,
             'description' => $request->description,
-            'owners_number' => $request->first_owner,
+            'owners_number' => 1,
             'doors_number' => $request->doors_number,
             'places_number' => $request->places_number,
             'length' => $request->length,
@@ -251,7 +251,7 @@ class VehiculeController extends Controller
             if($request->hasFile('thumbnail')){
                 $image = $request->file('thumbnail');
                 $extension = $image->getClientOriginalExtension();
-                $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
+                $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.webp';
                 $image->move($this->vehiculesSavePath, $imageName);
                 $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
                 $imageEdit->place(
@@ -261,6 +261,9 @@ class VehiculeController extends Controller
                     10,
                     25
                 );
+                if($request->compress_thumbnail){
+                    $imageEdit->toWebp(60);
+                }
                 $imageEdit->save();
                 $vehicule->update(['image' => $imageName]);
             }
@@ -365,7 +368,7 @@ class VehiculeController extends Controller
             $oldImage = $vehicule->image;
             $image = $request->file('thumbnail');
             $extension = $image->getClientOriginalExtension();
-            $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.' . $extension;
+            $imageName = $vehicule->id.now()->timestamp.rand(1000000,9999999). '.webp';
             $image->move($this->vehiculesSavePath, $imageName);
             $imageEdit = ImageManager::gd()->read(public_path('images/vehicules/'.$imageName));
             $imageEdit->place(
@@ -375,6 +378,11 @@ class VehiculeController extends Controller
                 10,
                 25
             );
+            
+            if($request->compress_thumbnail){
+                $imageEdit->toWebp(60);
+            }
+            
             $imageEdit->save();
             $vehicule->update(['image' => $imageName]);
             if($oldImage != null){
