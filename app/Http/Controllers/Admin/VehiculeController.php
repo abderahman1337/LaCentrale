@@ -283,6 +283,9 @@ class VehiculeController extends Controller
                         10,
                         25
                     );
+                    if($request->compress_thumbnail){
+                        $imageEdit->toWebp(60);
+                    }
                     $imageEdit->save();
                     
                 }
@@ -407,6 +410,9 @@ class VehiculeController extends Controller
                     10,
                     25
                 );
+                if($request->compress_thumbnail){
+                    $imageEdit->toWebp(60);
+                }
                 $imageEdit->save();
                 
             }

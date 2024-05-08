@@ -357,6 +357,10 @@
                            </div>
                         @enderror
                      </div>
+                     <div class="flex items-center bg-gray-50 rounded px-2 py-2.5 border-[#e5e5e5] border mt-2">
+                        <input id="compress-thumbnail" name="compress_thumbnail" type="checkbox" value="1" class="w-5 h-5 text-primary cursor-pointer bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="compress-thumbnail" class="ltr:ml-3 rtl:mr-3 text-sm font-medium cursor-pointer text-gray-900 dark:text-gray-300">Compresser l'image</label>
+                     </div>
                 </div>
                 <div class="bg-white rounded-md shadow-md group w-full p-6">
                     <h2 class="mb-6 font-semibold text-xl">Images</h2>
