@@ -12,7 +12,7 @@
         <div id="controls-carousel" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden rounded-lg md:h-[500px]">
-                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                <div class="duration-700 ease-in-out" data-carousel-item="active">
                     <img src="{{$vehicule->getImage()}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                 </div>
                 @foreach ($vehicule->images as $vehiculeImage)
